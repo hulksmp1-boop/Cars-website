@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BMW M5 F90 Competition — AETHER GT</title>
+  <meta name="description" content="Scroll to orbit the BMW M5 F90 Competition: a cinematic, scroll-controlled 3D view.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050506'/%3E%3Cpath d='M8 23 16 8l8 15' fill='none' stroke='%232f7bff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/chrome.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/car.css">
+
+  <noscript><style>[data-loader]{display:none}html.is-loading,html.is-loading body{overflow:auto}</style></noscript>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="js/boot-guard.js"></script>
+  <script type="module" src="js/pages/car.js"></script>
+</head>
+<body data-page="car" data-vehicle="bmw-m5-f90">
+
+  <!-- Loading screen -->
+  <div class="loader" data-loader>
+    <div class="loader__inner">
+      <p class="loader__brand">AETHER <span>GT</span></p>
+      <div class="loader__track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="loader__bar" data-loader-bar></span>
+      </div>
+      <p class="loader__meta">
+        <span data-loader-status>Initialising</span>
+        <span><span data-loader-percent>000</span>%</span>
+      </p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <!-- Persistent WebGL stage (fixed behind all content) -->
+  <canvas id="stage" class="stage" aria-hidden="true"></canvas>
+
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+  <!-- Atmosphere: vignette + fine grain (also dithers the dark gradients) -->
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <!-- Showcase HUD: filled from config.js and the car's shot (js/ui/hud.js) -->
+  <div class="hud" data-hud>
+    <div class="hud__ident">
+      <p class="hud__make" data-hud-make></p>
+      <p class="hud__model" data-hud-model></p>
+      <p class="hud__designation" data-hud-designation></p>
+    </div>
+    <div class="hud__chapter" aria-hidden="true">
+      <p class="hud__chapter-count"><span data-hud-index>01</span><span class="hud__sep">/</span><span data-hud-total>09</span></p>
+      <p class="hud__chapter-title" data-hud-title></p>
+    </div>
+    <ol class="hud__rail" aria-hidden="true" data-hud-rail></ol>
+    <p class="hud__cue" data-hud-cue aria-hidden="true"><span>Scroll</span><i></i></p>
+  </div>
+
+  <main id="main">
+    <!-- Scroll track: the camera orbit is scrubbed across this section's height. -->
+    <section class="showcase" data-showcase aria-label="BMW M5 F90 Competition, scroll-controlled 3D view">
+      <div class="hero">
+        <div class="container hero__inner">
+          <p class="eyebrow">BMW</p>
+          <h1 class="hero__title">M5 F90</h1>
+          <p class="hero__lede">Competition</p>
+        </div>
+      </div>
+      <p class="sr-only">Scrolling moves a camera around a BMW M5 F90 Competition: front three-quarter, nose, front quarter, profile, rear quarter, tail, overhead sweep, opposite profile, and back to the start.</p>
+    </section>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <div class="model-error" data-model-error role="alert" hidden>
+    <p data-model-error-message>The 3D model could not be loaded.</p>
+    <button type="button" data-model-error-retry>Try again</button>
+  </div>
+
+  <p class="webgl-note" data-webgl-fallback hidden>
+    WebGL is unavailable in this browser, so the 3D experience cannot run. Try a current version of Chrome, Edge, Firefox or Safari.
+  </p>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>

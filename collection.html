@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Collection — AETHER GT</title>
+  <meta name="description" content="Five modern performance cars: BMW M5 F90 Competition, Porsche 911 Carrera 4S, Nissan GT-R R35, Toyota GR Supra MK5 and Chevrolet Corvette C8.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050506'/%3E%3Cpath d='M8 23 16 8l8 15' fill='none' stroke='%232f7bff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/chrome.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/collection.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="js/boot-guard.js"></script>
+  <script type="module" src="js/pages/collection.js"></script>
+</head>
+<body data-page="collection">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <main id="main">
+    <section class="collection-hero" aria-labelledby="collection-title">
+      <span class="collection-hero__count" aria-hidden="true">05</span>
+      <div class="container collection-hero__inner">
+        <p class="eyebrow reveal">The Collection</p>
+        <h1 class="collection-hero__title reveal" id="collection-title">Five cars.<br>Five answers.</h1>
+        <p class="collection-hero__lede reveal">Modern performance, five ways. Choose one and step inside.</p>
+        <nav class="collection-hero__index reveal" aria-label="Jump to a car">
+          <ol><li><a href="#bmw-m5-f90"><span>01</span>BMW</a></li><li><a href="#porsche-911-carrera-4s"><span>02</span>Porsche</a></li><li><a href="#nissan-gt-r-r35"><span>03</span>Nissan</a></li><li><a href="#toyota-gr-supra-mk5"><span>04</span>Toyota</a></li><li><a href="#chevrolet-corvette-c8"><span>05</span>Chevrolet</a></li></ol>
+        </nav>
+      </div>
+    </section>
+
+    <div class="showroom container">
+
+      <article class="showroom__item" id="bmw-m5-f90" data-vehicle-id="bmw-m5-f90" data-layout="a" data-tone="cool" aria-labelledby="bmw-m5-f90-name">
+        <a class="plate reveal" href="bmw-m5.html" tabindex="-1" aria-hidden="true">
+          <span class="plate__stage">
+            <span class="plate__light"></span>
+            <span class="plate__drift">
+              <span class="plate__glyph">M5</span>
+              <span class="plate__floor"></span>
+            </span>
+          </span>
+          <span class="plate__tag">Live 3D experience</span>
+        </a>
+        <div class="showroom__copy">
+          <p class="showroom__index reveal"><span>01</span> / 05</p>
+          <h2 class="showroom__name reveal" id="bmw-m5-f90-name"><span class="showroom__make">BMW</span> <span class="showroom__model">M5 F90</span> <span class="showroom__designation">Competition</span></h2>
+          <p class="showroom__tagline reveal">Four doors. Twin-turbo V8. Uncompromising.</p>
+          <a class="explore reveal" href="bmw-m5.html" aria-label="Explore the BMW M5 F90 Competition">Explore<i aria-hidden="true"></i></a>
+        </div>
+      </article>
+      <article class="showroom__item" id="porsche-911-carrera-4s" data-vehicle-id="porsche-911-carrera-4s" data-layout="b" data-tone="champagne" aria-labelledby="porsche-911-carrera-4s-name">
+        <a class="plate reveal" href="porsche-911.html" tabindex="-1" aria-hidden="true">
+          <span class="plate__stage">
+            <span class="plate__light"></span>
+            <span class="plate__drift">
+              <span class="plate__glyph">911</span>
+              <span class="plate__floor"></span>
+            </span>
+          </span>
+          <span class="plate__tag">Studio imagery to follow</span>
+        </a>
+        <div class="showroom__copy">
+          <p class="showroom__index reveal"><span>02</span> / 05</p>
+          <h2 class="showroom__name reveal" id="porsche-911-carrera-4s-name"><span class="showroom__make">Porsche</span> <span class="showroom__model">911</span> <span class="showroom__designation">Carrera 4S</span></h2>
+          <p class="showroom__tagline reveal">The rear-engined icon, with all-wheel-drive grip.</p>
+          <a class="explore reveal" href="porsche-911.html" aria-label="Explore the Porsche 911 Carrera 4S">Explore<i aria-hidden="true"></i></a>
+        </div>
+      </article>
+      <article class="showroom__item" id="nissan-gt-r-r35" data-vehicle-id="nissan-gt-r-r35" data-layout="c" data-tone="steel" aria-labelledby="nissan-gt-r-r35-name">
+        <a class="plate reveal" href="nissan-gt-r.html" tabindex="-1" aria-hidden="true">
+          <span class="plate__stage">
+            <span class="plate__light"></span>
+            <span class="plate__drift">
+              <span class="plate__glyph">R35</span>
+              <span class="plate__floor"></span>
+            </span>
+          </span>
+          <span class="plate__tag">Studio imagery to follow</span>
+        </a>
+        <div class="showroom__copy">
+          <p class="showroom__index reveal"><span>03</span> / 05</p>
+          <h2 class="showroom__name reveal" id="nissan-gt-r-r35-name"><span class="showroom__make">Nissan</span> <span class="showroom__model">GT-R</span> <span class="showroom__designation">R35</span></h2>
+          <p class="showroom__tagline reveal">The all-wheel-drive giant-killer.</p>
+          <a class="explore reveal" href="nissan-gt-r.html" aria-label="Explore the Nissan GT-R R35">Explore<i aria-hidden="true"></i></a>
+        </div>
+      </article>
+      <article class="showroom__item" id="toyota-gr-supra-mk5" data-vehicle-id="toyota-gr-supra-mk5" data-layout="a" data-tone="amber" aria-labelledby="toyota-gr-supra-mk5-name">
+        <a class="plate reveal" href="toyota-supra.html" tabindex="-1" aria-hidden="true">
+          <span class="plate__stage">
+            <span class="plate__light"></span>
+            <span class="plate__drift">
+              <span class="plate__glyph">GR</span>
+              <span class="plate__floor"></span>
+            </span>
+          </span>
+          <span class="plate__tag">Studio imagery to follow</span>
+        </a>
+        <div class="showroom__copy">
+          <p class="showroom__index reveal"><span>04</span> / 05</p>
+          <h2 class="showroom__name reveal" id="toyota-gr-supra-mk5-name"><span class="showroom__make">Toyota</span> <span class="showroom__model">GR Supra</span> <span class="showroom__designation">MK5</span></h2>
+          <p class="showroom__tagline reveal">Rear-drive precision, reborn.</p>
+          <a class="explore reveal" href="toyota-supra.html" aria-label="Explore the Toyota GR Supra MK5">Explore<i aria-hidden="true"></i></a>
+        </div>
+      </article>
+      <article class="showroom__item" id="chevrolet-corvette-c8" data-vehicle-id="chevrolet-corvette-c8" data-layout="b" data-tone="silver" aria-labelledby="chevrolet-corvette-c8-name">
+        <a class="plate reveal" href="corvette-c8.html" tabindex="-1" aria-hidden="true">
+          <span class="plate__stage">
+            <span class="plate__light"></span>
+            <span class="plate__drift">
+              <span class="plate__glyph">C8</span>
+              <span class="plate__floor"></span>
+            </span>
+          </span>
+          <span class="plate__tag">Studio imagery to follow</span>
+        </a>
+        <div class="showroom__copy">
+          <p class="showroom__index reveal"><span>05</span> / 05</p>
+          <h2 class="showroom__name reveal" id="chevrolet-corvette-c8-name"><span class="showroom__make">Chevrolet</span> <span class="showroom__model">Corvette</span> <span class="showroom__designation">C8</span></h2>
+          <p class="showroom__tagline reveal">Mid-engine, at last.</p>
+          <a class="explore reveal" href="corvette-c8.html" aria-label="Explore the Chevrolet Corvette C8">Explore<i aria-hidden="true"></i></a>
+        </div>
+      </article>
+    </div>
+
+    <nav class="showroom-rail" aria-hidden="true" data-rail-nav>
+      <ol><li><a href="#bmw-m5-f90" tabindex="-1" data-rail="bmw-m5-f90">01</a></li><li><a href="#porsche-911-carrera-4s" tabindex="-1" data-rail="porsche-911-carrera-4s">02</a></li><li><a href="#nissan-gt-r-r35" tabindex="-1" data-rail="nissan-gt-r-r35">03</a></li><li><a href="#toyota-gr-supra-mk5" tabindex="-1" data-rail="toyota-gr-supra-mk5">04</a></li><li><a href="#chevrolet-corvette-c8" tabindex="-1" data-rail="chevrolet-corvette-c8">05</a></li></ol>
+    </nav>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>
