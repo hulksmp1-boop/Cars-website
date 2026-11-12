@@ -1,0 +1,121 @@
+/* ==========================================================================
+   AETHER GT — Design tokens (Luxury Automotive Editorial x Minimalist Performance Luxury)
+   Single source of truth. JS reads --color-bg for the Three.js background, so it stays
+   the same deep black as the BMW studio backdrop.
+
+   Palette   ink / graphite / ivory, one metallic accent (champagne steel). No blues, no glows.
+   Type      Lora (editorial serif) for names and statements; Inter for labels and body.
+   Rhythm    8 px base. Sections breathe in 96 / 144 / 208 px steps.
+   ========================================================================== */
+
+/* Fonts: self-hosted, Latin subset (see assets/fonts/README.md). */
+@font-face {
+  font-family: "Inter";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/inter-300.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/inter-400.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/inter-500.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Lora";
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../assets/fonts/lora.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Lora";
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("../assets/fonts/lora-italic.woff") format("woff");
+}
+
+:root {
+  /* Colour: surfaces ------------------------------------------------------ */
+  --color-bg: #050506;              /* ink: page and WebGL backdrop */
+  --color-surface: #101112;         /* graphite 900 */
+  --color-surface-raised: #17181a;  /* graphite 800 */
+  --color-graphite: #222426;        /* graphite 700: frames, plates */
+  --color-graphite-soft: #2c2e31;   /* graphite 600: hairline fills */
+
+  /* Colour: ivory ramp (text) --------------------------------------------- */
+  --color-text: #ece6d9;            /* warm ivory */
+  --color-text-muted: #b2ac9f;      /* 9.4:1 on ink */
+  --color-text-dim: #8d887d;        /* 5.6:1 on ink: smallest labels only */
+
+  /* Colour: metal ---------------------------------------------------------- */
+  --color-accent: #c9bc9a;          /* champagne steel */
+  --color-accent-soft: rgb(201 188 154 / 0.12);
+  --color-line: rgb(236 230 217 / 0.1);
+  --color-line-strong: rgb(236 230 217 / 0.2);
+  /* The one decorative effect: a brushed-metal hairline (use on 1px rules only). */
+  --metal-hairline: linear-gradient(90deg, transparent, rgb(201 188 154 / 0.15) 8%, #c9bc9a 50%, rgb(201 188 154 / 0.15) 92%, transparent);
+  --metal-rule: linear-gradient(90deg, #8f8467, #e4d9ba 45%, #8f8467);
+
+  /* Typography ------------------------------------------------------------- */
+  --font-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Helvetica Neue", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+  --text-xs: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);   /* labels, 11-12 px */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.375rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --text-2xl: clamp(2.25rem, 1.5rem + 3.2vw, 4.5rem);
+  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 7.25rem); /* editorial statements */
+  --text-hero: clamp(3rem, 1.2rem + 7.5vw, 8.5rem);        /* legacy name: car and intro heroes */
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.16em;
+  --tracking-wider: 0.28em;
+
+  /* Spacing (8 px base) ---------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --space-10: 10rem;
+  --space-section: clamp(5rem, 3rem + 8vw, 11rem);   /* gap between campaign chapters */
+
+  /* Layout ----------------------------------------------------------------- */
+  --container: 96rem;
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --column-gap: clamp(1rem, 2vw, 2rem);
+  --header-h: 4.5rem;
+
+  /* Motion: slow, decelerating, never springy ------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur-base: 0.5s;
+  --dur-slow: 1.2s;
+
+  /* Layers ------------------------------------------------------------------ */
+  --z-stage: 0;
+  --z-content: 1;
+  --z-header: 10;
+  --z-loader: 100;
+}

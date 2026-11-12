@@ -1,0 +1,53 @@
+/* ==========================================================================
+   AETHER GT — Porsche 911 Carrera 4S: page-specific additions
+   Loaded by porsche-911.html only, AFTER css/bmw-m5.css. That file is the shared editorial
+   layer (the .bx-* dossier components); it is linked unchanged. This file holds only what the
+   Porsche needs that the BMW does not:
+
+     1. the same dossier-over-HUD stacking rule the BMW page has (vehicle.css scopes it to the BMW)
+     2. the torque chart rescaled for a 7,500 rpm engine with peak power at 6,500 rpm
+     3. the flat-six figure's label
+     4. a four-option rung for the drive-mode list
+   ========================================================================== */
+
+/* 1. Let the opaque dossier rise above the fixed HUD (z-index 2), as on the BMW page. */
+body[data-vehicle="porsche-911-carrera-4s"] main {
+  z-index: auto;
+}
+
+/* 2. Fig. 2. bmw-m5.css hard-codes a 6,500 rpm axis and a 6,000 rpm peak marker. */
+.lanes {
+  --max: 7500;
+  --peak: 6500;
+}
+
+.lanes__peak span {
+  right: calc((1 - var(--peak) / var(--max)) * 100%);
+}
+
+.lanes__peakline {
+  left: calc(var(--peak) / var(--max) * 100%);
+}
+
+.lane__label {
+  padding-right: calc((1 - var(--peak) / var(--max)) * 100% + 0.6rem);
+}
+
+/* 3. Fig. 1 label (the rear-axle line uses the shared .eng__axis dash style). */
+.eng__label {
+  font: 500 10px var(--font-sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--color-text-dim);
+}
+
+/* 4. Fig. 4: four drive modes in one row. */
+.bx-rung__opts--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 30rem) {
+  .bx-rung__opts--four li {
+    font-size: var(--text-sm);
+  }
+}

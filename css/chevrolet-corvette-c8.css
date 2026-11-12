@@ -1,0 +1,192 @@
+/* ==========================================================================
+   AETHER GT — Chevrolet Corvette C8 Stingray: page-specific additions
+   Loaded by corvette-c8.html only, AFTER css/bmw-m5.css. That file is the shared editorial
+   layer (the .bx-* dossier components); it is linked unchanged, as on the Porsche and Nissan pages.
+   This file holds only what the Corvette needs that the BMW and Porsche do not:
+
+     1. the same dossier-over-HUD stacking rule the BMW and Porsche pages have
+     2. the engine-speed chart rescaled for an axis to 7,000 rpm, with single-rpm peak markers
+     3. the V8 figure (two banks of four cylinders)
+     4. a five-date timeline in the opening spread (.nx-timeline)
+     5. the specification sheet and dimension plan (chapter 06: .bx-sheet, .nx-sheet, .nx-plan)
+   ========================================================================== */
+
+/* 1. Let the opaque dossier rise above the fixed HUD (z-index 2), as on the BMW page. */
+body[data-vehicle="chevrolet-corvette-c8"] main {
+  z-index: auto;
+}
+
+/* 2. Fig. 2. bmw-m5.css hard-codes a 6,500 rpm axis; this chart runs to 7,000 rpm and marks two single peaks
+   (torque and power) with a pin, because no torque band is published for the LT2. */
+.lanes {
+  --max: 7000;
+}
+
+.lane__label {
+  padding-right: 0.6rem;
+}
+
+/* 3. Fig. 1: the V8. One block outline and two staggered rows of four bores; label (the axis line uses the shared .eng__axis dash style). */
+.eng__label {
+  font: 500 11px var(--font-sans);
+  letter-spacing: 0.14em;
+  fill: var(--color-text-dim);
+}
+
+/* 4. Opening spread: five dates in a row, hairlines only. */
+.nx-timeline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: var(--space-9) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nx-timeline li {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4) var(--space-5) 0;
+  border-top: 1px solid var(--color-line-strong);
+}
+
+.nx-timeline__year {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-accent);
+}
+
+.nx-timeline p {
+  margin: 0;
+  max-width: 30ch;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* 5. Chapter 06: the specification sheet. */
+.bx-sheet__head {
+  align-self: end;
+}
+
+.nx-sheet {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+}
+
+.nx-sheet > div {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-top: 1px solid var(--color-line-strong);
+}
+
+.nx-sheet dt {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.nx-sheet dd {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  font-variant-numeric: lining-nums;
+}
+
+.bx-sheet__side {
+  display: grid;
+  gap: var(--space-7);
+  align-content: start;
+}
+
+.nx-plan__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.nx-plan__body {
+  fill: rgb(236 230 217 / 0.03);
+  stroke: var(--color-line-strong);
+}
+
+.nx-plan__axle {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-dasharray: 3 5;
+}
+
+.nx-plan__dim {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-opacity: 0.8;
+}
+
+.nx-plan__text {
+  font: 500 10px var(--font-sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--color-text-dim);
+}
+
+.nx-plan__text--in {
+  fill: var(--color-text-muted);
+}
+
+@media (min-width: 40rem) {
+  .nx-timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nx-sheet {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .nx-timeline {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .bx-sheet__head { grid-column: 1 / -1; }
+  .nx-sheet       { grid-column: 1 / 8; align-self: start; }
+  .bx-sheet__side { grid-column: 9 / 13; }
+}
+
+/* 6. Fig. 2 has no peak-power marker row, so give the plot a little air at the top; each peak is a pin, not a band. */
+.lanes__plot {
+  padding-top: 0.5rem;
+}
+
+.lane__pin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--at) / var(--max) * 100%);
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--color-accent);
+  transform-origin: center bottom;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-bx-ready .lane__pin {
+    transition: transform 1.2s var(--ease-out), opacity 1.2s var(--ease-out);
+  }
+
+  .is-bx-ready .bx-fig:not(.is-in) .lane__pin {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}

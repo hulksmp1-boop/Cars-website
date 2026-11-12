@@ -1,0 +1,150 @@
+/* ==========================================================================
+   AETHER GT — Assembly intro (Phase 7)
+   Loaded on demand by js/scene/assembly-intro.js, only when the intro plays.
+   While `html.is-intro` is set the page content is hidden and the 3D stage
+   shows through; the overlay carries a caption, progress and Skip intro.
+   ========================================================================== */
+
+html.is-intro,
+html.is-intro body {
+  overflow: hidden;
+}
+
+html.is-intro main,
+html.is-intro .site-header,
+html.is-intro .site-footer,
+html.is-intro .scroll-progress,
+html.is-intro .hud,
+html.is-intro .model-error {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Hand-off: the page fades in (opacity only, so fixed layers are unaffected). */
+html.is-intro-reveal main,
+html.is-intro-reveal .site-header,
+html.is-intro-reveal .scroll-progress,
+html.is-intro-reveal .hud {
+  animation: intro-page-in 0.9s var(--ease-out) backwards;
+}
+
+@keyframes intro-page-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-loader) - 5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--gutter) max(var(--space-7), env(safe-area-inset-bottom));
+  pointer-events: none;
+  background: linear-gradient(to top, rgb(5 5 6 / 0.72), rgb(5 5 6 / 0) 38%);
+  animation: intro-in 0.8s var(--ease-out) 0.3s backwards;
+  transition: opacity 0.6s var(--ease-in-out);
+}
+
+.intro.is-out {
+  opacity: 0;
+}
+
+@keyframes intro-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.intro__caption {
+  display: grid;
+  gap: var(--space-3);
+  width: min(22rem, 100%);
+}
+
+.intro__eyebrow,
+.intro__meta,
+.intro__skip {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+.intro__eyebrow {
+  color: var(--color-accent);
+}
+
+.intro__name {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.intro__track {
+  height: 1px;
+  overflow: hidden;
+  background: var(--color-line-strong);
+}
+
+.intro__bar {
+  display: block;
+  height: 100%;
+  background: var(--metal-rule);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.intro__meta {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-dim);
+}
+
+.intro__skip {
+  pointer-events: auto;
+  flex: none;
+  min-height: 2.75rem;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: rgb(5 5 6 / 0.35);
+  border: 1px solid var(--color-line-strong);
+  cursor: pointer;
+  transition: background-color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+
+.intro__skip:hover:not(:disabled),
+.intro__skip:focus-visible {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent);
+}
+
+.intro__skip:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (max-width: 40rem) {
+  .intro {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-5);
+  }
+
+  .intro__skip {
+    align-self: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  html.is-intro-reveal main,
+  html.is-intro-reveal .site-header,
+  html.is-intro-reveal .scroll-progress,
+  html.is-intro-reveal .hud {
+    animation: none;
+  }
+}
