@@ -1,0 +1,176 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/bmw-m5.html",
+      "destination": "/cars/bmw-m5",
+      "statusCode": 301
+    },
+    {
+      "source": "/bmw-m5",
+      "destination": "/cars/bmw-m5",
+      "statusCode": 301
+    },
+    {
+      "source": "/cars/bmw-m5.html",
+      "destination": "/cars/bmw-m5",
+      "statusCode": 301
+    },
+    {
+      "source": "/porsche-911.html",
+      "destination": "/cars/porsche-911",
+      "statusCode": 301
+    },
+    {
+      "source": "/porsche-911",
+      "destination": "/cars/porsche-911",
+      "statusCode": 301
+    },
+    {
+      "source": "/cars/porsche-911.html",
+      "destination": "/cars/porsche-911",
+      "statusCode": 301
+    },
+    {
+      "source": "/nissan-gt-r.html",
+      "destination": "/cars/nissan-gt-r",
+      "statusCode": 301
+    },
+    {
+      "source": "/nissan-gt-r",
+      "destination": "/cars/nissan-gt-r",
+      "statusCode": 301
+    },
+    {
+      "source": "/cars/nissan-gt-r.html",
+      "destination": "/cars/nissan-gt-r",
+      "statusCode": 301
+    },
+    {
+      "source": "/toyota-supra.html",
+      "destination": "/cars/toyota-supra",
+      "statusCode": 301
+    },
+    {
+      "source": "/toyota-supra",
+      "destination": "/cars/toyota-supra",
+      "statusCode": 301
+    },
+    {
+      "source": "/cars/toyota-supra.html",
+      "destination": "/cars/toyota-supra",
+      "statusCode": 301
+    },
+    {
+      "source": "/corvette-c8.html",
+      "destination": "/cars/corvette-c8",
+      "statusCode": 301
+    },
+    {
+      "source": "/corvette-c8",
+      "destination": "/cars/corvette-c8",
+      "statusCode": 301
+    },
+    {
+      "source": "/cars/corvette-c8.html",
+      "destination": "/cars/corvette-c8",
+      "statusCode": 301
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/cars/bmw-m5",
+      "destination": "/cars/bmw-m5.html"
+    },
+    {
+      "source": "/cars/porsche-911",
+      "destination": "/cars/porsche-911.html"
+    },
+    {
+      "source": "/cars/nissan-gt-r",
+      "destination": "/cars/nissan-gt-r.html"
+    },
+    {
+      "source": "/cars/toyota-supra",
+      "destination": "/cars/toyota-supra.html"
+    },
+    {
+      "source": "/cars/corvette-c8",
+      "destination": "/cars/corvette-c8.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/collection.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/404.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/cars/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ]
+}

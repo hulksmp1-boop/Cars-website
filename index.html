@@ -3,17 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>AETHER GT — Automotive Showcase</title>
-  <meta name="description" content="AETHER GT is a cinematic 3D showcase of five modern performance cars.">
+  <title>AETHER GT — Five cars, considered</title>
+  <meta name="description" content="AETHER GT is an editorial study of five modern performance cars: the BMW M5, Porsche 911, Nissan GT-R, Toyota GR Supra and Chevrolet Corvette C8.">
   <meta name="theme-color" content="#050506">
   <meta name="color-scheme" content="dark">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050506'/%3E%3Cpath d='M8 23 16 8l8 15' fill='none' stroke='%232f7bff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="assets/icons/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="canonical" href="./">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AETHER GT">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="AETHER GT — Five cars, considered">
+  <meta property="og:description" content="AETHER GT is an editorial study of five modern performance cars: the BMW M5, Porsche 911, Nissan GT-R, Toyota GR Supra and Chevrolet Corvette C8.">
+  <meta property="og:url" content="./">
+  <meta property="og:image" content="assets/og/aether-gt-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AETHER GT: five modern performance cars, considered.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AETHER GT — Five cars, considered">
+  <meta name="twitter:description" content="AETHER GT is an editorial study of five modern performance cars: the BMW M5, Porsche 911, Nissan GT-R, Toyota GR Supra and Chevrolet Corvette C8.">
+  <meta name="twitter:image" content="assets/og/aether-gt-og.jpg">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/chrome.css">
   <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/road.css">
 
   <script type="importmap">
   {
@@ -26,28 +47,320 @@
   }
   </script>
   <script src="js/boot-guard.js"></script>
-  <script type="module" src="js/pages/intro.js"></script>
+  <script type="module" src="js/pages/home.js"></script>
 </head>
-<body data-page="intro">
+<body data-page="home">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header data-site-header></header>
 
   <main id="main">
-    <section class="page-hero" aria-labelledby="intro-title">
-      <div class="container hero__inner">
-        <p class="eyebrow">Automotive Showcase</p>
-        <h1 class="hero__title" id="intro-title">Five icons.<br>One standard.</h1>
-        <p class="hero__lede">A cinematic study of five modern performance cars.</p>
-        <a class="button" href="collection.html">Enter the collection</a>
+
+    <!--
+      IMAGE SLOTS. Every .slot below is a designed frame with a fixed aspect ratio (--ratio, --ratio-sm on
+      small screens) and a focal point (--focus). To use a photograph or a rendered still, add the class
+      "has-image" to the .slot and put <img src alt width height loading="lazy" decoding="async"> as its
+      first child. Nothing else changes. The slot table is in README.md ("Homepage image slots").
+    -->
+
+    <!-- 1. Masthead ------------------------------------------------------------------------------ -->
+    <section class="masthead" aria-labelledby="home-title">
+      <div class="slot slot--fill" data-slot="H1" data-tone="ivory" style="--ratio:16/9;--ratio-sm:3/4;--focus:70% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>H1</b>Cover · full-bleed crop · 2400 × 1350 min</span></div>
+      <div class="container masthead__grid">
+        <p class="folio masthead__folio"><span>Issue 01</span><span>The Performance Collection</span></p>
+        <h1 class="masthead__title" id="home-title">Five cars,<br><em>considered.</em></h1>
+        <div class="masthead__foot">
+          <p class="masthead__deck">A long look at five modern performance cars: what each one is for, how it is built, and why it earns your attention.</p>
+          <a class="button" href="collection.html">Enter the collection</a>
+        </div>
       </div>
     </section>
+
+    <!-- 2. Manifesto ------------------------------------------------------------------------------ -->
+    <section class="section manifesto" id="manifesto" aria-labelledby="manifesto-title">
+      <div class="container grid">
+        <p class="eyebrow manifesto__label reveal">Manifesto</p>
+        <h2 class="statement manifesto__statement reveal" id="manifesto-title">A fast car is easy to describe. A <em>good</em> one takes longer.</h2>
+        <div class="essay manifesto__essay reveal" style="--d:1">
+          <p>AETHER GT is a magazine-length study of five cars that share very little on paper. One keeps a twin-turbo V8 under a four-door body. One hangs a flat-six behind the rear axle. One carries a name from 1978, and one moved its V8 behind the driver after seven generations of keeping it in front.</p>
+          <p>What they share is conviction. Each answers a single question with unusual clarity, and we have tried to describe each answer plainly: what the car is, how it is put together, and what it asks of the person driving it. No superlatives we cannot support. No numbers without their qualifications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. In this issue: the five ---------------------------------------------------------------- -->
+    <section class="section five" id="issue" aria-labelledby="five-title">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">In this issue</p>
+          <h2 class="title" id="five-title">Five cars, <em>five answers</em></h2>
+        </div>
+        <ol class="five__grid">
+          <li class="reveal">
+            <a class="card" href="/cars/bmw-m5">
+              <div class="slot" data-slot="C1" data-tone="ivory" style="--ratio:3/4;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>C1</b>Portrait 3:4 · 1200 × 1600</span></div>
+              <span class="card__no">01</span>
+              <span class="card__make">BMW</span>
+              <h3 class="card__name">M5 F90 <small>Competition</small></h3>
+              <span class="card__tag">Four doors. Twin-turbo V8. Uncompromising.</span>
+              <span class="card__go">Explore<i aria-hidden="true"></i></span>
+            </a>
+          </li>
+          <li class="reveal" style="--d:1">
+            <a class="card" href="/cars/porsche-911">
+              <div class="slot" data-slot="C2" data-tone="champagne" style="--ratio:3/4;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>C2</b>Portrait 3:4 · 1200 × 1600</span></div>
+              <span class="card__no">02</span>
+              <span class="card__make">Porsche</span>
+              <h3 class="card__name">911 <small>Carrera 4S</small></h3>
+              <span class="card__tag">The rear-engined icon, with all-wheel-drive grip.</span>
+              <span class="card__go">Explore<i aria-hidden="true"></i></span>
+            </a>
+          </li>
+          <li class="reveal" style="--d:2">
+            <a class="card" href="/cars/nissan-gt-r">
+              <div class="slot" data-slot="C3" data-tone="gunmetal" style="--ratio:3/4;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>C3</b>Portrait 3:4 · 1200 × 1600</span></div>
+              <span class="card__no">03</span>
+              <span class="card__make">Nissan</span>
+              <h3 class="card__name">GT-R <small>R35</small></h3>
+              <span class="card__tag">The all-wheel-drive giant-killer.</span>
+              <span class="card__go">Explore<i aria-hidden="true"></i></span>
+            </a>
+          </li>
+          <li class="reveal" style="--d:3">
+            <a class="card" href="/cars/toyota-supra">
+              <div class="slot" data-slot="C4" data-tone="bronze" style="--ratio:3/4;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>C4</b>Portrait 3:4 · 1200 × 1600</span></div>
+              <span class="card__no">04</span>
+              <span class="card__make">Toyota</span>
+              <h3 class="card__name">GR Supra <small>MK5</small></h3>
+              <span class="card__tag">Rear-drive precision, reborn.</span>
+              <span class="card__go">Explore<i aria-hidden="true"></i></span>
+            </a>
+          </li>
+          <li class="reveal" style="--d:4">
+            <a class="card" href="/cars/corvette-c8">
+              <div class="slot" data-slot="C5" data-tone="platinum" style="--ratio:3/4;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>C5</b>Portrait 3:4 · 1200 × 1600</span></div>
+              <span class="card__no">05</span>
+              <span class="card__make">Chevrolet</span>
+              <h3 class="card__name">Corvette <small>C8</small></h3>
+              <span class="card__tag">Mid-engine, at last.</span>
+              <span class="card__go">Explore<i aria-hidden="true"></i></span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3b. The road: a scroll journey through the five ---------------------------------------- -->
+    <section class="section road" id="road" aria-labelledby="road-title">
+      <div class="container road__intro">
+        <p class="eyebrow road__eyebrow reveal">The road</p>
+        <h2 class="title road__title reveal" id="road-title" style="--d:1">Five cars, one <em>country lane</em>.</h2>
+        <p class="road__lede reveal" style="--d:2">Scroll the lane from first bend to last. Each car waits where its character is easiest to read.</p>
+      </div>
+      <div class="road__stage" data-road>
+        <svg class="road__map" aria-hidden="true" focusable="false"></svg>
+        <ol class="road__stops" aria-label="The five cars, in order along the road">
+          <li class="road__stop">
+            <img class="road__car" src="assets/road/bmw-m5.webp" width="260" height="549" style="--w:260;--h:549" alt="" loading="lazy" decoding="async">
+            <div class="road__caption">
+              <p class="road__no">01 · BMW M5 F90 Competition</p>
+              <h3 class="road__name">The four-door that refuses to apologise</h3>
+              <p class="road__text">Family-sized, flat-out quick. The road opens with the one that carries the most luggage and the most noise.</p>
+            </div>
+          </li>
+          <li class="road__stop">
+            <img class="road__car" src="assets/road/porsche-911.webp" width="258" height="504" style="--w:258;--h:504" alt="" loading="lazy" decoding="async">
+            <div class="road__caption">
+              <p class="road__no">02 · Porsche 911 Carrera 4S</p>
+              <h3 class="road__name">Engine behind, grip everywhere</h3>
+              <p class="road__text">Narrow-shouldered and rear-engined; all-wheel drive turns the first long bend into a straight line.</p>
+            </div>
+          </li>
+          <li class="road__stop">
+            <img class="road__car" src="assets/road/nissan-gt-r.webp" width="274" height="526" style="--w:274;--h:526" alt="" loading="lazy" decoding="async">
+            <div class="road__caption">
+              <p class="road__no">03 · Nissan GT-R R35</p>
+              <h3 class="road__name">Wide, heavy, relentless</h3>
+              <p class="road__text">Broad haunches and a computer-assisted grip that still feels faintly mechanical at every corner exit.</p>
+            </div>
+          </li>
+          <li class="road__stop">
+            <img class="road__car" src="assets/road/toyota-supra.webp" width="256" height="490" style="--w:256;--h:490" alt="" loading="lazy" decoding="async">
+            <div class="road__caption">
+              <p class="road__no">04 · Toyota GR Supra A90</p>
+              <h3 class="road__name">Short wheelbase, quick hands</h3>
+              <p class="road__text">A compact coupe that rotates early and settles quickly: the road tightens and it simply follows.</p>
+            </div>
+          </li>
+          <li class="road__stop">
+            <img class="road__car" src="assets/road/chevrolet-corvette.webp" width="262" height="514" style="--w:262;--h:514" alt="" loading="lazy" decoding="async">
+            <div class="road__caption">
+              <p class="road__no">05 · Chevrolet Corvette C8 Stingray</p>
+              <h3 class="road__name">Engine moves to the middle</h3>
+              <p class="road__text">The mid-engine layout closes the journey: low, wide and pointed at the horizon.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. Lead story: BMW ------------------------------------------------------------------------ -->
+    <section class="section lead" id="lead" aria-labelledby="lead-title">
+      <div class="container grid">
+        <figure class="fig lead__main reveal">
+          <div class="slot" data-slot="F1" data-tone="ivory" style="--ratio:3/2;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>F1</b>Landscape 3:2 · 2400 × 1600</span></div>
+          <figcaption class="fig__caption">BMW M5 F90 Competition</figcaption>
+        </figure>
+        <div class="lead__copy">
+          <p class="eyebrow reveal">Lead story · 01</p>
+          <h2 class="title reveal" id="lead-title" style="--d:1">The saloon with the <em>supercar’s</em> pulse.</h2>
+          <div class="essay reveal" style="--d:2">
+            <p>The M5 Competition asks a question most performance cars avoid: what if you did not have to choose? There are four doors and a proper boot. There is also a 4.4-litre twin-turbo V8 making about 625 PS, depending on market.</p>
+            <p>It is the one car in this issue that can take a family to dinner and then remind everyone at the table why they like cars. It is also the only one with its own interactive 3D page.</p>
+          </div>
+          <a class="explore reveal" style="--d:3" href="/cars/bmw-m5" aria-label="Explore the BMW M5 F90 Competition">Explore the M5<i aria-hidden="true"></i></a>
+        </div>
+        <figure class="fig lead__detail reveal" style="--d:2">
+          <div class="slot" data-slot="F2" data-tone="ivory" style="--ratio:4/5;--ratio-sm:4/5;--focus:50% 50%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>F2</b>Detail 4:5 · 1200 × 1500</span></div>
+          <figcaption class="fig__caption">Twin-turbo V8</figcaption>
+        </figure>
+        <blockquote class="pull lead__pull reveal">
+          <p>Four doors and a supercar’s pulse is not a compromise. It is a decision.</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 5. Philosophy ----------------------------------------------------------------------------- -->
+    <section class="section principles" id="principles" aria-labelledby="principles-title">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">How we look at a car</p>
+          <h2 class="title" id="principles-title">Three <em>principles</em></h2>
+        </div>
+        <ol class="principles__list">
+          <li class="principle reveal">
+            <span class="principle__no">01</span>
+            <h3 class="principle__name">Proportion</h3>
+            <p>Before the figures, the shape. A car is understood from across a car park long before it is understood from a specification sheet. We begin with where the engine sits, how long the wheelbase is and how low the roofline falls, because those decisions explain nearly everything that follows.</p>
+          </li>
+          <li class="principle reveal" style="--d:1">
+            <span class="principle__no">02</span>
+            <h3 class="principle__name">Restraint</h3>
+            <p>Power is the easiest thing to advertise and the least interesting thing to know. We give the number once, mark it where it varies by market or model year, and spend the rest of the page on what it is attached to.</p>
+          </li>
+          <li class="principle reveal" style="--d:2">
+            <span class="principle__no">03</span>
+            <h3 class="principle__name">Use</h3>
+            <p>These are cars to be driven, not only admired. Each page asks what the car is like on an ordinary Tuesday as well as on your favourite road, because a car worth owning has to be good at both.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. Side by side --------------------------------------------------------------------------- -->
+    <section class="section span" id="side-by-side" aria-labelledby="span-title">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Side by side</p>
+          <h2 class="title" id="span-title">Five layouts, <em>one scale</em></h2>
+        </div>
+        <div class="span__wrap reveal" role="region" aria-label="Engine and length of the five cars" tabindex="0">
+          <table class="span__table">
+            <caption class="sr-only">Engine, engine position and length of each car. Bars share one scale: 5,000 mm is the full bar.</caption>
+            <thead>
+              <tr><th scope="col">Car</th><th scope="col">Engine</th><th scope="col">Position</th><th scope="col">Length</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><a href="/cars/bmw-m5">BMW M5 F90</a></th><td>4.4 L twin-turbo V8</td><td>Front</td><td><span class="span__len">4,966 mm</span><span class="span__bar" style="--mm:4966"></span></td></tr>
+              <tr><th scope="row"><a href="/cars/porsche-911">Porsche 911 Carrera 4S</a></th><td>3.0 L twin-turbo flat-six</td><td>Rear</td><td><span class="span__len">4,519 mm</span><span class="span__bar" style="--mm:4519"></span></td></tr>
+              <tr><th scope="row"><a href="/cars/nissan-gt-r">Nissan GT-R R35</a></th><td>3.8 L twin-turbo V6</td><td>Front</td><td><span class="span__len">4,710 mm</span><span class="span__bar" style="--mm:4710"></span></td></tr>
+              <tr><th scope="row"><a href="/cars/toyota-supra">Toyota GR Supra MK5</a></th><td>3.0 L turbo inline-six</td><td>Front</td><td><span class="span__len">4,379 mm</span><span class="span__bar" style="--mm:4379"></span></td></tr>
+              <tr><th scope="row"><a href="/cars/corvette-c8">Chevrolet Corvette C8</a></th><td>6.2 L naturally aspirated V8</td><td>Mid</td><td><span class="span__len">4,630 mm</span><span class="span__bar" style="--mm:4630"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note reveal">Figures are manufacturer-published values for the generation named, rounded, and are repeated from each car’s own page, where the specifications carry their qualifications. Bars share one scale (5,000 mm is the full bar) and are a dimension chart, not a drawing of a car.</p>
+      </div>
+    </section>
+
+    <!-- 7. Gallery -------------------------------------------------------------------------------- -->
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Portfolio</p>
+          <h2 class="title" id="gallery-title">The collection, <em>in frame</em></h2>
+        </div>
+        <div class="gallery__grid">
+          <figure class="fig gallery__a reveal">
+            <div class="slot" data-slot="G1" data-tone="champagne" style="--ratio:3/2;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>G1</b>Landscape 3:2 · 2400 × 1600</span></div>
+            <figcaption class="fig__caption">Porsche 911 Carrera 4S</figcaption>
+          </figure>
+          <figure class="fig gallery__b reveal" style="--d:1">
+            <div class="slot" data-slot="G2" data-tone="gunmetal" style="--ratio:4/5;--ratio-sm:4/5;--focus:50% 50%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>G2</b>Portrait 4:5 · 1200 × 1500</span></div>
+            <figcaption class="fig__caption">Nissan GT-R R35</figcaption>
+          </figure>
+          <figure class="fig gallery__c reveal">
+            <div class="slot" data-slot="G3" data-tone="bronze" style="--ratio:4/5;--ratio-sm:4/5;--focus:50% 50%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>G3</b>Portrait 4:5 · 1200 × 1500</span></div>
+            <figcaption class="fig__caption">Toyota GR Supra MK5</figcaption>
+          </figure>
+          <figure class="fig gallery__d reveal" style="--d:1">
+            <div class="slot" data-slot="G4" data-tone="platinum" style="--ratio:16/9;--ratio-sm:4/3;--focus:50% 55%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>G4</b>Wide 16:9 · 2400 × 1350</span></div>
+            <figcaption class="fig__caption">Chevrolet Corvette C8</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Journal -------------------------------------------------------------------------------- -->
+    <section class="section journal" id="journal" aria-labelledby="journal-title">
+      <div class="container">
+        <div class="head reveal">
+          <p class="eyebrow">Journal</p>
+          <h2 class="title" id="journal-title">From the <em>notebook</em></h2>
+        </div>
+        <div class="journal__grid">
+          <article class="teaser reveal">
+            <a class="teaser__link" href="/cars/porsche-911#story">
+              <div class="slot" data-slot="J1" data-tone="champagne" style="--ratio:3/2;--ratio-sm:4/3;--focus:50% 50%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>J1</b>Landscape 3:2 · 1600 × 1067</span></div>
+              <p class="teaser__kicker">Engineering</p>
+              <h3 class="teaser__title">Where the engine sits</h3>
+              <p class="teaser__text">Front, mid or rear: the five cars answer the oldest question in car design in three different ways, and the answer shapes everything from grip to character.</p>
+              <span class="teaser__go">Read the 911 story<i aria-hidden="true"></i></span>
+            </a>
+          </article>
+          <article class="teaser reveal" style="--d:1">
+            <a class="teaser__link" href="/cars/toyota-supra#story">
+              <div class="slot" data-slot="J2" data-tone="bronze" style="--ratio:3/2;--ratio-sm:4/3;--focus:50% 50%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>J2</b>Landscape 3:2 · 1600 × 1067</span></div>
+              <p class="teaser__kicker">History</p>
+              <h3 class="teaser__title">A name, returned</h3>
+              <p class="teaser__text">The Supra name dates from 1978. Its return paired Toyota with BMW on the underpinnings, and a short wheelbase made the result unmistakable.</p>
+              <span class="teaser__go">Read the Supra story<i aria-hidden="true"></i></span>
+            </a>
+          </article>
+          <article class="teaser reveal" style="--d:2">
+            <a class="teaser__link" href="/cars/nissan-gt-r#story">
+              <div class="slot" data-slot="J3" data-tone="gunmetal" style="--ratio:3/2;--ratio-sm:4/3;--focus:50% 50%"><span class="slot__surface" aria-hidden="true"><span class="slot__light"></span><span class="slot__floor"></span></span><span class="slot__marks" aria-hidden="true"></span><span class="slot__spec" aria-hidden="true"><b>J3</b>Landscape 3:2 · 1600 × 1067</span></div>
+              <p class="teaser__kicker">Lineage</p>
+              <h3 class="teaser__title">It began as a Skyline</h3>
+              <p class="teaser__text">The R35 stopped being a Skyline and became a car in its own right: a hand-built engine, a rear-mounted gearbox and four driven wheels.</p>
+              <span class="teaser__go">Read the GT-R story<i aria-hidden="true"></i></span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Closing -------------------------------------------------------------------------------- -->
+    <section class="section closing" aria-labelledby="closing-title">
+      <div class="container closing__inner">
+        <p class="eyebrow reveal">The collection</p>
+        <h2 class="statement closing__statement reveal" id="closing-title" style="--d:1">Choose one and <em>step inside.</em></h2>
+        <div class="reveal" style="--d:2"><a class="button" href="collection.html">Enter the collection</a></div>
+      </div>
+    </section>
+
   </main>
 
   <footer data-site-footer></footer>
-
-  <noscript>
-    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
-  </noscript>
 </body>
 </html>

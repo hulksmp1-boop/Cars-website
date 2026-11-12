@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder domain: run `node tools/prepare-launch.mjs https://your-domain` to fill it in (see README, Deployment). -->
+<urlset xmlns="http://www.w3.org/2005/sitemap/0.9">
+  <url><loc>https://YOUR-DOMAIN/</loc></url>
+  <url><loc>https://YOUR-DOMAIN/collection.html</loc></url>
+  <url><loc>https://YOUR-DOMAIN/cars/bmw-m5</loc></url>
+  <url><loc>https://YOUR-DOMAIN/cars/porsche-911</loc></url>
+  <url><loc>https://YOUR-DOMAIN/cars/nissan-gt-r</loc></url>
+  <url><loc>https://YOUR-DOMAIN/cars/toyota-supra</loc></url>
+  <url><loc>https://YOUR-DOMAIN/cars/corvette-c8</loc></url>
+</urlset>

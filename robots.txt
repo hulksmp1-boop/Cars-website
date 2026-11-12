@@ -1,0 +1,7 @@
+# AETHER GT: everything public may be crawled.
+# Run `node tools/prepare-launch.mjs https://your-domain` before deploying; it replaces
+# YOUR-DOMAIN below with your real address (see README, Deployment).
+User-agent: *
+Allow: /
+
+Sitemap: https://YOUR-DOMAIN/sitemap.xml
