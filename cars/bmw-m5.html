@@ -1,1 +1,477 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BMW M5 F90 Competition — AETHER GT</title>
+  <meta name="description" content="Scroll to orbit the BMW M5 F90 Competition, then read the dossier: the S63 twin-turbo V8, the full specification, the design details and the driving character.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icons/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="/cars/bmw-m5">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AETHER GT">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="BMW M5 F90 Competition — AETHER GT">
+  <meta property="og:description" content="Scroll to orbit the BMW M5 F90 Competition, then read the dossier: the S63 twin-turbo V8, the full specification, the design details and the driving character.">
+  <meta property="og:url" content="/cars/bmw-m5">
+  <meta property="og:image" content="/assets/og/aether-gt-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AETHER GT: five modern performance cars, considered.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BMW M5 F90 Competition — AETHER GT">
+  <meta name="twitter:description" content="Scroll to orbit the BMW M5 F90 Competition, then read the dossier: the S63 twin-turbo V8, the full specification, the design details and the driving character.">
+  <meta name="twitter:image" content="/assets/og/aether-gt-og.jpg">
 
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/chrome.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <link rel="stylesheet" href="/css/car.css">
+  <link rel="stylesheet" href="/css/vehicle.css">
+  <link rel="stylesheet" href="/css/bmw-m5.css">
+
+  <noscript><style>[data-loader]{display:none}html.is-loading,html.is-loading body{overflow:auto}</style></noscript>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="/js/boot-guard.js"></script>
+  <script type="module" src="/js/pages/car.js"></script>
+  <script defer src="/js/ui/bmw-editorial.js"></script>
+</head>
+<body data-page="car" data-vehicle="bmw-m5-f90">
+
+  <!-- Loading screen -->
+  <div class="loader" data-loader>
+    <div class="loader__inner">
+      <p class="loader__brand">AETHER <span>GT</span></p>
+      <div class="loader__track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="loader__bar" data-loader-bar></span>
+      </div>
+      <p class="loader__meta">
+        <span data-loader-status>Initialising</span>
+        <span><span data-loader-percent>000</span>%</span>
+      </p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <!-- Persistent WebGL stage (fixed behind all content) -->
+  <canvas id="stage" class="stage" aria-hidden="true"></canvas>
+
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+  <!-- Atmosphere: vignette + fine grain (also dithers the dark gradients) -->
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <!-- Showcase HUD: filled from config.js and the car's shot (js/ui/hud.js) -->
+  <div class="hud" data-hud>
+    <div class="hud__ident">
+      <p class="hud__make" data-hud-make></p>
+      <p class="hud__model" data-hud-model></p>
+      <p class="hud__designation" data-hud-designation></p>
+    </div>
+    <div class="hud__chapter" aria-hidden="true">
+      <p class="hud__chapter-count"><span data-hud-index>01</span><span class="hud__sep">/</span><span data-hud-total>09</span></p>
+      <p class="hud__chapter-title" data-hud-title></p>
+    </div>
+    <ol class="hud__rail" aria-hidden="true" data-hud-rail></ol>
+    <p class="hud__cue" data-hud-cue aria-hidden="true"><span>Scroll</span><i></i></p>
+  </div>
+
+  <main id="main">
+    <!-- Scroll track: the camera orbit is scrubbed across this section's height. -->
+    <section class="showcase" data-showcase aria-label="BMW M5 F90 Competition, scroll-controlled 3D view">
+      <div class="hero">
+        <div class="container hero__inner">
+          <p class="eyebrow">BMW</p>
+          <h1 class="hero__title">M5 F90</h1>
+          <p class="hero__lede">Competition</p>
+          <nav class="jump hero__jump" aria-label="On this page">
+            <a href="#the-car">The car</a>
+            <a href="#engine">Engine</a>
+            <a href="#specifications">Specifications</a>
+            <a href="#highlights">Design</a>
+            <a href="#story">Drive</a>
+          </nav>
+          <p class="hero__facts" aria-label="At a glance">
+            <span>Nº 01 / 05 · F90</span>
+            <span>4.4 L twin-turbo V8</span>
+            <span>460 kW (625 PS)</span>
+          </p>
+        </div>
+      </div>
+      <p class="sr-only">Scrolling moves a camera around a BMW M5 F90 Competition: front three-quarter, nose, front quarter, profile, rear quarter, tail, overhead sweep, opposite profile, and back to the start.</p>
+    </section>
+
+    <!-- Dossier: editorial chapters after the scroll-controlled 3D showcase. Opaque, so they cover the fixed canvas and HUD.
+         Styles: css/bmw-m5.css (BMW only). Enhancements: js/ui/bmw-editorial.js (optional; the page is complete without it). -->
+    <div class="dossier" id="dossier">
+
+      <!-- 01 · Opening spread -->
+      <section class="bx bx-open" id="the-car" aria-labelledby="intro-title">
+        <div class="container">
+          <p class="folio reveal"><span>Dossier Nº 01 / 05</span><span>M5 F90 Competition</span></p>
+          <div class="bx-grid bx-open__grid">
+            <h2 class="bx-open__title" id="intro-title">
+              <span class="bx-line" data-bx><span>Sensible shape.</span></span>
+              <span class="bx-line" data-bx style="--i:1"><span><em>Unreasonable</em> output.</span></span>
+            </h2>
+            <p class="bx-open__dek reveal" style="--d:2">Four doors, five seats, a boot for the luggage, and under the bonnet a twin-turbocharged V8 tuned to 625 PS. The Competition is the F90 M5 with the last degrees of restraint taken out.</p>
+            <div class="bx-open__body prose reveal" style="--d:3">
+              <p class="bx-dropcap">Every M5 has been built on one proposition: take a business saloon and give it the performance of a sports car, without asking its passengers to give anything up. The F90, the sixth generation, keeps that proposition and adds something the line had not offered before, all-wheel drive.</p>
+              <p>The Competition is the sharper reading of the same car. It makes 25 PS more than the standard M5, sits 7 mm lower on springs that are 10 per cent stiffer, and wears its details in high-gloss black. It is not a different car. It is the same car, edited.</p>
+              <p class="bx-open__guide">Read what follows in the order a driver meets it: the engine, the numbers, the shape, then the road.</p>
+            </div>
+          </div>
+          <ul class="bx-figs" aria-label="Key figures">
+            <li class="reveal"><span class="bx-figs__value"><span data-count="625">625</span><small>PS</small></span><span class="bx-figs__label">460 kW at 6,000 rpm</span></li>
+            <li class="reveal" style="--d:1"><span class="bx-figs__value"><span data-count="750">750</span><small>Nm</small></span><span class="bx-figs__label">From 1,800 to 5,800 rpm</span></li>
+            <li class="reveal" style="--d:2"><span class="bx-figs__value"><span data-count="3.3" data-decimals="1">3.3</span><small>s</small></span><span class="bx-figs__label">0–100 km/h</span></li>
+            <li class="reveal" style="--d:3"><span class="bx-figs__value"><span data-count="10.8" data-decimals="1">10.8</span><small>s</small></span><span class="bx-figs__label">0–200 km/h</span></li>
+          </ul>
+          <p class="bx-note reveal">Manufacturer figures, rounded. They vary with market, model year and options; the full specification below says which.</p>
+        </div>
+      </section>
+
+      <!-- 02 · Engine and performance -->
+      <section class="bx bx-engine" id="engine" aria-labelledby="engine-title">
+        <span class="bx-ghost" aria-hidden="true" data-parallax>625</span>
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-engine__copy">
+              <p class="bx-chapter reveal"><b>02</b><span>Engine and performance</span></p>
+              <h2 class="bx-title reveal" id="engine-title" style="--d:1">Eight cylinders, two turbochargers, one <em>wide</em> plateau.</h2>
+              <div class="prose reveal" style="--d:2">
+                <p>The engine is the S63: a 4.4-litre V8 with both turbochargers mounted in the V between its cylinder banks. Placing them there keeps the exhaust paths short, which helps the engine answer the throttle quickly, and it keeps the whole unit compact.</p>
+                <p>In the Competition it makes 460 kW (625 PS) at 6,000 rpm, and 750 Nm from 1,800 all the way to 5,800 rpm. That torque band is 200 rpm wider than the standard M5’s, so the push stays on for longer as the revs climb.</p>
+                <p>Power then passes through an eight-speed M Steptronic automatic with a torque converter, and on to M xDrive: all four wheels when grip is the priority, the rear pair alone when the driver asks.</p>
+              </div>
+              <dl class="bx-mini reveal" style="--d:3">
+                <div><dt>Displacement</dt><dd>4,395 cc</dd></div>
+                <div><dt>Bore × stroke</dt><dd>89.0 × 88.3 mm</dd></div>
+                <div><dt>Compression</dt><dd>10.0 : 1</dd></div>
+                <div><dt>Turbochargers</dt><dd>Two, in the V</dd></div>
+              </dl>
+            </div>
+
+            <div class="bx-engine__figs">
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 1</span><span>The S63, from above</span></div>
+                <svg class="eng" viewBox="0 -16 400 332" role="img" aria-labelledby="eng-t eng-d">
+                  <title id="eng-t">Schematic of the S63 V8 seen from above</title>
+                  <desc id="eng-d">Two banks of four cylinders, with the two turbochargers placed in the V between the banks.</desc>
+                  <path class="eng__axis" d="M200 -2V300"/>
+                  <g class="eng__bank" style="--i:0"><rect x="48" y="20" width="84" height="248" rx="2"/></g>
+                  <g class="eng__bank" style="--i:1"><rect x="268" y="34" width="84" height="248" rx="2"/></g>
+                  <g class="eng__bores">
+                    <circle style="--i:2" cx="90" cy="54" r="19"/><circle style="--i:3" cx="90" cy="114" r="19"/><circle style="--i:4" cx="90" cy="174" r="19"/><circle style="--i:5" cx="90" cy="234" r="19"/>
+                    <circle style="--i:3" cx="310" cy="68" r="19"/><circle style="--i:4" cx="310" cy="128" r="19"/><circle style="--i:5" cx="310" cy="188" r="19"/><circle style="--i:6" cx="310" cy="248" r="19"/>
+                  </g>
+                  <g class="eng__turbo" style="--i:7">
+                    <path d="M132 90H170M230 90H268M132 210H170M230 210H268"/>
+                    <circle cx="200" cy="90" r="30"/><circle class="eng__hub" cx="200" cy="90" r="12"/>
+                  </g>
+                  <g class="eng__turbo" style="--i:8">
+                    <circle cx="200" cy="210" r="30"/><circle class="eng__hub" cx="200" cy="210" r="12"/>
+                  </g>
+                  <g class="eng__tag"><circle cx="90" cy="2" r="10"/><text x="90" y="6" text-anchor="middle">A</text></g>
+                  <g class="eng__tag"><circle cx="200" cy="148" r="10"/><text x="200" y="152" text-anchor="middle">B</text></g>
+                  <g class="eng__tag"><circle cx="200" cy="308" r="10"/><text x="200" y="312" text-anchor="middle">C</text></g>
+                </svg>
+                <ul class="bx-key" aria-label="Key to figure 1">
+                  <li><b>A</b>Cylinder bank, four cylinders</li>
+                  <li><b>B</b>Turbocharger, one per bank</li>
+                  <li><b>C</b>The V, where the turbochargers sit</li>
+                </ul>
+                <figcaption>Simplified and not to scale: two banks of four cylinders, with the turbochargers in the V between them.</figcaption>
+              </figure>
+
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 2</span><span>Where 750 Nm is available</span></div>
+                <div class="lanes" role="img" aria-label="Torque plateau by engine speed. M5 Competition: 750 newton-metres from 1,800 to 5,800 rpm. Standard M5: 750 newton-metres from 1,800 to 5,600 rpm. Competition peak power of 625 PS arrives at 6,000 rpm.">
+                  <p class="lanes__peak"><span>625 PS · 6,000 rpm</span></p>
+                  <div class="lanes__plot">
+                    <div class="lanes__peakline" aria-hidden="true"></div>
+                    <div class="lane">
+                      <p class="lane__label"><span>M5 Competition</span><b>1,800–5,800 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:1800;--to:5800"></i></div>
+                    </div>
+                    <div class="lane lane--ref">
+                      <p class="lane__label"><span>M5</span><b>1,800–5,600 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:1800;--to:5600"></i></div>
+                    </div>
+                    <ol class="lanes__axis" aria-hidden="true">
+                      <li style="--rpm:0">0</li><li style="--rpm:1000">1</li><li style="--rpm:2000">2</li><li style="--rpm:3000">3</li><li style="--rpm:4000">4</li><li style="--rpm:5000">5</li><li style="--rpm:6000">6</li>
+                    </ol>
+                  </div>
+                  <p class="lanes__unit" aria-hidden="true">Engine speed, 1,000 rpm</p>
+                </div>
+                <figcaption>Both cars quote 750 Nm; the Competition holds it 200 rpm longer. The build-up below 1,800 rpm is not charted, and the axis is not a torque curve.</figcaption>
+              </figure>
+
+              <figure class="bx-fig bx-fig--table reveal">
+                <div class="bx-fig__head"><span>Fig. 3</span><span>Competition against the M5</span></div>
+                <div class="bx-table-wrap" role="region" aria-label="Competition against the standard M5" tabindex="0">
+                  <table class="bx-table">
+                    <thead><tr><th scope="col">Measure</th><th scope="col">M5</th><th scope="col">Competition</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Power</th><td>441 kW (600 PS)</td><td>460 kW (625 PS)</td></tr>
+                      <tr><th scope="row">Torque</th><td>750 Nm, 1,800–5,600 rpm</td><td>750 Nm, 1,800–5,800 rpm</td></tr>
+                      <tr><th scope="row">0–100 km/h</th><td>3.4 s</td><td>3.3 s</td></tr>
+                      <tr><th scope="row">0–200 km/h</th><td>11.1 s</td><td>10.8 s</td></tr>
+                      <tr><th scope="row">Ride height</th><td>Reference</td><td>7 mm lower</td></tr>
+                      <tr><th scope="row">Springs</th><td>Reference</td><td>10 % stiffer</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <figcaption>BMW Group press information, 2018 and 2020. Acceleration figures <span class="flag">Varies</span> with market and model year.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Specifications -->
+      <section class="bx bx-spec" id="specifications" aria-labelledby="spec-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-spec__head">
+              <p class="bx-chapter reveal"><b>03</b><span>Technical specification</span></p>
+              <h2 class="bx-title reveal" id="spec-title" style="--d:1">M5 Competition, <em>F90</em></h2>
+            </header>
+
+            <div class="bx-spec__sheet">
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>A</b>Powertrain</h3>
+                <dl class="ledger">
+                  <div><dt>Engine</dt><dd>4.4 L twin-turbo V8 (S63), turbochargers in the engine’s V</dd></div>
+                  <div><dt>Displacement</dt><dd>4,395 cc</dd></div>
+                  <div><dt>Bore × stroke</dt><dd>89.0 × 88.3 mm</dd></div>
+                  <div><dt>Compression</dt><dd>10.0 : 1</dd></div>
+                  <div><dt>Power</dt><dd>460 kW (625 PS) at 6,000 rpm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Torque</dt><dd>750 Nm at 1,800–5,800 rpm <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>B</b>Drivetrain and performance</h3>
+                <dl class="ledger">
+                  <div><dt>Gearbox</dt><dd>8-speed M Steptronic with Drivelogic (torque converter)</dd></div>
+                  <div><dt>Drive</dt><dd>M xDrive all-wheel drive with Active M Differential, rear-biased, with a rear-drive (2WD) setting</dd></div>
+                  <div><dt>0–100 km/h</dt><dd>3.3 s <span class="flag">Varies</span></dd></div>
+                  <div><dt>0–200 km/h</dt><dd>10.8 s <span class="flag">Varies</span></dd></div>
+                  <div><dt>Top speed</dt><dd>250 km/h limited, 305 km/h with the M Driver’s Package <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>C</b>Chassis, wheels and brakes</h3>
+                <dl class="ledger">
+                  <div><dt>Dampers</dt><dd>Adaptive, with Comfort, Sport and Sport Plus modes</dd></div>
+                  <div><dt>Against the M5</dt><dd>7 mm lower; springs 10 % stiffer; firmer rear anti-roll bar</dd></div>
+                  <div><dt>Wheels</dt><dd>20-inch forged, Y-spoke, bicolour finish</dd></div>
+                  <div><dt>Tyres</dt><dd>275/35 R20 front, 285/35 R20 rear <span class="flag">Varies</span></dd></div>
+                  <div><dt>Brakes</dt><dd>M Compound standard; carbon-ceramic optional <span class="flag flag--confirm">To confirm</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>D</b>Body and dimensions</h3>
+                <dl class="ledger">
+                  <div><dt>Length</dt><dd>4,966 mm</dd></div>
+                  <div><dt>Wheelbase</dt><dd>2,982 mm</dd></div>
+                  <div><dt>Width</dt><dd>1,903 mm, excluding mirrors <span class="flag">Varies</span></dd></div>
+                  <div><dt>Height</dt><dd>1,473 mm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Kerb weight</dt><dd>About 1,950 kg <span class="flag">Varies</span></dd></div>
+                  <div><dt>Production</dt><dd>F90 generation from 2017; Competition from 2018 <span class="flag flag--confirm">To confirm</span></dd></div>
+                </dl>
+              </div>
+
+              <p class="spec-note">Figures are manufacturer-published values for the generation named, rounded. <span class="flag">Varies</span> marks a figure that changes with market, model year or options; <span class="flag flag--confirm">To confirm</span> marks one that is not established and must be checked against the maker's current documentation before publication.</p>
+            </div>
+
+            <aside class="bx-spec__scale scale-block reveal" aria-label="Proportions">
+              <p class="eyebrow">Proportions</p>
+              <div class="scale" role="group" aria-label="Dimensions on a shared scale">
+                <div class="scale__row"><span>Length</span><span class="scale__bar" style="--mm:4966"></span><output>4,966 mm</output></div>
+                <div class="scale__row"><span>Wheelbase</span><span class="scale__bar" style="--mm:2982"></span><output>2,982 mm</output></div>
+                <div class="scale__row"><span>Width</span><span class="scale__bar" style="--mm:1903"></span><output>1,903 mm</output></div>
+                <div class="scale__row"><span>Height</span><span class="scale__bar" style="--mm:1473"></span><output>1,473 mm</output></div>
+              </div>
+              <p class="scale__caption">Approximate manufacturer dimensions. All five cars share one scale (5,000 mm is the full bar), so the pages compare directly. A dimension chart, not a drawing of the car.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Exterior design and engineering -->
+      <section class="bx bx-design" id="highlights" aria-labelledby="highlights-title">
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-design__side">
+              <p class="bx-chapter reveal"><b>04</b><span>Exterior and engineering</span></p>
+              <h2 class="bx-title reveal" id="highlights-title" style="--d:1">Restraint, <em>engineered.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">The Competition does not shout. Its changes live in black trim, a lower stance and the details below, each one doing a job.</p>
+              <nav class="bx-index reveal" aria-label="Design details" style="--d:3">
+                <ol>
+                  <li><a href="#hl-1" data-index="hl-1"><b>01</b>Gloss black</a></li>
+                  <li><a href="#hl-2" data-index="hl-2"><b>02</b>A lighter skin</a></li>
+                  <li><a href="#hl-3" data-index="hl-3"><b>03</b>Forged twenties</a></li>
+                  <li><a href="#hl-4" data-index="hl-4"><b>04</b>A tighter stance</a></li>
+                  <li><a href="#hl-5" data-index="hl-5"><b>05</b>An exhaust with flaps</a></li>
+                </ol>
+              </nav>
+            </div>
+
+            <ol class="bx-items">
+              <li class="bx-item" id="hl-1" data-bx>
+                <span class="bx-item__no">01</span>
+                <h3>Gloss black, applied with discipline</h3>
+                <p>On the Competition the kidney grille surround, the gill mesh, the mirror caps, the rear bumper trim and the rear spoiler are finished in high-gloss black, and the boot carries its M5 Competition lettering in the same finish. The door openers stay in body colour, so the black reads as a decision rather than a coating.</p>
+                <p class="bx-item__spec"><span>Finish</span> High-gloss black, BMW Individual Shadow Line</p>
+              </li>
+              <li class="bx-item" id="hl-2" data-bx>
+                <span class="bx-item__no">02</span>
+                <h3>A lighter skin <span class="flag flag--confirm">To confirm</span></h3>
+                <p>BMW builds the M5’s roof from carbon-fibre reinforced plastic and its bonnet and front wings from aluminium, taking weight out of the highest and most forward parts of the car, where it matters most to how it turns in. This is the one detail on this page not yet checked against the maker’s current documentation.</p>
+                <p class="bx-item__spec"><span>Materials</span> Carbon-fibre roof; aluminium bonnet and front wings</p>
+              </li>
+              <li class="bx-item" id="hl-3" data-bx>
+                <span class="bx-item__no">03</span>
+                <h3>Twenty inches, forged</h3>
+                <p>The Competition stands on 20-inch forged wheels in a Y-spoke design with a bicolour finish. Tyres are staggered, wider at the rear. Behind them sit M Compound brakes with blue callipers as standard; high-gloss black and red are alternatives.</p>
+                <p class="bx-item__spec"><span>Tyres</span> 275/35 R20 front, 285/35 R20 rear <span class="flag">Varies</span></p>
+              </li>
+              <li class="bx-item" id="hl-4" data-bx>
+                <span class="bx-item__no">04</span>
+                <h3>A lower, tighter stance</h3>
+                <p>The Competition sits 7 mm lower than the M5 and carries more front camber. Springs are 10 per cent stiffer at both ends, the rear anti-roll bar is firmer, the rear toe links use ball joints in place of rubber mounts, and even the engine mounts are stiffer. The car does not look different from a few metres away. It behaves differently from the first corner.</p>
+                <p class="bx-item__spec"><span>Against the M5</span> −7 mm ride height; springs +10 %</p>
+              </li>
+              <li class="bx-item" id="hl-5" data-bx>
+                <span class="bx-item__no">05</span>
+                <h3>An exhaust with flaps</h3>
+                <p>The M Sport exhaust is flap-controlled and ends in black chrome tailpipe embellishers. The flaps open and close to change how much the system says, so the same car can pass a quiet street and announce itself on an open one.</p>
+                <p class="bx-item__spec"><span>System</span> M Sport exhaust, flap-controlled</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Driving character -->
+      <section class="bx bx-drive" id="story" aria-labelledby="story-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>05</b><span>Driving character</span></p>
+          <blockquote class="bx-quote" id="story-title" data-bx>
+            <span class="bx-line"><span>Four doors, five seats,</span></span>
+            <span class="bx-line" style="--i:1"><span>and <em>625 horsepower.</em></span></span>
+          </blockquote>
+
+          <div class="bx-grid bx-drive__grid">
+            <div class="bx-drive__prose prose">
+              <p class="reveal">Driven gently, the Competition behaves like the large, quiet saloon it appears to be. Dampers in Comfort, the gearbox shifting early, all four wheels driven: it asks nothing of its passengers.</p>
+              <p class="reveal">The character changes when the driver asks. Dampers, gearbox and drive each have settings of their own, and they can be combined, so the same car can be set up for a wet motorway or for a dry road with its rear axle leading.</p>
+              <p class="reveal">Rear-drive mode is the old M5 in all but name. Engine and gearbox send everything to the rear wheels, and the driver must switch the stability control off to ask for it.</p>
+              <p class="reveal">It is a heavy car, about 1.95 tonnes, and the Competition’s chassis work is aimed squarely at that: stiffer springs, firmer engine mounts and a rear axle with less rubber in it keep the mass from wandering when the road asks questions.</p>
+              <p class="reveal bx-credit">The 3D scene above uses a third-party model, credited in the page footer.</p>
+            </div>
+
+            <div class="bx-drive__aside">
+              <figure class="bx-ladder reveal" aria-label="Driver-selectable settings">
+                <div class="bx-fig__head"><span>Fig. 4</span><span>What the driver can choose</span></div>
+                <div class="bx-rung"><p class="bx-rung__name">Dampers</p><ol class="bx-rung__opts"><li>Comfort</li><li>Sport</li><li>Sport Plus</li></ol></div>
+                <div class="bx-rung"><p class="bx-rung__name">Gearbox</p><ol class="bx-rung__opts"><li>Setting 1</li><li>Setting 2</li><li>Setting 3</li></ol></div>
+                <div class="bx-rung"><p class="bx-rung__name">M xDrive</p><ol class="bx-rung__opts"><li>4WD</li><li>4WD Sport</li><li>2WD</li></ol></div>
+              </figure>
+              <dl class="bx-modes reveal">
+                <div><dt>4WD</dt><dd>The default. All four wheels driven, the rear axle favoured, torque moved to where the grip is.</dd></div>
+                <div><dt>4WD Sport</dt><dd>A more rear-biased setting, for a car that rotates more freely.</dd></div>
+                <div><dt>2WD</dt><dd>Rear wheels only, with the stability control switched off first.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · Closing -->
+      <section class="bx bx-close" id="close" aria-labelledby="close-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>06</b><span>Closing</span></p>
+          <h2 class="bx-close__title" id="close-title">
+            <span class="bx-line" data-bx><span>The ordinary silhouette</span></span>
+            <span class="bx-line" data-bx style="--i:1"><span>is <em>the point.</em></span></span>
+          </h2>
+          <div class="bx-grid bx-close__grid">
+            <p class="bx-close__text reveal">You can carry four friends and their bags. You can drive it to work in the rain. And when the road opens up, 750 Nm from 1,800 rpm is already there, waiting to be asked.</p>
+            <ul class="bx-close__facts reveal" style="--d:1" aria-label="The car in four lines">
+              <li><span>Engine</span>4.4 L twin-turbo V8</li>
+              <li><span>Output</span>460 kW (625 PS)</li>
+              <li><span>Drive</span>M xDrive, 8-speed automatic</li>
+              <li><span>0–100 km/h</span>3.3 s</li>
+            </ul>
+            <p class="bx-close__links reveal" style="--d:2">
+              <a class="explore" href="#main">Return to the orbit<i aria-hidden="true"></i></a>
+              <a class="explore" href="/collection.html">The whole collection<i aria-hidden="true"></i></a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <div class="container">
+    <nav class="journey" aria-label="Explore the collection">
+      <p class="journey__label eyebrow">Continue the collection</p>
+      <a class="journey__link journey__link--prev reveal" href="/cars/corvette-c8" rel="prev">
+        <span class="journey__dir">Previous</span>
+        <span class="journey__make">Chevrolet</span>
+        <span class="journey__name">Corvette C8</span>
+        <span class="journey__tag">Mid-engine, at last.</span>
+      </a>
+      <a class="journey__link journey__link--next reveal" href="/cars/porsche-911" rel="next">
+        <span class="journey__dir">Next</span>
+        <span class="journey__make">Porsche</span>
+        <span class="journey__name">911 Carrera 4S</span>
+        <span class="journey__tag">The rear-engined icon, with all-wheel-drive grip.</span>
+      </a>
+      <a class="journey__all explore" href="/collection.html">Back to the collection<i aria-hidden="true"></i></a>
+    </nav>
+    </div>
+
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <div class="model-error" data-model-error role="alert" hidden>
+    <p data-model-error-message>The 3D model could not be loaded.</p>
+    <button type="button" data-model-error-retry>Try again</button>
+  </div>
+
+  <p class="webgl-note" data-webgl-fallback hidden>
+    WebGL is unavailable in this browser, so the 3D experience cannot run. Try a current version of Chrome, Edge, Firefox or Safari.
+  </p>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>

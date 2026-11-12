@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Toyota GR Supra MK5 — AETHER GT</title>
+  <meta name="description" content="Scroll to orbit the Toyota GR Supra MK5 (A90), then read the dossier: the turbo inline-six, the European specification and the rear-drive character.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icons/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="/cars/toyota-supra">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AETHER GT">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Toyota GR Supra MK5 — AETHER GT">
+  <meta property="og:description" content="Scroll to orbit the Toyota GR Supra MK5 (A90), then read the dossier: the turbo inline-six, the European specification and the rear-drive character.">
+  <meta property="og:url" content="/cars/toyota-supra">
+  <meta property="og:image" content="/assets/og/aether-gt-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AETHER GT: five modern performance cars, considered.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Toyota GR Supra MK5 — AETHER GT">
+  <meta name="twitter:description" content="Scroll to orbit the Toyota GR Supra MK5 (A90), then read the dossier: the turbo inline-six, the European specification and the rear-drive character.">
+  <meta name="twitter:image" content="/assets/og/aether-gt-og.jpg">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/chrome.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <link rel="stylesheet" href="/css/car.css">
+  <link rel="stylesheet" href="/css/vehicle.css">
+  <link rel="stylesheet" href="/css/bmw-m5.css">
+  <link rel="stylesheet" href="/css/toyota-gr-supra.css">
+
+  <noscript><style>[data-loader]{display:none}html.is-loading,html.is-loading body{overflow:auto}</style></noscript>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="/js/boot-guard.js"></script>
+  <script type="module" src="/js/pages/car.js"></script>
+  <script defer src="/js/ui/bmw-editorial.js"></script>
+</head>
+<body data-page="car" data-vehicle="toyota-gr-supra-mk5">
+
+  <!-- Loading screen -->
+  <div class="loader" data-loader>
+    <div class="loader__inner">
+      <p class="loader__brand">AETHER <span>GT</span></p>
+      <div class="loader__track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="loader__bar" data-loader-bar></span>
+      </div>
+      <p class="loader__meta">
+        <span data-loader-status>Initialising</span>
+        <span><span data-loader-percent>000</span>%</span>
+      </p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <!-- Persistent WebGL stage (fixed behind all content) -->
+  <canvas id="stage" class="stage" aria-hidden="true"></canvas>
+
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+  <!-- Atmosphere: vignette + fine grain (also dithers the dark gradients) -->
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <!-- Showcase HUD: filled from config.js and the car's shot (js/ui/hud.js) -->
+  <div class="hud" data-hud>
+    <div class="hud__ident">
+      <p class="hud__make" data-hud-make></p>
+      <p class="hud__model" data-hud-model></p>
+      <p class="hud__designation" data-hud-designation></p>
+    </div>
+    <div class="hud__chapter" aria-hidden="true">
+      <p class="hud__chapter-count"><span data-hud-index>01</span><span class="hud__sep">/</span><span data-hud-total>09</span></p>
+      <p class="hud__chapter-title" data-hud-title></p>
+    </div>
+    <ol class="hud__rail" aria-hidden="true" data-hud-rail></ol>
+    <p class="hud__cue" data-hud-cue aria-hidden="true"><span>Scroll</span><i></i></p>
+  </div>
+
+  <main id="main">
+    <!-- Scroll track: the camera orbit is scrubbed across this section's height. -->
+    <section class="showcase" data-showcase aria-label="Toyota GR Supra MK5, scroll-controlled 3D view">
+      <div class="hero">
+        <div class="container hero__inner">
+          <p class="eyebrow">Toyota</p>
+          <h1 class="hero__title">GR Supra</h1>
+          <p class="hero__lede">MK5</p>
+          <nav class="jump hero__jump" aria-label="On this page">
+            <a href="#the-car">The car</a>
+            <a href="#engine">Engine</a>
+            <a href="#specifications">Specifications</a>
+            <a href="#highlights">Design</a>
+            <a href="#story">Drive</a>
+            <a href="#sheet">Sheet</a>
+          </nav>
+          <p class="hero__facts" aria-label="At a glance">
+            <span>Nº 04 / 05 · A90</span>
+            <span>3.0 L turbo inline-six</span>
+            <span>250 kW (340 PS)</span>
+          </p>
+        </div>
+      </div>
+      <p class="sr-only">Scrolling moves a camera around a Toyota GR Supra MK5: front three-quarter, nose, front quarter, profile, rear quarter, tail, overhead sweep, opposite profile, and back to the start.</p>
+    </section>
+
+    <!-- Dossier: editorial chapters after the scroll-controlled 3D showcase. Opaque, so they cover the fixed canvas and HUD.
+         Styles: css/bmw-m5.css (shared editorial layer, unchanged) + css/toyota-gr-supra.css (Supra only).
+         Enhancements: js/ui/bmw-editorial.js (optional; the page is complete without it). -->
+    <div class="dossier" id="dossier">
+
+      <!-- 01 · Introduction and heritage -->
+      <section class="bx bx-open" id="the-car" aria-labelledby="intro-title">
+        <div class="container">
+          <p class="folio reveal"><span>Dossier Nº 04 / 05</span><span>GR Supra MK5</span></p>
+          <div class="bx-grid bx-open__grid">
+            <h2 class="bx-open__title" id="intro-title">
+              <span class="bx-line" data-bx><span>A name from 1978,</span></span>
+              <span class="bx-line" data-bx style="--i:1"><span><em>back in a short, wide coupé.</em></span></span>
+            </h2>
+            <p class="bx-open__dek reveal" style="--d:2">A turbocharged inline-six, rear-wheel drive and two seats. The fifth-generation Supra returned in 2019 after a long absence, built in Austria and developed with BMW. This page covers the GR Supra 3.0 in its European specification.</p>
+            <div class="bx-open__body prose reveal" style="--d:3">
+              <p class="bx-dropcap">The Supra began in 1978 as a six-cylinder version of the Celica, sold in Japan as the Celica XX. It grew into a model of its own, and its fourth generation, the A80 of 1993, is the one many people remember, with a twin-turbo 3.0-litre inline-six. Japanese production of the A80 ended in August 2002, and the name went quiet.</p>
+              <p>It came back in January 2019, when Toyota showed the new car at the Detroit Auto Show. The chassis code, A90, simply continued the sequence of earlier Supras (A40, A60, A70, A80). Toyota presented it as the first global model of its GAZOO Racing performance line.</p>
+              <p>The car was developed jointly with BMW and is assembled by Magna Steyr in Graz, Austria, where BMW’s Z4 is also built. Toyota’s chief engineer on the project was Tetsuya Tada. Toyota has said the new car’s design draws on the A80 and on the 1967 Toyota 2000 GT.</p>
+              <p class="bx-open__guide">Read on in the order the car is built: the engine, the numbers, the shape, the drive, then the sheet.</p>
+            </div>
+          </div>
+
+          <ol class="nx-timeline" aria-label="The Supra in five dates">
+            <li class="reveal"><span class="nx-timeline__year">1967</span><p>The Toyota 2000 GT, a reference point for the A90’s design.</p></li>
+            <li class="reveal" style="--d:1"><span class="nx-timeline__year">1978</span><p>The first Supra, a Celica-based coupé (Celica XX in Japan).</p></li>
+            <li class="reveal" style="--d:2"><span class="nx-timeline__year">1993</span><p>The A80, the fourth generation, arrives with a twin-turbo inline-six.</p></li>
+            <li class="reveal" style="--d:3"><span class="nx-timeline__year">2002</span><p>Japanese production of the A80 ends in August.</p></li>
+            <li class="reveal" style="--d:4"><span class="nx-timeline__year">2019</span><p>The A90 is unveiled in January, and built in Graz, Austria.</p></li>
+          </ol>
+
+          <ul class="bx-figs" aria-label="Key figures">
+            <li class="reveal"><span class="bx-figs__value"><span data-count="340">340</span><small>PS</small></span><span class="bx-figs__label">250 kW at 5,000–6,500 rpm</span></li>
+            <li class="reveal" style="--d:1"><span class="bx-figs__value"><span data-count="500">500</span><small>Nm</small></span><span class="bx-figs__label">From 1,600 to 4,500 rpm</span></li>
+            <li class="reveal" style="--d:2"><span class="bx-figs__value"><span data-count="4.3" data-decimals="1">4.3</span><small>s</small></span><span class="bx-figs__label">0–100 km/h, automatic, as quoted</span></li>
+            <li class="reveal" style="--d:3"><span class="bx-figs__value"><span data-count="250">250</span><small>km/h</small></span><span class="bx-figs__label">Top speed, electronically limited</span></li>
+          </ul>
+          <p class="bx-note reveal">Figures are for the GR Supra 3.0, European specification, from Toyota Europe’s technical sheet, rounded. They vary with market, model year and gearbox: later updated cars in some markets make more (see the table in the engine chapter). The 3D model above is a third-party stand-in and is not to scale with the published dimensions.</p>
+        </div>
+      </section>
+
+      <!-- 02 · Engine and performance -->
+      <section class="bx bx-engine" id="engine" aria-labelledby="engine-title">
+        <span class="bx-ghost" aria-hidden="true" data-parallax>340</span>
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-engine__copy">
+              <p class="bx-chapter reveal"><b>02</b><span>B58 engine and performance</span></p>
+              <h2 class="bx-title reveal" id="engine-title" style="--d:1">Six cylinders, in a row, <em>one turbo.</em></h2>
+              <div class="prose reveal" style="--d:2">
+                <p>The 3.0-litre engine is a turbocharged inline-six: six cylinders in a single line, front-mounted, with a single twin-scroll turbocharger, direct injection, a 24-valve head with two overhead camshafts, and variable valve timing on both camshafts. Toyota’s documents list it under the code B58B30M1; the B58 is a BMW engine family.</p>
+                <p>In the European GR Supra 3.0 it makes 250 kW (340 PS) between 5,000 and 6,500 rpm, and 500 Nm of torque from 1,600 to 4,500 rpm. That wide, low torque band means the pull is there for most of everyday driving rather than at one narrow peak.</p>
+                <p>Power goes only to the rear wheels, through an eight-speed automatic or a six-speed manual. Toyota Europe quotes 4.3 seconds from 0 to 100 km/h for the automatic and 4.6 for the manual, and an electronically limited top speed of 250 km/h. Toyota also sells a 2.0-litre four-cylinder Supra, which is not the car described here.</p>
+              </div>
+              <dl class="bx-mini reveal" style="--d:3">
+                <div><dt>Displacement</dt><dd>2,998 cc</dd></div>
+                <div><dt>Bore × stroke</dt><dd>82 × 94.6 mm</dd></div>
+                <div><dt>Compression</dt><dd>11.0 : 1</dd></div>
+                <div><dt>Turbochargers</dt><dd>One, twin-scroll</dd></div>
+              </dl>
+            </div>
+
+            <div class="bx-engine__figs">
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 1</span><span>The inline-six, seen from above</span></div>
+                <svg class="eng" viewBox="0 -16 400 220" role="img" aria-labelledby="eng-t eng-d">
+                  <title id="eng-t">Schematic of the Supra’s inline-six seen from above</title>
+                  <desc id="eng-d">One long block outline with six cylinder bores in a single row from the front of the car to the rear, with a dashed crankshaft line through their centres.</desc>
+                  <g class="eng__bank" style="--i:0"><rect x="30" y="60" width="340" height="84" rx="3"/></g>
+                  <path class="eng__axis" d="M18 102H382"/>
+                  <g class="eng__bores">
+                    <circle style="--i:2" cx="76" cy="102" r="26"/><circle style="--i:3" cx="133" cy="102" r="26"/><circle style="--i:4" cx="190" cy="102" r="26"/>
+                    <circle style="--i:5" cx="247" cy="102" r="26"/><circle style="--i:6" cx="304" cy="102" r="26"/><circle style="--i:7" cx="361" cy="102" r="26"/>
+                  </g>
+                  <text class="eng__label" x="200" y="30" text-anchor="middle">6 × 82 mm bore</text>
+                  <g class="eng__tag"><circle cx="76" cy="168" r="10"/><text x="76" y="172" text-anchor="middle">A</text></g>
+                  <g class="eng__tag"><circle cx="200" cy="168" r="10"/><text x="200" y="172" text-anchor="middle">B</text></g>
+                  <g class="eng__tag"><circle cx="361" cy="168" r="10"/><text x="361" y="172" text-anchor="middle">C</text></g>
+                </svg>
+                <ul class="bx-key" aria-label="Key to figure 1">
+                  <li><b>A</b>Cylinder one, at one end of the row</li>
+                  <li><b>B</b>The crankshaft line, through the centre of every bore</li>
+                  <li><b>C</b>Cylinder six: all six sit in one straight line</li>
+                </ul>
+                <figcaption>Simplified and not to scale. It shows the cylinder layout only; the turbocharger, manifolds and ancillaries are left out, and which end faces the front of the car is not marked.</figcaption>
+              </figure>
+
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 2</span><span>Where the engine does its work</span></div>
+                <div class="lanes" role="img" aria-label="Engine speed bands. 3.0 torque: 500 newton-metres from 1,600 to 4,500 rpm. 3.0 peak power: 250 kilowatts from 5,000 to 6,500 rpm. 2.0 torque: 400 newton-metres from 1,550 to 4,400 rpm.">
+                  <div class="lanes__plot">
+                    <div class="lane">
+                      <p class="lane__label"><span>3.0 torque · 500 Nm</span><b>1,600–4,500 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:1600;--to:4500"></i></div>
+                    </div>
+                    <div class="lane">
+                      <p class="lane__label"><span>3.0 power · 250 kW</span><b>5,000–6,500 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:5000;--to:6500"></i></div>
+                    </div>
+                    <div class="lane lane--ref">
+                      <p class="lane__label"><span>2.0 torque · 400 Nm</span><b>1,550–4,400 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:1550;--to:4400"></i></div>
+                    </div>
+                    <ol class="lanes__axis" aria-hidden="true">
+                      <li style="--rpm:0">0</li><li style="--rpm:1000">1</li><li style="--rpm:2000">2</li><li style="--rpm:3000">3</li><li style="--rpm:4000">4</li><li style="--rpm:5000">5</li><li style="--rpm:6000">6</li><li style="--rpm:7000">7</li>
+                    </ol>
+                  </div>
+                  <p class="lanes__unit" aria-hidden="true">Engine speed, 1,000 rpm</p>
+                </div>
+                <figcaption>Each bar is the range over which Toyota quotes that peak figure, so it shows where the output is held, not how much, and it is not a torque curve. The 3.0’s torque band ends before its power band begins. The axis runs to 7,000 rpm for scale only; no engine limit is implied.</figcaption>
+              </figure>
+
+              <figure class="bx-fig bx-fig--table reveal">
+                <div class="bx-fig__head"><span>Fig. 3</span><span>Three outputs from one engine family</span></div>
+                <div class="bx-table-wrap" role="region" aria-label="GR Supra 2.0, European 3.0 and updated Japanese 3.0 compared" tabindex="0">
+                  <table class="bx-table">
+                    <thead><tr><th scope="col">Measure</th><th scope="col">2.0 (Europe)</th><th scope="col">3.0 (Europe)</th><th scope="col">3.0 updated (Japan)</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Cylinders</th><td>Four</td><td>Six</td><td>Six</td></tr>
+                      <tr><th scope="row">Power</th><td>190 kW (258 PS)</td><td>250 kW (340 PS)</td><td>285 kW (387 PS)</td></tr>
+                      <tr><th scope="row">Peak power at</th><td>5,000–6,500 rpm</td><td>5,000–6,500 rpm</td><td>5,800 rpm</td></tr>
+                      <tr><th scope="row">Torque</th><td>400 Nm</td><td>500 Nm</td><td>500 Nm</td></tr>
+                      <tr><th scope="row">Torque band</th><td>1,550–4,400 rpm</td><td>1,600–4,500 rpm</td><td>1,800–5,000 rpm</td></tr>
+                      <tr><th scope="row">0–100 km/h</th><td>5.2 s (auto)</td><td>4.3 s (auto), 4.6 s (manual)</td><td>Not quoted there</td></tr>
+                      <tr><th scope="row">Gearbox</th><td>8-speed auto</td><td>8-speed auto or 6-speed manual</td><td>6-speed manual or 8-speed auto</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <figcaption>Manufacturer figures, rounded. The 2.0 and European 3.0 columns are from Toyota Europe’s technical sheet; the updated column is from Toyota GAZOO Racing’s Japanese specification page. The 0–100 km/h times are given as 0–62 mph in the European sheet. <span class="flag">Varies</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Technical specifications -->
+      <section class="bx bx-spec" id="specifications" aria-labelledby="spec-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-spec__head">
+              <p class="bx-chapter reveal"><b>03</b><span>Technical specification</span></p>
+              <h2 class="bx-title reveal" id="spec-title" style="--d:1">GR Supra 3.0, <em>A90, Europe</em></h2>
+            </header>
+
+            <div class="bx-spec__sheet">
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>A</b>Powertrain</h3>
+                <dl class="ledger">
+                  <div><dt>Engine</dt><dd>3.0 L turbo inline-six (B58B30M1), 24 valves, DOHC, twin-scroll turbocharger, direct injection, front-mounted</dd></div>
+                  <div><dt>Displacement</dt><dd>2,998 cc</dd></div>
+                  <div><dt>Bore × stroke</dt><dd>82 × 94.6 mm</dd></div>
+                  <div><dt>Compression</dt><dd>11.0 : 1</dd></div>
+                  <div><dt>Power</dt><dd>250 kW (340 PS) at 5,000–6,500 rpm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Torque</dt><dd>500 Nm at 1,600–4,500 rpm <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>B</b>Drivetrain and performance</h3>
+                <dl class="ledger">
+                  <div><dt>Gearbox</dt><dd>8-speed automatic, or 6-speed manual <span class="flag">Varies</span></dd></div>
+                  <div><dt>Drive</dt><dd>Rear-wheel drive with an electronically controlled active differential <span class="flag flag--confirm">To confirm</span></dd></div>
+                  <div><dt>0–100 km/h</dt><dd>4.3 s automatic; 4.6 s manual (quoted as 0–62 mph) <span class="flag">Varies</span></dd></div>
+                  <div><dt>Top speed</dt><dd>250 km/h, electronically limited</dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>C</b>Chassis, wheels and brakes</h3>
+                <dl class="ledger">
+                  <div><dt>Suspension</dt><dd>MacPherson struts at the front, five-link axle at the rear</dd></div>
+                  <div><dt>Steering</dt><dd>Electric rack and pinion, 15.1 : 1</dd></div>
+                  <div><dt>Front brakes</dt><dd>348 × 36 mm ventilated discs, four-piston fixed callipers</dd></div>
+                  <div><dt>Rear brakes</dt><dd>345 × 24 mm ventilated discs, single-piston floating callipers</dd></div>
+                  <div><dt>Tyres</dt><dd>Michelin Pilot Super Sport: 255/35 ZR19 front, 275/35 ZR19 rear (19-inch wheels) <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>D</b>Body and dimensions</h3>
+                <dl class="ledger">
+                  <div><dt>Length</dt><dd>4,379 mm</dd></div>
+                  <div><dt>Wheelbase</dt><dd>2,470 mm</dd></div>
+                  <div><dt>Width</dt><dd>1,854 mm</dd></div>
+                  <div><dt>Height</dt><dd>1,292 mm</dd></div>
+                  <div><dt>Track</dt><dd>1,594 mm front, 1,589 mm rear</dd></div>
+                  <div><dt>Kerb weight</dt><dd>1,495 kg automatic, 1,502 kg manual, without driver <span class="flag">Varies</span></dd></div>
+                  <div><dt>Gross weight</dt><dd>1,815 kg automatic, 1,795 kg manual</dd></div>
+                  <div><dt>Seats and luggage</dt><dd>Two seats; 290 L luggage space (VDA)</dd></div>
+                  <div><dt>Fuel tank</dt><dd>52 L</dd></div>
+                </dl>
+              </div>
+
+              <p class="spec-note">Figures are from Toyota Europe’s technical specification sheet for the GR Supra 3.0 (European specification), rounded. <span class="flag">Varies</span> marks a figure that changes with market, model year, gearbox or options; <span class="flag flag--confirm">To confirm</span> marks one this page could not establish for the European car: the active differential is described in Toyota’s launch material, and its fitment on every European grade should be checked against Toyota’s current documentation. Not listed here: figures this page could not confirm from the maker, such as the drag coefficient. The 50:50 weight balance is Toyota’s stated design aim, not a measured value for every car.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Exterior design and engineering -->
+      <section class="bx bx-design" id="highlights" aria-labelledby="highlights-title">
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-design__side">
+              <p class="bx-chapter reveal"><b>04</b><span>Exterior and engineering</span></p>
+              <h2 class="bx-title reveal" id="highlights-title" style="--d:1">Small on purpose, <em>wide where it counts.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">Toyota’s own name for the look was “Condensed Extreme”. Five details, each tied to a number or a job.</p>
+              <nav class="bx-index reveal" aria-label="Design details" style="--d:3">
+                <ol>
+                  <li><a href="#hl-1" data-index="hl-1"><b>01</b>Proportions</a></li>
+                  <li><a href="#hl-2" data-index="hl-2"><b>02</b>The double-bubble roof</a></li>
+                  <li><a href="#hl-3" data-index="hl-3"><b>03</b>Balance by design</a></li>
+                  <li><a href="#hl-4" data-index="hl-4"><b>04</b>The active differential</a></li>
+                  <li><a href="#hl-5" data-index="hl-5"><b>05</b>Brakes and tyres</a></li>
+                </ol>
+              </nav>
+            </div>
+
+            <ol class="bx-items">
+              <li class="bx-item" id="hl-1" data-bx>
+                <span class="bx-item__no">01</span>
+                <h3>Proportions first</h3>
+                <p>The Supra is 4,379 mm long on a 2,470 mm wheelbase, 1,854 mm wide and only 1,292 mm tall. Its track is 1,594 mm at the front and 1,589 mm at the rear. Divide the wheelbase into the front track and you get a ratio of about 1.55 to 1, the kind of short, wide stance Toyota says it was aiming for, because a short wheelbase turns quickly and a wide track steadies the car.</p>
+                <p class="bx-item__spec"><span>Stance</span> 2,470 mm wheelbase; 1,594 / 1,589 mm track; about 1.55 : 1 (calculated)</p>
+              </li>
+              <li class="bx-item" id="hl-2" data-bx>
+                <span class="bx-item__no">02</span>
+                <h3>The double-bubble roof</h3>
+                <p>The roof rises in two shallow domes, one over each seat. Toyota says the shape recalls the 1967 Toyota 2000 GT, one of the two older cars it names as the new Supra’s design ancestors, the other being the A80 of 1993 to 2002.</p>
+                <p class="bx-item__spec"><span>Heritage</span> Double-bubble roof, after the 2000 GT</p>
+              </li>
+              <li class="bx-item" id="hl-3" data-bx>
+                <span class="bx-item__no">03</span>
+                <h3>Balance by design</h3>
+                <p>Toyota lists three aims for the structure: high rigidity, a low centre of gravity and a 50:50 split of weight between the front and rear axles. It also says the styling makes full use of the sports-car packaging. Treat 50:50 as the design target Toyota states, since actual distribution varies with the car as specified.</p>
+                <p class="bx-item__spec"><span>Aim</span> 50:50 front-to-rear weight balance (Toyota’s stated target)</p>
+              </li>
+              <li class="bx-item" id="hl-4" data-bx>
+                <span class="bx-item__no">04</span>
+                <h3>An active rear differential</h3>
+                <p>Between the rear wheels sits a differential controlled by an electric motor acting on multiplate clutches. It can share torque between the two driven wheels while cornering, under power and under braking, and Toyota describes its locking as stepless, anywhere from fully open to fully locked.</p>
+                <p class="bx-item__spec"><span>Rear axle</span> Electronically controlled active differential, 0–100% locking</p>
+              </li>
+              <li class="bx-item" id="hl-5" data-bx>
+                <span class="bx-item__no">05</span>
+                <h3>Brakes and tyres</h3>
+                <p>Four-piston fixed callipers grip 348 mm ventilated discs at the front, with single-piston floating callipers on 345 mm discs behind. The 19-inch wheels carry Michelin Pilot Super Sport tyres, 255/35 at the front and wider 275/35 at the rear, so the driven axle gets the larger contact patch.</p>
+                <p class="bx-item__spec"><span>Brakes</span> 348 × 36 mm front, 345 × 24 mm rear; 255/35 and 275/35 ZR19</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Driving character -->
+      <section class="bx bx-drive" id="story" aria-labelledby="story-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>05</b><span>Driving character</span></p>
+          <blockquote class="bx-quote" id="story-title" data-bx>
+            <span class="bx-line"><span>A short wheelbase and a wide track.</span></span>
+            <span class="bx-line" style="--i:1"><span><em>The rear wheels in charge.</em></span></span>
+          </blockquote>
+
+          <div class="bx-grid bx-drive__grid">
+            <div class="bx-drive__prose prose">
+              <p class="reveal">The Supra is a two-seat, front-engined, rear-drive coupé, and nearly everything about its layout points one way. The engine is an inline-six in the nose, the drive goes only to the rear wheels, and the car is short between its axles but wide across them. It is a layout usually chosen for balance, and balance is the quality Toyota names first.</p>
+              <p class="reveal">The active differential is the part that does the fine work. By varying how tightly it couples the rear wheels, it can keep the car from pushing wide on the way into a corner or stepping out as the power goes on. Behind it the suspension is a five-link axle, and the steering is electric rack and pinion at 15.1 to 1. What that adds up to behind the wheel is a matter of the driver’s own judgement, not something the figures on this page can show.</p>
+              <p class="reveal">At 1,495 kg (automatic, without driver) it weighs about 250 kg less than the GT-R on the previous page, and the eight-speed automatic and six-speed manual give two quite different ways to use the same 500 Nm. The manual is quoted as 0.3 seconds slower to 100 km/h, a gap that most drivers who pick it will not mind.</p>
+              <p class="reveal bx-credit">The 3D scene above uses a third-party model, credited in the page footer. It is a stand-in rather than a scan: it is longer and noticeably broader for its height than the published dimensions, and its wheels, trim and details are not matched to a specific model year.</p>
+            </div>
+
+            <div class="bx-drive__aside">
+              <figure class="bx-ladder reveal" aria-label="Driver-selectable settings">
+                <div class="bx-fig__head"><span>Fig. 4</span><span>What the driver can choose</span></div>
+                <div class="bx-rung"><p class="bx-rung__name">Drive mode</p><ol class="bx-rung__opts"><li>Normal</li><li>Sport</li></ol></div>
+              </figure>
+              <dl class="bx-modes reveal">
+                <div><dt>Normal</dt><dd>The everyday setting.</dd></div>
+                <div><dt>Sport</dt><dd>Toyota says it sharpens throttle response, adds steering weight, makes gearshifts crisper, makes the active differential more aggressive and amplifies exhaust sound. It is described in Toyota’s launch material for the 2020 car.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · Technical specification layout -->
+      <section class="bx bx-sheet" id="sheet" aria-labelledby="sheet-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-sheet__head">
+              <p class="bx-chapter reveal"><b>06</b><span>The specification sheet</span></p>
+              <h2 class="bx-title reveal" id="sheet-title" style="--d:1">The whole car, <em>on one sheet.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">The same figures as the ledger above, set out to be read at a glance, with the car’s proportions drawn on a shared scale.</p>
+            </header>
+
+            <dl class="nx-sheet reveal" style="--d:2" aria-label="GR Supra 3.0 at a glance">
+              <div><dt>Engine</dt><dd>3.0 L turbo inline-six</dd></div>
+              <div><dt>Power</dt><dd>250 kW (340 PS)</dd></div>
+              <div><dt>Torque</dt><dd>500 Nm</dd></div>
+              <div><dt>Gearbox</dt><dd>8-speed auto or 6-speed manual</dd></div>
+              <div><dt>Drive</dt><dd>Rear-wheel, active differential</dd></div>
+              <div><dt>0–100 km/h</dt><dd>4.3 s auto, 4.6 s manual</dd></div>
+              <div><dt>Top speed</dt><dd>250 km/h, limited</dd></div>
+              <div><dt>Kerb weight</dt><dd>1,495 kg automatic</dd></div>
+              <div><dt>Brakes</dt><dd>348 mm front, 345 mm rear</dd></div>
+              <div><dt>Seats</dt><dd>Two</dd></div>
+              <div><dt>Luggage</dt><dd>290 L</dd></div>
+              <div><dt>Fuel tank</dt><dd>52 L</dd></div>
+            </dl>
+
+            <div class="bx-sheet__side">
+              <figure class="bx-fig nx-plan" data-bx>
+                <div class="bx-fig__head"><span>Fig. 5</span><span>Dimensions, from above</span></div>
+                <svg class="nx-plan__svg" viewBox="0 0 400 212" role="img" aria-labelledby="plan-t plan-d">
+                  <title id="plan-t">Plan of the Supra’s length, width and wheelbase</title>
+                  <desc id="plan-d">A rectangle drawn to the car’s length and width, 4,379 millimetres by 1,854 millimetres, with two axle lines 2,470 millimetres apart, placed from the published overhangs of 951 millimetres at the rear and 958 millimetres at the front. It is a dimension diagram, not a drawing of the car.</desc>
+                  <rect class="nx-plan__body" x="20" y="56" width="360" height="152.4" rx="14"/>
+                  <path class="nx-plan__axle" d="M98.2 48V208.4M301.2 48V208.4"/>
+                  <path class="nx-plan__dim" d="M20 18H380M20 12V24M380 12V24M98.2 42H301.2M98.2 37V47M301.2 37V47"/>
+                  <text class="nx-plan__text" x="200" y="10" text-anchor="middle">Length 4,379 mm</text>
+                  <text class="nx-plan__text" x="200" y="34" text-anchor="middle">Wheelbase 2,470 mm</text>
+                  <text class="nx-plan__text nx-plan__text--in" x="200" y="136" text-anchor="middle">Width 1,854 mm</text>
+                </svg>
+                <figcaption>Drawn to scale from the published length, width, wheelbase and overhangs (rear to the left, front to the right). The rectangle is the car’s footprint, not its outline.</figcaption>
+              </figure>
+
+              <aside class="bx-spec__scale scale-block reveal" aria-label="Proportions">
+                <p class="eyebrow">Proportions</p>
+                <div class="scale" role="group" aria-label="Dimensions on a shared scale">
+                  <div class="scale__row"><span>Length</span><span class="scale__bar" style="--mm:4379"></span><output>4,379 mm</output></div>
+                  <div class="scale__row"><span>Wheelbase</span><span class="scale__bar" style="--mm:2470"></span><output>2,470 mm</output></div>
+                  <div class="scale__row"><span>Width</span><span class="scale__bar" style="--mm:1854"></span><output>1,854 mm</output></div>
+                  <div class="scale__row"><span>Height</span><span class="scale__bar" style="--mm:1292"></span><output>1,292 mm</output></div>
+                </div>
+                <p class="scale__caption">Approximate manufacturer dimensions. All five cars share one scale (5,000 mm is the full bar), so the pages compare directly. A dimension chart, not a drawing of the car.</p>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 · Closing -->
+      <section class="bx bx-close" id="close" aria-labelledby="close-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>07</b><span>Closing</span></p>
+          <h2 class="bx-close__title" id="close-title">
+            <span class="bx-line" data-bx><span>Seventeen years away.</span></span>
+            <span class="bx-line" data-bx style="--i:1"><span><em>Six cylinders, two seats, rear drive.</em></span></span>
+          </h2>
+          <div class="bx-grid bx-close__grid">
+            <p class="bx-close__text reveal">The A80 left production in 2002 and the A90 arrived in 2019. In between, the Supra name waited. The car that carries it now is the smallest on this site: a compact coupé on a 2,470 mm wheelbase, with a turbocharged inline-six in front and a differential that decides, wheel by wheel, where the power goes.</p>
+            <ul class="bx-close__facts reveal" style="--d:1" aria-label="The car in four lines">
+              <li><span>Engine</span>3.0 L turbo inline-six</li>
+              <li><span>Output</span>250 kW (340 PS)</li>
+              <li><span>Drive</span>Rear-wheel, 8-speed auto or 6-speed manual</li>
+              <li><span>0–100 km/h</span>4.3 s automatic, as quoted</li>
+            </ul>
+            <p class="bx-close__links reveal" style="--d:2">
+              <a class="explore" href="#main">Return to the orbit<i aria-hidden="true"></i></a>
+              <a class="explore" href="/collection.html">The whole collection<i aria-hidden="true"></i></a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <div class="container">
+    <nav class="journey" aria-label="Explore the collection">
+      <p class="journey__label eyebrow">Continue the collection</p>
+      <a class="journey__link journey__link--prev reveal" href="/cars/nissan-gt-r" rel="prev">
+        <span class="journey__dir">Previous</span>
+        <span class="journey__make">Nissan</span>
+        <span class="journey__name">GT-R R35</span>
+        <span class="journey__tag">The all-wheel-drive giant-killer.</span>
+      </a>
+      <a class="journey__link journey__link--next reveal" href="/cars/corvette-c8" rel="next">
+        <span class="journey__dir">Next</span>
+        <span class="journey__make">Chevrolet</span>
+        <span class="journey__name">Corvette C8</span>
+        <span class="journey__tag">Mid-engine, at last.</span>
+      </a>
+      <a class="journey__all explore" href="/collection.html">Back to the collection<i aria-hidden="true"></i></a>
+    </nav>
+    </div>
+
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <div class="model-error" data-model-error role="alert" hidden>
+    <p data-model-error-message>The 3D model could not be loaded.</p>
+    <button type="button" data-model-error-retry>Try again</button>
+  </div>
+
+  <p class="webgl-note" data-webgl-fallback hidden>
+    WebGL is unavailable in this browser, so the 3D experience cannot run. Try a current version of Chrome, Edge, Firefox or Safari.
+  </p>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Porsche 911 Carrera 4S — AETHER GT</title>
+  <meta name="description" content="Scroll to orbit the Porsche 911 Carrera 4S, then read the dossier: the rear-mounted twin-turbo flat-six, the specification and the driving character.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icons/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="/cars/porsche-911">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AETHER GT">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Porsche 911 Carrera 4S — AETHER GT">
+  <meta property="og:description" content="Scroll to orbit the Porsche 911 Carrera 4S, then read the dossier: the rear-mounted twin-turbo flat-six, the specification and the driving character.">
+  <meta property="og:url" content="/cars/porsche-911">
+  <meta property="og:image" content="/assets/og/aether-gt-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AETHER GT: five modern performance cars, considered.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Porsche 911 Carrera 4S — AETHER GT">
+  <meta name="twitter:description" content="Scroll to orbit the Porsche 911 Carrera 4S, then read the dossier: the rear-mounted twin-turbo flat-six, the specification and the driving character.">
+  <meta name="twitter:image" content="/assets/og/aether-gt-og.jpg">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/chrome.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <link rel="stylesheet" href="/css/car.css">
+  <link rel="stylesheet" href="/css/vehicle.css">
+  <link rel="stylesheet" href="/css/bmw-m5.css">
+  <link rel="stylesheet" href="/css/porsche-911.css">
+
+  <noscript><style>[data-loader]{display:none}html.is-loading,html.is-loading body{overflow:auto}</style></noscript>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="/js/boot-guard.js"></script>
+  <script type="module" src="/js/pages/car.js"></script>
+  <script defer src="/js/ui/bmw-editorial.js"></script>
+</head>
+<body data-page="car" data-vehicle="porsche-911-carrera-4s">
+
+  <!-- Loading screen -->
+  <div class="loader" data-loader>
+    <div class="loader__inner">
+      <p class="loader__brand">AETHER <span>GT</span></p>
+      <div class="loader__track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="loader__bar" data-loader-bar></span>
+      </div>
+      <p class="loader__meta">
+        <span data-loader-status>Initialising</span>
+        <span><span data-loader-percent>000</span>%</span>
+      </p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <!-- Persistent WebGL stage (fixed behind all content) -->
+  <canvas id="stage" class="stage" aria-hidden="true"></canvas>
+
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+  <!-- Atmosphere: vignette + fine grain (also dithers the dark gradients) -->
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <!-- Showcase HUD: filled from config.js and the car's shot (js/ui/hud.js) -->
+  <div class="hud" data-hud>
+    <div class="hud__ident">
+      <p class="hud__make" data-hud-make></p>
+      <p class="hud__model" data-hud-model></p>
+      <p class="hud__designation" data-hud-designation></p>
+    </div>
+    <div class="hud__chapter" aria-hidden="true">
+      <p class="hud__chapter-count"><span data-hud-index>01</span><span class="hud__sep">/</span><span data-hud-total>09</span></p>
+      <p class="hud__chapter-title" data-hud-title></p>
+    </div>
+    <ol class="hud__rail" aria-hidden="true" data-hud-rail></ol>
+    <p class="hud__cue" data-hud-cue aria-hidden="true"><span>Scroll</span><i></i></p>
+  </div>
+
+  <main id="main">
+    <!-- Scroll track: the camera orbit is scrubbed across this section's height. -->
+    <section class="showcase" data-showcase aria-label="Porsche 911 Carrera 4S, scroll-controlled 3D view">
+      <div class="hero">
+        <div class="container hero__inner">
+          <p class="eyebrow">Porsche</p>
+          <h1 class="hero__title">911</h1>
+          <p class="hero__lede">Carrera 4S</p>
+          <nav class="jump hero__jump" aria-label="On this page">
+            <a href="#the-car">The car</a>
+            <a href="#engine">Engine</a>
+            <a href="#specifications">Specifications</a>
+            <a href="#highlights">Design</a>
+            <a href="#story">Drive</a>
+          </nav>
+          <p class="hero__facts" aria-label="At a glance">
+            <span>Nº 02 / 05 · Type 992</span>
+            <span>3.0 L twin-turbo flat-six</span>
+            <span>331 kW (450 PS)</span>
+          </p>
+        </div>
+      </div>
+      <p class="sr-only">Scrolling moves a camera around a Porsche 911 Carrera 4S: front three-quarter, nose, front quarter, profile, rear quarter, tail, overhead sweep, opposite profile, and back to the start.</p>
+    </section>
+
+    <!-- Dossier: editorial chapters after the scroll-controlled 3D showcase. Opaque, so they cover the fixed canvas and HUD.
+         Styles: css/bmw-m5.css (shared editorial layer, unchanged) + css/porsche-911.css (Porsche only).
+         Enhancements: js/ui/bmw-editorial.js (optional; the page is complete without it). -->
+    <div class="dossier" id="dossier">
+
+      <!-- 01 · Opening spread -->
+      <section class="bx bx-open" id="the-car" aria-labelledby="intro-title">
+        <div class="container">
+          <p class="folio reveal"><span>Dossier Nº 02 / 05</span><span>911 Carrera 4S</span></p>
+          <div class="bx-grid bx-open__grid">
+            <h2 class="bx-open__title" id="intro-title">
+              <span class="bx-line" data-bx><span>The idea has not changed.</span></span>
+              <span class="bx-line" data-bx style="--i:1"><span><em>Everything around it</em> has.</span></span>
+            </h2>
+            <p class="bx-open__dek reveal" style="--d:2">An engine behind the rear axle, two seats and two more for bags, and since 1963 the same stubborn silhouette. The Carrera 4S is the 992 generation with the all-wheel-drive grip of the 4 and the stronger engine of the S.</p>
+            <div class="bx-open__body prose reveal" style="--d:3">
+              <p class="bx-dropcap">Few cars have been argued about for as long as the 911. Its layout, a flat-six hung behind the rear axle, is the kind of thing an engineer would be tempted to abandon. Porsche has spent decades refining it instead. The 992, the eighth generation, was introduced in late 2018 and is the car on this page.</p>
+              <p>The name of this version is a recipe. The S means the stronger of the two Carrera engines: 331 kW (450 PS), 22 kW (30 PS) more than the generation before. The 4 means all-wheel drive, with torque sent to the front axle when the rear wheels run short of grip. Everything else is the 911: a low nose, a steep windscreen, and a roofline that falls away toward the tail.</p>
+              <p class="bx-open__guide">Read on in the order a driver meets it: the engine behind you, the numbers, the shape, then the road.</p>
+            </div>
+          </div>
+          <ul class="bx-figs" aria-label="Key figures">
+            <li class="reveal"><span class="bx-figs__value"><span data-count="450">450</span><small>PS</small></span><span class="bx-figs__label">331 kW at 6,500 rpm</span></li>
+            <li class="reveal" style="--d:1"><span class="bx-figs__value"><span data-count="530">530</span><small>Nm</small></span><span class="bx-figs__label">From 2,300 to 5,000 rpm</span></li>
+            <li class="reveal" style="--d:2"><span class="bx-figs__value"><span data-count="3.6" data-decimals="1">3.6</span><small>s</small></span><span class="bx-figs__label">0–100 km/h (3.4 s with Sport Plus)</span></li>
+            <li class="reveal" style="--d:3"><span class="bx-figs__value"><span data-count="306">306</span><small>km/h</small></span><span class="bx-figs__label">Top speed</span></li>
+          </ul>
+          <p class="bx-note reveal">Porsche figures for the first series of the 992 Carrera 4S (2018–2024), rounded. They vary with market, model year and options. The updated car introduced in 2025 is rated at 480 PS, so check which one you mean.</p>
+        </div>
+      </section>
+
+      <!-- 02 · Engine and performance -->
+      <section class="bx bx-engine" id="engine" aria-labelledby="engine-title">
+        <span class="bx-ghost" aria-hidden="true" data-parallax>450</span>
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-engine__copy">
+              <p class="bx-chapter reveal"><b>02</b><span>Engine and performance</span></p>
+              <h2 class="bx-title reveal" id="engine-title" style="--d:1">Six cylinders, laid flat, hung <em>behind</em> the axle.</h2>
+              <div class="prose reveal" style="--d:2">
+                <p>The engine is a 3.0-litre flat-six: six cylinders in two horizontally opposed banks of three, with a turbocharger feeding each bank. It sits behind the rear axle, in the very tail of the car. That one decision explains most of what a 911 is: the traction it finds leaving a corner, and the care its chassis takes over the weight at its back.</p>
+                <p>In the 4S it makes 331 kW (450 PS) at 6,500 rpm and 530 Nm from 2,300 to 5,000 rpm. That is 22 kW (30 PS) and 30 Nm more than the car it replaced, and the same output as the rear-drive Carrera S. The engine turns to 7,500 rpm, and a gasoline particulate filter, new with the 992, cleans its exhaust.</p>
+                <p>Power goes through a new eight-speed PDK dual-clutch gearbox, the first eight-speed PDK in a Porsche sports car, and on to all four wheels through Porsche Traction Management. By Porsche’s figures that is 0–100 km/h in 3.6 seconds, 3.4 with Sport Plus selected, and 306 km/h flat out.</p>
+              </div>
+              <dl class="bx-mini reveal" style="--d:3">
+                <div><dt>Displacement</dt><dd>2,981 cc</dd></div>
+                <div><dt>Bore × stroke</dt><dd>91.0 × 76.4 mm</dd></div>
+                <div><dt>Compression</dt><dd>10.2 : 1</dd></div>
+                <div><dt>Turbochargers</dt><dd>Two, one per bank</dd></div>
+              </dl>
+            </div>
+
+            <div class="bx-engine__figs">
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 1</span><span>The flat-six, from above</span></div>
+                <svg class="eng" viewBox="0 -16 400 380" role="img" aria-labelledby="eng-t eng-d">
+                  <title id="eng-t">Schematic of the 911’s flat-six seen from above</title>
+                  <desc id="eng-d">Two horizontally opposed banks of three cylinders either side of a central crankshaft, with one turbocharger at the rear of each bank, all behind the line of the rear axle.</desc>
+                  <path class="eng__axis" d="M8 26H392"/>
+                  <path class="eng__axis" d="M200 26V278"/>
+                  <text class="eng__label" x="392" y="18" text-anchor="end">Rear axle</text>
+                  <g class="eng__bank" style="--i:0"><rect x="168" y="44" width="64" height="210" rx="2"/></g>
+                  <g class="eng__bank" style="--i:1"><rect x="48" y="56" width="120" height="44" rx="2"/></g>
+                  <g class="eng__bank" style="--i:2"><rect x="48" y="126" width="120" height="44" rx="2"/></g>
+                  <g class="eng__bank" style="--i:3"><rect x="48" y="196" width="120" height="44" rx="2"/></g>
+                  <g class="eng__bank" style="--i:2"><rect x="232" y="68" width="120" height="44" rx="2"/></g>
+                  <g class="eng__bank" style="--i:3"><rect x="232" y="138" width="120" height="44" rx="2"/></g>
+                  <g class="eng__bank" style="--i:4"><rect x="232" y="208" width="120" height="44" rx="2"/></g>
+                  <g class="eng__bores">
+                    <circle style="--i:3" cx="72" cy="78" r="13"/><circle style="--i:4" cx="72" cy="148" r="13"/><circle style="--i:5" cx="72" cy="218" r="13"/>
+                    <circle style="--i:4" cx="328" cy="90" r="13"/><circle style="--i:5" cx="328" cy="160" r="13"/><circle style="--i:6" cx="328" cy="230" r="13"/>
+                  </g>
+                  <g class="eng__turbo" style="--i:7">
+                    <path d="M86 240V274"/>
+                    <circle cx="86" cy="300" r="26"/><circle class="eng__hub" cx="86" cy="300" r="10"/>
+                  </g>
+                  <g class="eng__turbo" style="--i:8">
+                    <path d="M314 252V274"/>
+                    <circle cx="314" cy="300" r="26"/><circle class="eng__hub" cx="314" cy="300" r="10"/>
+                  </g>
+                  <g class="eng__tag"><circle cx="22" cy="148" r="10"/><text x="22" y="152" text-anchor="middle">A</text></g>
+                  <g class="eng__tag"><circle cx="86" cy="344" r="10"/><text x="86" y="348" text-anchor="middle">B</text></g>
+                  <g class="eng__tag"><circle cx="200" cy="-2" r="10"/><text x="200" y="2" text-anchor="middle">C</text></g>
+                </svg>
+                <ul class="bx-key" aria-label="Key to figure 1">
+                  <li><b>A</b>Cylinder bank, three cylinders</li>
+                  <li><b>B</b>Turbocharger, one per bank</li>
+                  <li><b>C</b>Crankshaft axis, running front to back</li>
+                </ul>
+                <figcaption>Simplified and not to scale. The front of the car is at the top: the engine sits entirely behind the dashed line of the rear axle.</figcaption>
+              </figure>
+
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 2</span><span>Where the torque is available</span></div>
+                <div class="lanes" role="img" aria-label="Torque band by engine speed. Carrera 4S: 530 newton-metres from 2,300 to 5,000 rpm. Carrera 4: 450 newton-metres from 1,950 to 5,000 rpm. Both reach peak power at 6,500 rpm.">
+                  <p class="lanes__peak"><span>Peak power · 6,500 rpm</span></p>
+                  <div class="lanes__plot">
+                    <div class="lanes__peakline" aria-hidden="true"></div>
+                    <div class="lane">
+                      <p class="lane__label"><span>Carrera 4S · 530 Nm</span><b>2,300–5,000 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:2300;--to:5000"></i></div>
+                    </div>
+                    <div class="lane lane--ref">
+                      <p class="lane__label"><span>Carrera 4 · 450 Nm</span><b>1,950–5,000 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:1950;--to:5000"></i></div>
+                    </div>
+                    <ol class="lanes__axis" aria-hidden="true">
+                      <li style="--rpm:0">0</li><li style="--rpm:1000">1</li><li style="--rpm:2000">2</li><li style="--rpm:3000">3</li><li style="--rpm:4000">4</li><li style="--rpm:5000">5</li><li style="--rpm:6000">6</li><li style="--rpm:7000">7</li>
+                    </ol>
+                  </div>
+                  <p class="lanes__unit" aria-hidden="true">Engine speed, 1,000 rpm</p>
+                </div>
+                <figcaption>Each car holds its own peak torque across its band, so the bars show where the push is available, not how much. Below the band is not charted, and the axis is not a torque curve. The engine turns to 7,500 rpm.</figcaption>
+              </figure>
+
+              <figure class="bx-fig bx-fig--table reveal">
+                <div class="bx-fig__head"><span>Fig. 3</span><span>Carrera 4S against the Carrera 4</span></div>
+                <div class="bx-table-wrap" role="region" aria-label="Carrera 4S against the Carrera 4" tabindex="0">
+                  <table class="bx-table">
+                    <thead><tr><th scope="col">Measure</th><th scope="col">Carrera 4</th><th scope="col">Carrera 4S</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Power</th><td>283 kW (385 PS)</td><td>331 kW (450 PS)</td></tr>
+                      <tr><th scope="row">Peak power at</th><td>6,500 rpm</td><td>6,500 rpm</td></tr>
+                      <tr><th scope="row">Torque</th><td>450 Nm</td><td>530 Nm</td></tr>
+                      <tr><th scope="row">Torque band</th><td>1,950–5,000 rpm</td><td>2,300–5,000 rpm</td></tr>
+                      <tr><th scope="row">Drive</th><td>All-wheel</td><td>All-wheel</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <figcaption>Porsche press information for the Type 992, 2019 and 2020. Both cars are all-wheel drive; the S adds output, not a different layout.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Specifications -->
+      <section class="bx bx-spec" id="specifications" aria-labelledby="spec-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-spec__head">
+              <p class="bx-chapter reveal"><b>03</b><span>Technical specification</span></p>
+              <h2 class="bx-title reveal" id="spec-title" style="--d:1">911 Carrera 4S, <em>Type 992</em></h2>
+            </header>
+
+            <div class="bx-spec__sheet">
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>A</b>Powertrain</h3>
+                <dl class="ledger">
+                  <div><dt>Engine</dt><dd>3.0 L twin-turbo flat-six, rear-mounted, with gasoline particulate filter</dd></div>
+                  <div><dt>Displacement</dt><dd>2,981 cc</dd></div>
+                  <div><dt>Bore × stroke</dt><dd>91.0 × 76.4 mm</dd></div>
+                  <div><dt>Compression</dt><dd>10.2 : 1</dd></div>
+                  <div><dt>Power</dt><dd>331 kW (450 PS) at 6,500 rpm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Torque</dt><dd>530 Nm at 2,300–5,000 rpm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Maximum engine speed</dt><dd>7,500 rpm</dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>B</b>Drivetrain and performance</h3>
+                <dl class="ledger">
+                  <div><dt>Gearbox</dt><dd>8-speed PDK dual-clutch, with shift paddles</dd></div>
+                  <div><dt>Drive</dt><dd>Porsche Traction Management (PTM), active all-wheel drive</dd></div>
+                  <div><dt>0–100 km/h</dt><dd>3.6 s; 3.4 s with Sport Plus <span class="flag">Varies</span></dd></div>
+                  <div><dt>0–160 km/h</dt><dd>8.3 s; 8.0 s with Sport Plus <span class="flag">Varies</span></dd></div>
+                  <div><dt>Top speed</dt><dd>306 km/h <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>C</b>Chassis, wheels and brakes</h3>
+                <dl class="ledger">
+                  <div><dt>Dampers</dt><dd>Adaptive (PASM) <span class="flag flag--confirm">To confirm</span></dd></div>
+                  <div><dt>Brakes</dt><dd>Six-piston aluminium monobloc fixed callipers at the front, four-piston at the rear</dd></div>
+                  <div><dt>Wheels</dt><dd>20-inch front, 21-inch rear <span class="flag">Varies</span></dd></div>
+                  <div><dt>Tyres</dt><dd>245/35 ZR20 front, 305/30 ZR21 rear <span class="flag">Varies</span></dd></div>
+                  <div><dt>Track</dt><dd>1,589 mm front, 1,557 mm rear</dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>D</b>Body and dimensions</h3>
+                <dl class="ledger">
+                  <div><dt>Length</dt><dd>4,519 mm</dd></div>
+                  <div><dt>Wheelbase</dt><dd>2,450 mm</dd></div>
+                  <div><dt>Width</dt><dd>1,852 mm, excluding mirrors (2,024 mm with them) <span class="flag">Varies</span></dd></div>
+                  <div><dt>Height</dt><dd>1,300 mm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Unladen weight</dt><dd>1,565 kg (DIN); 1,640 kg (EU, with driver) <span class="flag">Varies</span></dd></div>
+                  <div><dt>Luggage</dt><dd>132 L at the front; 264 L behind the front seats with the rear seats folded</dd></div>
+                  <div><dt>Fuel tank</dt><dd>67 L</dd></div>
+                  <div><dt>Drag coefficient</dt><dd>0.29 cd <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <p class="spec-note">Figures are Porsche-published values for the first series of the Type 992 Carrera 4S (2018–2024), rounded. <span class="flag">Varies</span> marks a figure that changes with market, model year or options; <span class="flag flag--confirm">To confirm</span> marks one that is not established and must be checked against the maker's current documentation before publication.</p>
+            </div>
+
+            <aside class="bx-spec__scale scale-block reveal" aria-label="Proportions">
+              <p class="eyebrow">Proportions</p>
+              <div class="scale" role="group" aria-label="Dimensions on a shared scale">
+                <div class="scale__row"><span>Length</span><span class="scale__bar" style="--mm:4519"></span><output>4,519 mm</output></div>
+                <div class="scale__row"><span>Wheelbase</span><span class="scale__bar" style="--mm:2450"></span><output>2,450 mm</output></div>
+                <div class="scale__row"><span>Width</span><span class="scale__bar" style="--mm:1852"></span><output>1,852 mm</output></div>
+                <div class="scale__row"><span>Height</span><span class="scale__bar" style="--mm:1300"></span><output>1,300 mm</output></div>
+              </div>
+              <p class="scale__caption">Approximate manufacturer dimensions. All five cars share one scale (5,000 mm is the full bar), so the pages compare directly. A dimension chart, not a drawing of the car.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Exterior design and engineering -->
+      <section class="bx bx-design" id="highlights" aria-labelledby="highlights-title">
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-design__side">
+              <p class="bx-chapter reveal"><b>04</b><span>Exterior and engineering</span></p>
+              <h2 class="bx-title reveal" id="highlights-title" style="--d:1">An icon, <em>re-engineered.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">The silhouette is the brand, so the 992 keeps it. What changed is how the car is built and what its surfaces do: five details, each with a job.</p>
+              <nav class="bx-index reveal" aria-label="Design details" style="--d:3">
+                <ol>
+                  <li><a href="#hl-1" data-index="hl-1"><b>01</b>One wide body</a></li>
+                  <li><a href="#hl-2" data-index="hl-2"><b>02</b>Aluminium and steel</a></li>
+                  <li><a href="#hl-3" data-index="hl-3"><b>03</b>Handles that retreat</a></li>
+                  <li><a href="#hl-4" data-index="hl-4"><b>04</b>A tail of one light</a></li>
+                  <li><a href="#hl-5" data-index="hl-5"><b>05</b>Surfaces that move</a></li>
+                </ol>
+              </nav>
+            </div>
+
+            <ol class="bx-items">
+              <li class="bx-item" id="hl-1" data-bx>
+                <span class="bx-item__no">01</span>
+                <h3>One wide body for every Carrera</h3>
+                <p>The 992 is 45 mm wider across the front than the generation before it, and every Carrera, rear-drive or all-wheel drive, now has the wide rear that earlier cars kept for the 4 models. The result is the broad, planted look of a 4S on every 911, and room under the arches for tyres of different sizes: 245s at the front, 305s at the rear on 21-inch wheels.</p>
+                <p class="bx-item__spec"><span>Width</span> 1,852 mm excluding mirrors <span class="flag">Varies</span></p>
+              </li>
+              <li class="bx-item" id="hl-2" data-bx>
+                <span class="bx-item__no">02</span>
+                <h3>Aluminium and steel, together <span class="flag flag--confirm">To confirm</span></h3>
+                <p>Porsche describes the 992’s body as an aluminium and steel composite built for lightness. The doors and front wings are aluminium, and so is the large outer panel running from the A-pillars toward the rear, which earlier cars made in steel. The structure is stiff where the car needs it and light where it does not. The panel-by-panel detail is the one item on this page not yet checked against Porsche’s current documentation.</p>
+                <p class="bx-item__spec"><span>Structure</span> Aluminium and steel composite</p>
+              </li>
+              <li class="bx-item" id="hl-3" data-bx>
+                <span class="bx-item__no">03</span>
+                <h3>Door handles that retreat</h3>
+                <p>The door handles are electrically deployed. They present themselves as the driver approaches and lie flush with the body when not in use, which keeps the flank of the 911 clean and its airflow undisturbed. It is a small change, and the one most people notice first.</p>
+                <p class="bx-item__spec"><span>Handles</span> Retractable, flush when closed</p>
+              </li>
+              <li class="bx-item" id="hl-4" data-bx>
+                <span class="bx-item__no">04</span>
+                <h3>A tail of one light</h3>
+                <p>Across the back, a single full-width light strip joins the two tail lamps, with the PORSCHE lettering set into it. Above the engine, the rear lid is slatted. Seen from behind at night, the 992 is unmistakable before you can read the badge.</p>
+                <p class="bx-item__spec"><span>Rear</span> Full-width light strip with integrated PORSCHE lettering</p>
+              </li>
+              <li class="bx-item" id="hl-5" data-bx>
+                <span class="bx-item__no">05</span>
+                <h3>Surfaces that move</h3>
+                <p>The side air intakes at the front carry active cooling-air flaps, open when the engine asks for air and closed when it does not. At the back, the spoiler lies in the engine lid and rises automatically as speed builds, adding downforce over the axle that carries the engine. A car this compact does its aerodynamic work with panels that change shape rather than with parts bolted on.</p>
+                <p class="bx-item__spec"><span>Aerodynamics</span> Active cooling-air flaps; auto-deploying rear spoiler; 0.29 cd <span class="flag">Varies</span></p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Driving character -->
+      <section class="bx bx-drive" id="story" aria-labelledby="story-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>05</b><span>Driving character</span></p>
+          <blockquote class="bx-quote" id="story-title" data-bx>
+            <span class="bx-line"><span>The engine is behind you.</span></span>
+            <span class="bx-line" style="--i:1"><span><em>That changes everything.</em></span></span>
+          </blockquote>
+
+          <div class="bx-grid bx-drive__grid">
+            <div class="bx-drive__prose prose">
+              <p class="reveal">Driving a 911 starts with where the weight is. With the engine behind the rear axle, the rear tyres carry a large share of the car’s mass and use it to put power down. That is why a 911 can get back on the throttle so early out of a slow corner, and why its rear tyres are so much wider than the fronts.</p>
+              <p class="reveal">All-wheel drive changes the picture only in degree. Porsche Traction Management sends drive to the front wheels when it is needed, while the rear axle still does the main work. The steering stays light and direct, and the car keeps the sense of a tail that is always part of the conversation.</p>
+              <p class="reveal">The 4S weighs 1,565 kg by Porsche’s DIN figure, which is not light for a car this small. The 3.0-litre engine and the eight-speed PDK are what make it quick regardless: the gearbox changes without lifting power, so the 530 Nm is never far from the wheels.</p>
+              <p class="reveal">On cars with the Sport Chrono package, a mode switch on the steering wheel changes the character of the engine, gearbox and chassis in one move. Left in Normal, the 4S is a comfortable grand tourer with a boot in the front. Turned up, it becomes the car its numbers describe.</p>
+              <p class="reveal bx-credit">The 3D scene above uses a third-party model, credited in the page footer. It is a stand-in rather than a scan, so small details such as wheels and trim may differ from the car described.</p>
+            </div>
+
+            <div class="bx-drive__aside">
+              <figure class="bx-ladder reveal" aria-label="Driver-selectable settings">
+                <div class="bx-fig__head"><span>Fig. 4</span><span>What the driver can choose</span></div>
+                <div class="bx-rung"><p class="bx-rung__name">Drive mode</p><ol class="bx-rung__opts bx-rung__opts--four"><li>Wet</li><li>Normal</li><li>Sport</li><li>Sport Plus</li></ol></div>
+                <div class="bx-rung"><p class="bx-rung__name">Gearbox</p><ol class="bx-rung__opts"><li>Automatic</li><li>Paddles</li></ol></div>
+              </figure>
+              <dl class="bx-modes reveal">
+                <div><dt>Wet</dt><dd>Prepares the stability and traction systems for a slippery road.</dd></div>
+                <div><dt>Normal</dt><dd>The everyday setting: comfortable, quiet, and ready for more.</dd></div>
+                <div><dt>Sport</dt><dd>Sharper throttle and gearbox response, and a more eager chassis.</dd></div>
+                <div><dt>Sport Plus</dt><dd>The most direct setting. Porsche quotes 3.4 s to 100 km/h with it selected.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · Closing -->
+      <section class="bx bx-close" id="close" aria-labelledby="close-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>06</b><span>Closing</span></p>
+          <h2 class="bx-close__title" id="close-title">
+            <span class="bx-line" data-bx><span>Still the 911.</span></span>
+            <span class="bx-line" data-bx style="--i:1"><span><em>Only more so.</em></span></span>
+          </h2>
+          <div class="bx-grid bx-close__grid">
+            <p class="bx-close__text reveal">You can park it, drive it to work, and fit a weekend’s bags behind the front seats. And when the road opens up, 530 Nm from 2,300 rpm and four driven wheels turn a long-standing idea into a very current car.</p>
+            <ul class="bx-close__facts reveal" style="--d:1" aria-label="The car in four lines">
+              <li><span>Engine</span>3.0 L twin-turbo flat-six</li>
+              <li><span>Output</span>331 kW (450 PS)</li>
+              <li><span>Drive</span>All-wheel, 8-speed PDK</li>
+              <li><span>0–100 km/h</span>3.6 s</li>
+            </ul>
+            <p class="bx-close__links reveal" style="--d:2">
+              <a class="explore" href="#main">Return to the orbit<i aria-hidden="true"></i></a>
+              <a class="explore" href="/collection.html">The whole collection<i aria-hidden="true"></i></a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <div class="container">
+    <nav class="journey" aria-label="Explore the collection">
+      <p class="journey__label eyebrow">Continue the collection</p>
+      <a class="journey__link journey__link--prev reveal" href="/cars/bmw-m5" rel="prev">
+        <span class="journey__dir">Previous</span>
+        <span class="journey__make">BMW</span>
+        <span class="journey__name">M5 F90</span>
+        <span class="journey__tag">Four doors. Twin-turbo V8. Uncompromising.</span>
+      </a>
+      <a class="journey__link journey__link--next reveal" href="/cars/nissan-gt-r" rel="next">
+        <span class="journey__dir">Next</span>
+        <span class="journey__make">Nissan</span>
+        <span class="journey__name">GT-R R35</span>
+        <span class="journey__tag">The all-wheel-drive giant-killer.</span>
+      </a>
+      <a class="journey__all explore" href="/collection.html">Back to the collection<i aria-hidden="true"></i></a>
+    </nav>
+    </div>
+
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <div class="model-error" data-model-error role="alert" hidden>
+    <p data-model-error-message>The 3D model could not be loaded.</p>
+    <button type="button" data-model-error-retry>Try again</button>
+  </div>
+
+  <p class="webgl-note" data-webgl-fallback hidden>
+    WebGL is unavailable in this browser, so the 3D experience cannot run. Try a current version of Chrome, Edge, Firefox or Safari.
+  </p>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>

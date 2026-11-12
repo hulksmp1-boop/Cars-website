@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nissan GT-R R35 — AETHER GT</title>
+  <meta name="description" content="Scroll to orbit the Nissan GT-R R35, then read the dossier: the hand-built VR38DETT twin-turbo V6, the specification and the all-wheel-drive character.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icons/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="/cars/nissan-gt-r">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AETHER GT">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Nissan GT-R R35 — AETHER GT">
+  <meta property="og:description" content="Scroll to orbit the Nissan GT-R R35, then read the dossier: the hand-built VR38DETT twin-turbo V6, the specification and the all-wheel-drive character.">
+  <meta property="og:url" content="/cars/nissan-gt-r">
+  <meta property="og:image" content="/assets/og/aether-gt-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AETHER GT: five modern performance cars, considered.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nissan GT-R R35 — AETHER GT">
+  <meta name="twitter:description" content="Scroll to orbit the Nissan GT-R R35, then read the dossier: the hand-built VR38DETT twin-turbo V6, the specification and the all-wheel-drive character.">
+  <meta name="twitter:image" content="/assets/og/aether-gt-og.jpg">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/chrome.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <link rel="stylesheet" href="/css/car.css">
+  <link rel="stylesheet" href="/css/vehicle.css">
+  <link rel="stylesheet" href="/css/bmw-m5.css">
+  <link rel="stylesheet" href="/css/nissan-gt-r.css">
+
+  <noscript><style>[data-loader]{display:none}html.is-loading,html.is-loading body{overflow:auto}</style></noscript>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="/js/boot-guard.js"></script>
+  <script type="module" src="/js/pages/car.js"></script>
+  <script defer src="/js/ui/bmw-editorial.js"></script>
+</head>
+<body data-page="car" data-vehicle="nissan-gt-r-r35">
+
+  <!-- Loading screen -->
+  <div class="loader" data-loader>
+    <div class="loader__inner">
+      <p class="loader__brand">AETHER <span>GT</span></p>
+      <div class="loader__track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="loader__bar" data-loader-bar></span>
+      </div>
+      <p class="loader__meta">
+        <span data-loader-status>Initialising</span>
+        <span><span data-loader-percent>000</span>%</span>
+      </p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <!-- Persistent WebGL stage (fixed behind all content) -->
+  <canvas id="stage" class="stage" aria-hidden="true"></canvas>
+
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+  <!-- Atmosphere: vignette + fine grain (also dithers the dark gradients) -->
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <!-- Showcase HUD: filled from config.js and the car's shot (js/ui/hud.js) -->
+  <div class="hud" data-hud>
+    <div class="hud__ident">
+      <p class="hud__make" data-hud-make></p>
+      <p class="hud__model" data-hud-model></p>
+      <p class="hud__designation" data-hud-designation></p>
+    </div>
+    <div class="hud__chapter" aria-hidden="true">
+      <p class="hud__chapter-count"><span data-hud-index>01</span><span class="hud__sep">/</span><span data-hud-total>09</span></p>
+      <p class="hud__chapter-title" data-hud-title></p>
+    </div>
+    <ol class="hud__rail" aria-hidden="true" data-hud-rail></ol>
+    <p class="hud__cue" data-hud-cue aria-hidden="true"><span>Scroll</span><i></i></p>
+  </div>
+
+  <main id="main">
+    <!-- Scroll track: the camera orbit is scrubbed across this section's height. -->
+    <section class="showcase" data-showcase aria-label="Nissan GT-R R35, scroll-controlled 3D view">
+      <div class="hero">
+        <div class="container hero__inner">
+          <p class="eyebrow">Nissan</p>
+          <h1 class="hero__title">GT-R</h1>
+          <p class="hero__lede">R35</p>
+          <nav class="jump hero__jump" aria-label="On this page">
+            <a href="#the-car">The car</a>
+            <a href="#engine">Engine</a>
+            <a href="#specifications">Specifications</a>
+            <a href="#highlights">Design</a>
+            <a href="#story">Drive</a>
+            <a href="#sheet">Sheet</a>
+          </nav>
+          <p class="hero__facts" aria-label="At a glance">
+            <span>Nº 03 / 05 · R35</span>
+            <span>3.8 L twin-turbo V6</span>
+            <span>419 kW (570 PS)</span>
+          </p>
+        </div>
+      </div>
+      <p class="sr-only">Scrolling moves a camera around a Nissan GT-R R35: front three-quarter, nose, front quarter, profile, rear quarter, tail, overhead sweep, opposite profile, and back to the start.</p>
+    </section>
+
+    <!-- Dossier: editorial chapters after the scroll-controlled 3D showcase. Opaque, so they cover the fixed canvas and HUD.
+         Styles: css/bmw-m5.css (shared editorial layer, unchanged) + css/nissan-gt-r.css (Nissan only).
+         Enhancements: js/ui/bmw-editorial.js (optional; the page is complete without it). -->
+    <div class="dossier" id="dossier">
+
+      <!-- 01 · Introduction and history -->
+      <section class="bx bx-open" id="the-car" aria-labelledby="intro-title">
+        <div class="container">
+          <p class="folio reveal"><span>Dossier Nº 03 / 05</span><span>GT-R R35</span></p>
+          <div class="bx-grid bx-open__grid">
+            <h2 class="bx-open__title" id="intro-title">
+              <span class="bx-line" data-bx><span>It stopped being a Skyline.</span></span>
+              <span class="bx-line" data-bx style="--i:1"><span><em>It did not stop being a GT-R.</em></span></span>
+            </h2>
+            <p class="bx-open__dek reveal" style="--d:2">A twin-turbo V6 built by hand, a gearbox moved to the rear axle and four driven wheels. The R35 kept a nameplate from 1969 and gave it a new car to carry it. This page covers the 2017-onward car, in its European specification.</p>
+            <div class="bx-open__body prose reveal" style="--d:3">
+              <p class="bx-dropcap">The first Skyline GT-R arrived in 1969, a four-door sports saloon. The name returned on later generations and went quiet when the R34 ended production in 2002. Five years passed without a GT-R. Then, in 2007, Nissan unveiled the R35, and for the first time the car was no longer called a Skyline.</p>
+              <p>The R35 paired a 3.8-litre twin-turbo V6 with a dual-clutch gearbox and all-wheel drive, and then spent eighteen years being refined rather than replaced. Output rose in steps from 353 kW (480 PS) at launch to the 419 kW (570 PS) of the car shown here.</p>
+              <p>The largest update came for the 2017 model year, which Nissan called the most significant change since 2007: a new face with the V-motion grille, a stiffer bonnet, revised aerodynamics, and a calmer, smoother drivetrain. The last R35 was built at Nissan’s Tochigi plant on 26 August 2025, a Premium Edition T-spec in Midnight Purple for a customer in Japan.</p>
+              <p class="bx-open__guide">Read on in the order the car is built: the engine, the numbers, the shape, the drive, then the sheet.</p>
+            </div>
+          </div>
+
+          <ol class="nx-timeline" aria-label="The GT-R in five dates">
+            <li class="reveal"><span class="nx-timeline__year">1969</span><p>The first Skyline GT-R starts the nameplate.</p></li>
+            <li class="reveal" style="--d:1"><span class="nx-timeline__year">2002</span><p>The R34 ends production. No GT-R follows for five years.</p></li>
+            <li class="reveal" style="--d:2"><span class="nx-timeline__year">2007</span><p>The R35 is unveiled as a model in its own right.</p></li>
+            <li class="reveal" style="--d:3"><span class="nx-timeline__year">2017</span><p>The 2017 model year brings the V-motion face and 419 kW (570 PS).</p></li>
+            <li class="reveal" style="--d:4"><span class="nx-timeline__year">2025</span><p>The last R35 is built on 26 August, after about 48,000 cars.</p></li>
+          </ol>
+
+          <ul class="bx-figs" aria-label="Key figures">
+            <li class="reveal"><span class="bx-figs__value"><span data-count="570">570</span><small>PS</small></span><span class="bx-figs__label">419 kW at 6,800 rpm</span></li>
+            <li class="reveal" style="--d:1"><span class="bx-figs__value"><span data-count="637">637</span><small>Nm</small></span><span class="bx-figs__label">From 3,300 to 5,800 rpm</span></li>
+            <li class="reveal" style="--d:2"><span class="bx-figs__value"><span data-count="2.7" data-decimals="1">2.7</span><small>s</small></span><span class="bx-figs__label">0–100 km/h, as quoted</span></li>
+            <li class="reveal" style="--d:3"><span class="bx-figs__value"><span data-count="315">315</span><small>km/h</small></span><span class="bx-figs__label">Top speed, as quoted</span></li>
+          </ul>
+          <p class="bx-note reveal">Figures are for the GT-R Premium from the 2017 model year, European specification, rounded. They vary with market, model year and trim: the NISMO is rated higher, and the launch car lower (see the table in the engine chapter). The 3D model above is a third-party stand-in and is not matched to a model year.</p>
+        </div>
+      </section>
+
+      <!-- 02 · Engine and performance -->
+      <section class="bx bx-engine" id="engine" aria-labelledby="engine-title">
+        <span class="bx-ghost" aria-hidden="true" data-parallax>570</span>
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-engine__copy">
+              <p class="bx-chapter reveal"><b>02</b><span>VR38DETT engine and performance</span></p>
+              <h2 class="bx-title reveal" id="engine-title" style="--d:1">One technician, one engine, <em>signed.</em></h2>
+              <div class="prose reveal" style="--d:2">
+                <p>The engine is called the VR38DETT: a 3.8-litre V6 with its cylinders in two banks of three, set at 60 degrees, with an aluminium block and heads, dual overhead camshafts and 24 valves, fed by two turbochargers. It sits at the front of the car, in line with it.</p>
+                <p>Each engine is assembled by hand, from start to finish, by a single specialist technician called a takumi, who signs it with a plaque. In the car on this page it makes 419 kW (570 PS) at 6,800 rpm and 637 Nm from 3,300 to 5,800 rpm, which means the torque is available across most of the useful range rather than at one narrow peak.</p>
+                <p>Power goes to a six-speed dual-clutch gearbox that is not behind the engine but at the rear axle, and from there to all four wheels. Nissan-quoted figures for the 2017 car are 2.7 seconds from 0 to 100 km/h and 315 km/h flat out. Some listings give 2.8 seconds for the sprint, so treat it as a quoted figure.</p>
+              </div>
+              <dl class="bx-mini reveal" style="--d:3">
+                <div><dt>Displacement</dt><dd>3,799 cc</dd></div>
+                <div><dt>Bore × stroke</dt><dd>95.5 × 88.4 mm</dd></div>
+                <div><dt>Compression</dt><dd>9.0 : 1</dd></div>
+                <div><dt>Turbochargers</dt><dd>Two</dd></div>
+              </dl>
+            </div>
+
+            <div class="bx-engine__figs">
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 1</span><span>The V6, seen end-on</span></div>
+                <svg class="eng" viewBox="0 -16 400 380" role="img" aria-labelledby="eng-t eng-d">
+                  <title id="eng-t">Schematic of the GT-R’s V6 seen from the front</title>
+                  <desc id="eng-d">Two banks of cylinders rising from a central crankshaft in a V, sixty degrees apart. Each bank holds three cylinders in a row, one behind another along the car.</desc>
+                  <path class="eng__axis" d="M200 -4V330"/>
+                  <g class="eng__bank" style="--i:0"><g transform="rotate(-30 200 300)"><rect x="163" y="70" width="74" height="206" rx="2"/></g></g>
+                  <g class="eng__bank" style="--i:1"><g transform="rotate(30 200 300)"><rect x="163" y="70" width="74" height="206" rx="2"/></g></g>
+                  <g class="eng__bores">
+                    <circle style="--i:3" cx="136.5" cy="190" r="24"/><circle style="--i:4" cx="263.5" cy="190" r="24"/>
+                    <circle style="--i:5" cx="200" cy="300" r="22"/><circle style="--i:6" cx="200" cy="300" r="8"/>
+                  </g>
+                  <text class="eng__label" x="200" y="150" text-anchor="middle">60°</text>
+                  <g class="eng__tag"><circle cx="40" cy="150" r="10"/><text x="40" y="154" text-anchor="middle">A</text></g>
+                  <g class="eng__tag"><circle cx="200" cy="346" r="10"/><text x="200" y="350" text-anchor="middle">B</text></g>
+                  <g class="eng__tag"><circle cx="360" cy="150" r="10"/><text x="360" y="154" text-anchor="middle">C</text></g>
+                </svg>
+                <ul class="bx-key" aria-label="Key to figure 1">
+                  <li><b>A</b>Cylinder bank: three cylinders in a row, one behind another</li>
+                  <li><b>B</b>Crankshaft, running front to back</li>
+                  <li><b>C</b>The second bank: the two banks are set at 60 degrees</li>
+                </ul>
+                <figcaption>Simplified and not to scale. It shows the cylinder layout only; turbochargers, manifolds and ancillaries are left out, so no part of the drawing places them.</figcaption>
+              </figure>
+
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 2</span><span>Where the torque is available</span></div>
+                <div class="lanes" role="img" aria-label="Torque band by engine speed. 2017 car: 637 newton-metres from 3,300 to 5,800 rpm. 2007 launch car: 588 newton-metres from 3,200 to 5,200 rpm. The 2017 car reaches peak power at 6,800 rpm.">
+                  <p class="lanes__peak"><span>2017 peak power · 6,800 rpm</span></p>
+                  <div class="lanes__plot">
+                    <div class="lanes__peakline" aria-hidden="true"></div>
+                    <div class="lane">
+                      <p class="lane__label"><span>2017 · 637 Nm</span><b>3,300–5,800 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:3300;--to:5800"></i></div>
+                    </div>
+                    <div class="lane lane--ref">
+                      <p class="lane__label"><span>2007 launch · 588 Nm</span><b>3,200–5,200 rpm</b></p>
+                      <div class="lane__track"><i class="lane__bar" style="--from:3200;--to:5200"></i></div>
+                    </div>
+                    <ol class="lanes__axis" aria-hidden="true">
+                      <li style="--rpm:0">0</li><li style="--rpm:1000">1</li><li style="--rpm:2000">2</li><li style="--rpm:3000">3</li><li style="--rpm:4000">4</li><li style="--rpm:5000">5</li><li style="--rpm:6000">6</li><li style="--rpm:7000">7</li>
+                    </ol>
+                  </div>
+                  <p class="lanes__unit" aria-hidden="true">Engine speed, 1,000 rpm</p>
+                </div>
+                <figcaption>Each car holds its own peak torque across its band, so the bars show where the push is available, not how much. Below the band is not charted, and the axis is not a torque curve. The launch car reached peak power at 6,400 rpm rather than 6,800.</figcaption>
+              </figure>
+
+              <figure class="bx-fig bx-fig--table reveal">
+                <div class="bx-fig__head"><span>Fig. 3</span><span>Three outputs from one engine family</span></div>
+                <div class="bx-table-wrap" role="region" aria-label="GT-R output at launch, in 2017 and as the NISMO" tabindex="0">
+                  <table class="bx-table">
+                    <thead><tr><th scope="col">Measure</th><th scope="col">2007 launch</th><th scope="col">2017 Premium</th><th scope="col">NISMO</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Power</th><td>353 kW (480 PS)</td><td>419 kW (570 PS)</td><td>441 kW (600 PS)</td></tr>
+                      <tr><th scope="row">Peak power at</th><td>6,400 rpm</td><td>6,800 rpm</td><td>6,800 rpm</td></tr>
+                      <tr><th scope="row">Torque</th><td>588 Nm</td><td>637 Nm</td><td>652 Nm</td></tr>
+                      <tr><th scope="row">Torque band</th><td>3,200–5,200 rpm</td><td>3,300–5,800 rpm</td><td>3,600–5,600 rpm</td></tr>
+                      <tr><th scope="row">Drive</th><td>All-wheel</td><td>All-wheel</td><td>All-wheel</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <figcaption>Manufacturer figures, rounded. The launch and 2017 cars are as Nissan published them for the European market; the NISMO is from Nissan’s Japanese specification sheet. There were other steps in between, which are not shown. <span class="flag">Varies</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Technical specifications -->
+      <section class="bx bx-spec" id="specifications" aria-labelledby="spec-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-spec__head">
+              <p class="bx-chapter reveal"><b>03</b><span>Technical specification</span></p>
+              <h2 class="bx-title reveal" id="spec-title" style="--d:1">GT-R Premium, <em>R35, 2017 onward</em></h2>
+            </header>
+
+            <div class="bx-spec__sheet">
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>A</b>Powertrain</h3>
+                <dl class="ledger">
+                  <div><dt>Engine</dt><dd>3.8 L twin-turbo V6 (VR38DETT), 60° banks, aluminium block and heads, 24 valves, front-mounted</dd></div>
+                  <div><dt>Displacement</dt><dd>3,799 cc</dd></div>
+                  <div><dt>Bore × stroke</dt><dd>95.5 × 88.4 mm</dd></div>
+                  <div><dt>Compression</dt><dd>9.0 : 1</dd></div>
+                  <div><dt>Power</dt><dd>419 kW (570 PS) at 6,800 rpm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Torque</dt><dd>637 Nm at 3,300–5,800 rpm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Build</dt><dd>Assembled by hand by one technician per engine</dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>B</b>Drivetrain and performance</h3>
+                <dl class="ledger">
+                  <div><dt>Gearbox</dt><dd>6-speed dual-clutch, in a rear-mounted transaxle</dd></div>
+                  <div><dt>Drive</dt><dd>ATTESA E-TS all-wheel drive, rear-biased: 0:100 front to rear in normal driving, up to 50:50</dd></div>
+                  <div><dt>0–100 km/h</dt><dd>2.7 s as quoted; some listings give 2.8 s <span class="flag">Varies</span> <span class="flag flag--confirm">To confirm</span></dd></div>
+                  <div><dt>Top speed</dt><dd>315 km/h <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>C</b>Chassis, wheels and brakes</h3>
+                <dl class="ledger">
+                  <div><dt>Dampers</dt><dd>Bilstein DampTronic, driver-selectable in three modes</dd></div>
+                  <div><dt>Rear suspension</dt><dd>Multi-link, with forged aluminium upper links</dd></div>
+                  <div><dt>Brakes</dt><dd>Brembo monobloc callipers: six-piston at the front, four-piston at the rear</dd></div>
+                  <div><dt>Wheels</dt><dd>20-inch; 285/35 R20 tyres at the rear <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>D</b>Body and dimensions</h3>
+                <dl class="ledger">
+                  <div><dt>Length</dt><dd>4,710 mm</dd></div>
+                  <div><dt>Wheelbase</dt><dd>2,780 mm</dd></div>
+                  <div><dt>Width</dt><dd>1,895 mm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Height</dt><dd>1,370 mm <span class="flag">Varies</span></dd></div>
+                  <div><dt>Kerb weight</dt><dd>1,752 kg minimum (Premium); 1,745 kg listed for the Track Edition <span class="flag">Varies</span></dd></div>
+                  <div><dt>Gross weight</dt><dd>2,200 kg</dd></div>
+                  <div><dt>Seats and luggage</dt><dd>Four seats; 315 L luggage space</dd></div>
+                  <div><dt>Fuel tank</dt><dd>74 L</dd></div>
+                </dl>
+              </div>
+
+              <p class="spec-note">Figures are manufacturer-published values for the GT-R Premium from the 2017 model year, European specification, rounded. <span class="flag">Varies</span> marks a figure that changes with market, model year or options; <span class="flag flag--confirm">To confirm</span> marks one that is not established and must be checked against the maker's current documentation before publication. Not listed here: figures this page could not confirm, such as front tyre size and drag coefficient.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Exterior design and engineering -->
+      <section class="bx bx-design" id="highlights" aria-labelledby="highlights-title">
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-design__side">
+              <p class="bx-chapter reveal"><b>04</b><span>Exterior and engineering</span></p>
+              <h2 class="bx-title reveal" id="highlights-title" style="--d:1">A shape that <em>works</em> for a living.</h2>
+              <p class="bx-lede reveal" style="--d:2">Nissan described the 2017 changes as aimed at cooling, downforce and stability. Five details, each with a job.</p>
+              <nav class="bx-index reveal" aria-label="Design details" style="--d:3">
+                <ol>
+                  <li><a href="#hl-1" data-index="hl-1"><b>01</b>The V-motion grille</a></li>
+                  <li><a href="#hl-2" data-index="hl-2"><b>02</b>A stiffer bonnet</a></li>
+                  <li><a href="#hl-3" data-index="hl-3"><b>03</b>Sills and bumpers</a></li>
+                  <li><a href="#hl-4" data-index="hl-4"><b>04</b>Brakes in the wheels</a></li>
+                  <li><a href="#hl-5" data-index="hl-5"><b>05</b>Four seats, one body</a></li>
+                </ol>
+              </nav>
+            </div>
+
+            <ol class="bx-items">
+              <li class="bx-item" id="hl-1" data-bx>
+                <span class="bx-item__no">01</span>
+                <h3>The V-motion grille</h3>
+                <p>For 2017 the GT-R took Nissan’s V-motion grille, in a matte chrome finish with a mesh pattern, and made it larger than before. The reason is air: more of it reaches the engine and the systems around it, and Nissan says it does so without adding drag. The bumper below it was redrawn, and daytime running lights were added.</p>
+                <p class="bx-item__spec"><span>Front</span> Enlarged V-motion grille, redesigned bumper, daytime running lights</p>
+              </li>
+              <li class="bx-item" id="hl-2" data-bx>
+                <span class="bx-item__no">02</span>
+                <h3>A bonnet that holds its shape</h3>
+                <p>The 2017 bonnet is stiffer, with more pronounced character lines flowing into the new bumper and front lip. Nissan’s stated reason is practical: a reinforced bonnet is less prone to deforming at speed, which helps the car’s aerodynamics at the top end.</p>
+                <p class="bx-item__spec"><span>Bonnet</span> Reinforced against deformation at speed</p>
+              </li>
+              <li class="bx-item" id="hl-3" data-bx>
+                <span class="bx-item__no">03</span>
+                <h3>Sills and bumpers that manage the air</h3>
+                <p>Along the sides, revised sills channel air around the body instead of beneath it, which reduces lift. At the back the bumper was reshaped as part of the same package. Nissan said nearly all the visual changes were meant to improve aerodynamics, aimed at downforce, lower drag and stability at speed.</p>
+                <p class="bx-item__spec"><span>Aerodynamics</span> Revised sills and bumpers; lift reduced, stability improved</p>
+              </li>
+              <li class="bx-item" id="hl-4" data-bx>
+                <span class="bx-item__no">04</span>
+                <h3>Brakes that fill the wheels</h3>
+                <p>Behind the 20-inch wheels sit Brembo monobloc callipers, six-piston at the front and four-piston at the rear, gripping large ventilated floating discs. A car of about 1,750 kg that reaches 315 km/h needs brakes of that size.</p>
+                <p class="bx-item__spec"><span>Brakes</span> Brembo monobloc, six-piston front, four-piston rear</p>
+              </li>
+              <li class="bx-item" id="hl-5" data-bx>
+                <span class="bx-item__no">05</span>
+                <h3>Four seats, one body</h3>
+                <p>The GT-R is a coupé with a rear seat. It is 4,710 mm long on a 2,780 mm wheelbase, 1,895 mm wide, and carries 315 litres of luggage. Nissan’s own description of the car is a performance four-seater.</p>
+                <p class="bx-item__spec"><span>Layout</span> Four seats, 315 L luggage space</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Driving character and AWD -->
+      <section class="bx bx-drive" id="story" aria-labelledby="story-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>05</b><span>Driving character and all-wheel drive</span></p>
+          <blockquote class="bx-quote" id="story-title" data-bx>
+            <span class="bx-line"><span>Rear-drive by habit.</span></span>
+            <span class="bx-line" style="--i:1"><span><em>All-wheel drive when it matters.</em></span></span>
+          </blockquote>
+
+          <div class="bx-grid bx-drive__grid">
+            <div class="bx-drive__prose prose">
+              <p class="reveal">The GT-R’s drivetrain is unusual in where it puts things. The engine is up front, but the six-speed dual-clutch gearbox is built into a transaxle beside the rear differential, joined to the engine by a shaft. That moves weight rearward and helps the balance, at the price of a very complicated driveline.</p>
+              <p class="reveal">The all-wheel-drive system is called ATTESA E-TS. In normal driving it sends all the drive to the rear wheels, a split of 0:100 front to rear, so the car behaves like a rear-drive one. When the situation calls for it, it can send up to half the torque to the front. Nissan lists the inputs it watches: speed, lateral acceleration, steering angle, wheel slip and the road surface.</p>
+              <p class="reveal">The result is a car that can put a great deal of power down early in a corner, on a wet road as well as a dry one. The 2017 update added refinement to that: softer damper settings, smoother gearbox shifts and revised steering, aimed at making the car easier to live with over a long drive without removing its edge.</p>
+              <p class="reveal">At 1,752 kg it is not a light car, and it does not pretend to be. What it offers instead is composure: a heavy, fast, four-wheel-driven coupé that treats a slippery road as an ordinary day.</p>
+              <p class="reveal bx-credit">The 3D scene above uses a third-party model, credited in the page footer. It is a stand-in rather than a scan, and is not matched to a specific model year, so details such as wheels, trim and grille may differ from the 2017-onward car described.</p>
+            </div>
+
+            <div class="bx-drive__aside">
+              <figure class="bx-ladder reveal" aria-label="Driver-selectable settings">
+                <div class="bx-fig__head"><span>Fig. 4</span><span>What the driver can choose</span></div>
+                <div class="bx-rung"><p class="bx-rung__name">Damper mode</p><ol class="bx-rung__opts"><li>Comfort</li><li>Normal</li><li>R</li></ol></div>
+              </figure>
+              <dl class="bx-modes reveal">
+                <div><dt>Comfort</dt><dd>The softest of the three damper settings, for longer drives.</dd></div>
+                <div><dt>Normal</dt><dd>The everyday middle setting.</dd></div>
+                <div><dt>R</dt><dd>The firmest damper setting, for when the driver wants the most control.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · Technical specification layout -->
+      <section class="bx bx-sheet" id="sheet" aria-labelledby="sheet-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-sheet__head">
+              <p class="bx-chapter reveal"><b>06</b><span>The specification sheet</span></p>
+              <h2 class="bx-title reveal" id="sheet-title" style="--d:1">The whole car, <em>on one sheet.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">The same figures as the ledger above, set out to be read at a glance, with the car’s proportions drawn on a shared scale.</p>
+            </header>
+
+            <dl class="nx-sheet reveal" style="--d:2" aria-label="GT-R Premium at a glance">
+              <div><dt>Engine</dt><dd>3.8 L twin-turbo V6</dd></div>
+              <div><dt>Power</dt><dd>419 kW (570 PS)</dd></div>
+              <div><dt>Torque</dt><dd>637 Nm</dd></div>
+              <div><dt>Gearbox</dt><dd>6-speed dual-clutch</dd></div>
+              <div><dt>Drive</dt><dd>ATTESA E-TS, 0:100 to 50:50</dd></div>
+              <div><dt>0–100 km/h</dt><dd>2.7 s, as quoted</dd></div>
+              <div><dt>Top speed</dt><dd>315 km/h</dd></div>
+              <div><dt>Kerb weight</dt><dd>1,752 kg minimum</dd></div>
+              <div><dt>Brakes</dt><dd>Brembo, 6-piston and 4-piston</dd></div>
+              <div><dt>Seats</dt><dd>Four</dd></div>
+              <div><dt>Luggage</dt><dd>315 L</dd></div>
+              <div><dt>Fuel tank</dt><dd>74 L</dd></div>
+            </dl>
+
+            <div class="bx-sheet__side">
+              <figure class="bx-fig nx-plan" data-bx>
+                <div class="bx-fig__head"><span>Fig. 5</span><span>Dimensions, from above</span></div>
+                <svg class="nx-plan__svg" viewBox="0 0 400 212" role="img" aria-labelledby="plan-t plan-d">
+                  <title id="plan-t">Plan of the GT-R’s length, width and wheelbase</title>
+                  <desc id="plan-d">A rectangle drawn to the car’s length and width, 4,710 millimetres by 1,895 millimetres, with two axle lines 2,780 millimetres apart. It is a dimension diagram, not a drawing of the car.</desc>
+                  <rect class="nx-plan__body" x="20" y="56" width="360" height="145" rx="14"/>
+                  <path class="nx-plan__axle" d="M93.75 48V201M306.25 48V201"/>
+                  <path class="nx-plan__dim" d="M20 18H380M20 12V24M380 12V24M93.75 42H306.25M93.75 37V47M306.25 37V47"/>
+                  <text class="nx-plan__text" x="200" y="10" text-anchor="middle">Length 4,710 mm</text>
+                  <text class="nx-plan__text" x="200" y="34" text-anchor="middle">Wheelbase 2,780 mm</text>
+                  <text class="nx-plan__text nx-plan__text--in" x="200" y="134" text-anchor="middle">Width 1,895 mm</text>
+                </svg>
+                <figcaption>Drawn to scale from the published length, width and wheelbase. The rectangle is the car’s footprint, not its outline, and the axle lines are centred on it, so their position is indicative.</figcaption>
+              </figure>
+
+              <aside class="bx-spec__scale scale-block reveal" aria-label="Proportions">
+                <p class="eyebrow">Proportions</p>
+                <div class="scale" role="group" aria-label="Dimensions on a shared scale">
+                  <div class="scale__row"><span>Length</span><span class="scale__bar" style="--mm:4710"></span><output>4,710 mm</output></div>
+                  <div class="scale__row"><span>Wheelbase</span><span class="scale__bar" style="--mm:2780"></span><output>2,780 mm</output></div>
+                  <div class="scale__row"><span>Width</span><span class="scale__bar" style="--mm:1895"></span><output>1,895 mm</output></div>
+                  <div class="scale__row"><span>Height</span><span class="scale__bar" style="--mm:1370"></span><output>1,370 mm</output></div>
+                </div>
+                <p class="scale__caption">Approximate manufacturer dimensions. All five cars share one scale (5,000 mm is the full bar), so the pages compare directly. A dimension chart, not a drawing of the car.</p>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 · Closing -->
+      <section class="bx bx-close" id="close" aria-labelledby="close-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>07</b><span>Closing</span></p>
+          <h2 class="bx-close__title" id="close-title">
+            <span class="bx-line" data-bx><span>Eighteen years, one idea.</span></span>
+            <span class="bx-line" data-bx style="--i:1"><span><em>Built by hand, driven by four wheels.</em></span></span>
+          </h2>
+          <div class="bx-grid bx-close__grid">
+            <p class="bx-close__text reveal">The R35 is a record of an engineering argument made repeatedly and refined patiently: a hand-built twin-turbo V6, a gearbox at the back, and a drive system that decides for itself where the grip is. Nissan has said the GT-R name will return. This is the car that carried it for eighteen years.</p>
+            <ul class="bx-close__facts reveal" style="--d:1" aria-label="The car in four lines">
+              <li><span>Engine</span>3.8 L twin-turbo V6, hand-built</li>
+              <li><span>Output</span>419 kW (570 PS)</li>
+              <li><span>Drive</span>All-wheel, 6-speed dual-clutch</li>
+              <li><span>0–100 km/h</span>2.7 s, as quoted</li>
+            </ul>
+            <p class="bx-close__links reveal" style="--d:2">
+              <a class="explore" href="#main">Return to the orbit<i aria-hidden="true"></i></a>
+              <a class="explore" href="/collection.html">The whole collection<i aria-hidden="true"></i></a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <div class="container">
+    <nav class="journey" aria-label="Explore the collection">
+      <p class="journey__label eyebrow">Continue the collection</p>
+      <a class="journey__link journey__link--prev reveal" href="/cars/porsche-911" rel="prev">
+        <span class="journey__dir">Previous</span>
+        <span class="journey__make">Porsche</span>
+        <span class="journey__name">911 Carrera 4S</span>
+        <span class="journey__tag">The rear-engined icon, with all-wheel-drive grip.</span>
+      </a>
+      <a class="journey__link journey__link--next reveal" href="/cars/toyota-supra" rel="next">
+        <span class="journey__dir">Next</span>
+        <span class="journey__make">Toyota</span>
+        <span class="journey__name">GR Supra MK5</span>
+        <span class="journey__tag">Rear-drive precision, reborn.</span>
+      </a>
+      <a class="journey__all explore" href="/collection.html">Back to the collection<i aria-hidden="true"></i></a>
+    </nav>
+    </div>
+
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <div class="model-error" data-model-error role="alert" hidden>
+    <p data-model-error-message>The 3D model could not be loaded.</p>
+    <button type="button" data-model-error-retry>Try again</button>
+  </div>
+
+  <p class="webgl-note" data-webgl-fallback hidden>
+    WebGL is unavailable in this browser, so the 3D experience cannot run. Try a current version of Chrome, Edge, Firefox or Safari.
+  </p>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>

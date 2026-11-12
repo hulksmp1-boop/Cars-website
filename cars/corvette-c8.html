@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chevrolet Corvette C8 Stingray — AETHER GT</title>
+  <meta name="description" content="Scroll to orbit the Chevrolet Corvette C8 Stingray, then read the dossier: the 6.2-litre LT2 V8, the specification and the mid-engine character.">
+  <meta name="theme-color" content="#050506">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/icons/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="/cars/corvette-c8">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AETHER GT">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Chevrolet Corvette C8 Stingray — AETHER GT">
+  <meta property="og:description" content="Scroll to orbit the Chevrolet Corvette C8 Stingray, then read the dossier: the 6.2-litre LT2 V8, the specification and the mid-engine character.">
+  <meta property="og:url" content="/cars/corvette-c8">
+  <meta property="og:image" content="/assets/og/aether-gt-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AETHER GT: five modern performance cars, considered.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chevrolet Corvette C8 Stingray — AETHER GT">
+  <meta name="twitter:description" content="Scroll to orbit the Chevrolet Corvette C8 Stingray, then read the dossier: the 6.2-litre LT2 V8, the specification and the mid-engine character.">
+  <meta name="twitter:image" content="/assets/og/aether-gt-og.jpg">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/chrome.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <link rel="stylesheet" href="/css/car.css">
+  <link rel="stylesheet" href="/css/vehicle.css">
+  <link rel="stylesheet" href="/css/bmw-m5.css">
+  <link rel="stylesheet" href="/css/chevrolet-corvette-c8.css">
+
+  <noscript><style>[data-loader]{display:none}html.is-loading,html.is-loading body{overflow:auto}</style></noscript>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script src="/js/boot-guard.js"></script>
+  <script type="module" src="/js/pages/car.js"></script>
+  <script defer src="/js/ui/bmw-editorial.js"></script>
+</head>
+<body data-page="car" data-vehicle="chevrolet-corvette-c8">
+
+  <!-- Loading screen -->
+  <div class="loader" data-loader>
+    <div class="loader__inner">
+      <p class="loader__brand">AETHER <span>GT</span></p>
+      <div class="loader__track" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="loader__bar" data-loader-bar></span>
+      </div>
+      <p class="loader__meta">
+        <span data-loader-status>Initialising</span>
+        <span><span data-loader-percent>000</span>%</span>
+      </p>
+    </div>
+  </div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header data-site-header></header>
+
+  <!-- Persistent WebGL stage (fixed behind all content) -->
+  <canvas id="stage" class="stage" aria-hidden="true"></canvas>
+
+  <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+  <!-- Atmosphere: vignette + fine grain (also dithers the dark gradients) -->
+  <div class="atmosphere" aria-hidden="true"></div>
+
+  <!-- Showcase HUD: filled from config.js and the car's shot (js/ui/hud.js) -->
+  <div class="hud" data-hud>
+    <div class="hud__ident">
+      <p class="hud__make" data-hud-make></p>
+      <p class="hud__model" data-hud-model></p>
+      <p class="hud__designation" data-hud-designation></p>
+    </div>
+    <div class="hud__chapter" aria-hidden="true">
+      <p class="hud__chapter-count"><span data-hud-index>01</span><span class="hud__sep">/</span><span data-hud-total>09</span></p>
+      <p class="hud__chapter-title" data-hud-title></p>
+    </div>
+    <ol class="hud__rail" aria-hidden="true" data-hud-rail></ol>
+    <p class="hud__cue" data-hud-cue aria-hidden="true"><span>Scroll</span><i></i></p>
+  </div>
+
+  <main id="main">
+    <!-- Scroll track: the camera orbit is scrubbed across this section's height. -->
+    <section class="showcase" data-showcase aria-label="Chevrolet Corvette C8 Stingray, scroll-controlled 3D view">
+      <div class="hero">
+        <div class="container hero__inner">
+          <p class="eyebrow">Chevrolet</p>
+          <h1 class="hero__title">Corvette</h1>
+          <p class="hero__lede">C8</p>
+          <nav class="jump hero__jump" aria-label="On this page">
+            <a href="#the-car">The car</a>
+            <a href="#engine">Engine</a>
+            <a href="#specifications">Specifications</a>
+            <a href="#highlights">Design</a>
+            <a href="#story">Drive</a>
+            <a href="#sheet">Sheet</a>
+          </nav>
+          <p class="hero__facts" aria-label="At a glance">
+            <span>Nº 05 / 05 · 2020 Stingray</span>
+            <span>6.2 L V8 (LT2), mid-engine</span>
+            <span>8-speed dual-clutch</span>
+          </p>
+        </div>
+      </div>
+      <p class="sr-only">Scrolling moves a camera around a Chevrolet Corvette C8 Stingray: front three-quarter, nose, front quarter, profile, rear quarter, tail, overhead sweep, opposite profile, and back to the start.</p>
+    </section>
+
+    <!-- Dossier: editorial chapters after the scroll-controlled 3D showcase. Opaque, so they cover the fixed canvas and HUD.
+         Styles: css/bmw-m5.css (shared editorial layer, unchanged) + css/chevrolet-corvette-c8.css (Corvette only).
+         Enhancements: js/ui/bmw-editorial.js (optional; the page is complete without it). -->
+    <div class="dossier" id="dossier">
+
+      <!-- 01 · Introduction and heritage -->
+      <section class="bx bx-open" id="the-car" aria-labelledby="intro-title">
+        <div class="container">
+          <p class="folio reveal"><span>Dossier Nº 05 / 05</span><span>Corvette C8 Stingray</span></p>
+          <div class="bx-grid bx-open__grid">
+            <h2 class="bx-open__title" id="intro-title">
+              <span class="bx-line" data-bx><span>Sixty-six years in front,</span></span>
+              <span class="bx-line" data-bx style="--i:1"><span><em>then the engine moved back.</em></span></span>
+            </h2>
+            <p class="bx-open__dek reveal" style="--d:2">A 6.2-litre V8 behind the two seats, rear-wheel drive and one gearbox: an eight-speed dual-clutch automatic. This page covers the 2020 model year Corvette Stingray coupe, the first production mid-engine Corvette, with the figures Chevrolet published for that year.</p>
+            <div class="bx-open__body prose reveal" style="--d:3">
+              <p class="bx-dropcap">The Corvette arrived in 1953 as a two-seat American sports car, and for the seven generations that followed, C1 to C7, its engine sat ahead of the driver. Mid-engine Corvettes were tried again and again, but only as research cars and concepts: the CERV I of 1959 and the Corvette Indy of 1986 are two of them. Zora Arkus-Duntov, the engineer long associated with the car, was a persistent champion of the idea.</p>
+              <p>The eighth generation is where it reached production. Chevrolet announced the C8 in April 2019 and unveiled the coupe on 18 July 2019 in Tustin, California, as a 2020 model. Production at the Bowling Green Assembly plant in Kentucky officially began on 3 February 2020, after the delay caused by the 2019 General Motors strike.</p>
+              <p>Chevrolet called it the first-ever production mid-engine Corvette, and its executive chief engineer, Tadge Juechter, introduced it at the reveal. The car is a 2020 Stingray with the 6.2-litre LT2 engine and the dual-clutch gearbox; later C8 models, the Z06, E-Ray and ZR1, are different cars and are not described here.</p>
+              <p class="bx-open__guide">Read on in the order the car is built: the engine, the numbers, the shape, the drive, then the sheet.</p>
+            </div>
+          </div>
+
+          <ol class="nx-timeline" aria-label="The Corvette in five dates">
+            <li class="reveal"><span class="nx-timeline__year">1953</span><p>The first Corvette: a front-engined two-seat sports car.</p></li>
+            <li class="reveal" style="--d:1"><span class="nx-timeline__year">1959</span><p>The CERV I, a mid-engine Chevrolet research car, built under Zora Arkus-Duntov.</p></li>
+            <li class="reveal" style="--d:2"><span class="nx-timeline__year">1986</span><p>The Corvette Indy, another mid-engine concept that stayed a concept.</p></li>
+            <li class="reveal" style="--d:3"><span class="nx-timeline__year">2019</span><p>The C8 Stingray is unveiled on 18 July in Tustin, California.</p></li>
+            <li class="reveal" style="--d:4"><span class="nx-timeline__year">2020</span><p>Production officially starts in Bowling Green, Kentucky, on 3 February.</p></li>
+          </ol>
+
+          <ul class="bx-figs" aria-label="Key figures">
+            <li class="reveal"><span class="bx-figs__value"><span data-count="495">495</span><small>hp</small></span><span class="bx-figs__label">369 kW at 6,450 rpm, performance exhaust</span></li>
+            <li class="reveal" style="--d:1"><span class="bx-figs__value"><span data-count="470">470</span><small>lb-ft</small></span><span class="bx-figs__label">637 Nm at 5,150 rpm, performance exhaust</span></li>
+            <li class="reveal" style="--d:2"><span class="bx-figs__value"><span data-count="2.9" data-decimals="1">2.9</span><small>s</small></span><span class="bx-figs__label">0–60 mph, Z51 coupe, as quoted</span></li>
+            <li class="reveal" style="--d:3"><span class="bx-figs__value"><span data-count="194">194</span><small>mph</small></span><span class="bx-figs__label">312 km/h, top speed as quoted</span></li>
+          </ul>
+          <p class="bx-note reveal">Figures are for the 2020 Corvette Stingray coupe as Chevrolet published them for the US market, rounded. Power and torque are SAE-certified; without the performance exhaust the same engine is rated 490 hp and 465 lb-ft. They vary with model year, market and options. The 3D model above is a third-party stand-in, titled as a 2019 Stingray, and is not to scale with the published dimensions.</p>
+        </div>
+      </section>
+
+      <!-- 02 · Engine and performance -->
+      <section class="bx bx-engine" id="engine" aria-labelledby="engine-title">
+        <span class="bx-ghost" aria-hidden="true" data-parallax>495</span>
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-engine__copy">
+              <p class="bx-chapter reveal"><b>02</b><span>LT2 V8 engine and performance</span></p>
+              <h2 class="bx-title reveal" id="engine-title" style="--d:1">Eight cylinders, two valves each, <em>no turbo.</em></h2>
+              <div class="prose reveal" style="--d:2">
+                <p>The LT2 is a 6.2-litre, 90-degree V8 with pushrod, overhead-valve gear and two valves per cylinder, sixteen in all. It is naturally aspirated, uses direct injection and variable valve timing, and can shut down cylinders under light load through Active Fuel Management. It sits longitudinally behind the cabin, ahead of the rear axle.</p>
+                <p>With the performance exhaust, Chevrolet rates it at 495 hp (369 kW) at 6,450 rpm and 470 lb-ft (637 Nm) at 5,150 rpm. Without it the figures are 490 hp and 465 lb-ft. Because the car now corners with the engine behind the driver, the oil system is a dry-sump design, which keeps the oil supply steady in hard cornering.</p>
+                <p>Power goes to the rear wheels through a Tremec eight-speed dual-clutch transmission with paddle shifters, the only gearbox offered: there is no clutch pedal, no manual option and no conventional shift lever. Chevrolet quotes 2.9 seconds from 0 to 60 mph for the Z51 coupe and 11.2 seconds through the quarter-mile at 121 mph, with a top speed of 194 mph (312 km/h).</p>
+              </div>
+              <dl class="bx-mini reveal" style="--d:3">
+                <div><dt>Displacement</dt><dd>6.2 L (376 cu in)</dd></div>
+                <div><dt>Bore × stroke</dt><dd>103.25 × 92 mm</dd></div>
+                <div><dt>Compression</dt><dd>11.5 : 1</dd></div>
+                <div><dt>Valves</dt><dd>16, pushrod OHV</dd></div>
+              </dl>
+            </div>
+
+            <div class="bx-engine__figs">
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 1</span><span>The V8, seen from above</span></div>
+                <svg class="eng" viewBox="0 -16 400 220" role="img" aria-labelledby="eng-t eng-d">
+                  <title id="eng-t">Schematic of the Corvette’s V8 seen from above</title>
+                  <desc id="eng-d">Two staggered rows of four cylinder bores, one row on each side of a dashed crankshaft line that runs along the middle, the eight bores forming a V when seen from the end.</desc>
+                  <g class="eng__bank" style="--i:0"><rect x="30" y="40" width="340" height="124" rx="3"/></g>
+                  <path class="eng__axis" d="M18 102H382"/>
+                  <g class="eng__bores">
+                    <circle style="--i:2" cx="78" cy="72" r="24"/><circle style="--i:3" cx="152" cy="72" r="24"/><circle style="--i:4" cx="226" cy="72" r="24"/><circle style="--i:5" cx="300" cy="72" r="24"/>
+                    <circle style="--i:3" cx="115" cy="132" r="24"/><circle style="--i:4" cx="189" cy="132" r="24"/><circle style="--i:5" cx="263" cy="132" r="24"/><circle style="--i:6" cx="337" cy="132" r="24"/>
+                  </g>
+                  <text class="eng__label" x="200" y="20" text-anchor="middle">4 + 4 CYLINDERS · 90° V</text>
+                  <g class="eng__tag"><circle cx="78" cy="188" r="10"/><text x="78" y="192" text-anchor="middle">A</text></g>
+                  <g class="eng__tag"><circle cx="200" cy="188" r="10"/><text x="200" y="192" text-anchor="middle">B</text></g>
+                  <g class="eng__tag"><circle cx="337" cy="188" r="10"/><text x="337" y="192" text-anchor="middle">C</text></g>
+                </svg>
+                <ul class="bx-key" aria-label="Key to figure 1">
+                  <li><b>A</b>One bank of four cylinders</li>
+                  <li><b>B</b>The crankshaft line, shared by both banks</li>
+                  <li><b>C</b>The other bank, offset along the crank</li>
+                </ul>
+                <figcaption>Simplified and not to scale. It shows the cylinder layout only; valvetrain, intake, exhaust and ancillaries are left out, and which end faces the front of the car is not marked.</figcaption>
+              </figure>
+
+              <figure class="bx-fig" data-bx>
+                <div class="bx-fig__head"><span>Fig. 2</span><span>Where the two peaks sit</span></div>
+                <div class="lanes" role="img" aria-label="Engine speed of the two published peaks. Peak torque, 470 pound-feet, at 5,150 rpm. Peak power, 495 horsepower, at 6,450 rpm.">
+                  <div class="lanes__plot">
+                    <div class="lane">
+                      <p class="lane__label"><span>Peak torque · 470 lb-ft</span><b>5,150 rpm</b></p>
+                      <div class="lane__track"><i class="lane__pin" style="--at:5150"></i></div>
+                    </div>
+                    <div class="lane">
+                      <p class="lane__label"><span>Peak power · 495 hp</span><b>6,450 rpm</b></p>
+                      <div class="lane__track"><i class="lane__pin" style="--at:6450"></i></div>
+                    </div>
+                    <ol class="lanes__axis" aria-hidden="true">
+                      <li style="--rpm:0">0</li><li style="--rpm:1000">1</li><li style="--rpm:2000">2</li><li style="--rpm:3000">3</li><li style="--rpm:4000">4</li><li style="--rpm:5000">5</li><li style="--rpm:6000">6</li><li style="--rpm:7000">7</li>
+                    </ol>
+                  </div>
+                  <p class="lanes__unit" aria-hidden="true">Engine speed, 1,000 rpm</p>
+                </div>
+                <figcaption>Each marker is the single engine speed at which Chevrolet quotes that peak, so it is not a torque curve and says nothing about how the output builds between idle and those points. Chevrolet does not publish a torque band for this engine in the figures used here. The axis runs to 7,000 rpm for scale only; no engine limit is implied.</figcaption>
+              </figure>
+
+              <figure class="bx-fig bx-fig--table reveal">
+                <div class="bx-fig__head"><span>Fig. 3</span><span>One engine, two exhausts</span></div>
+                <div class="bx-table-wrap" role="region" aria-label="2020 Stingray LT2 with the standard and the performance exhaust compared" tabindex="0">
+                  <table class="bx-table">
+                    <thead><tr><th scope="col">Measure</th><th scope="col">Standard exhaust</th><th scope="col">Performance exhaust</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row">Engine</th><td>6.2 L V8 (LT2)</td><td>6.2 L V8 (LT2)</td></tr>
+                      <tr><th scope="row">Power</th><td>490 hp (365 kW)</td><td>495 hp (369 kW)</td></tr>
+                      <tr><th scope="row">Peak power at</th><td>6,450 rpm</td><td>6,450 rpm</td></tr>
+                      <tr><th scope="row">Torque</th><td>465 lb-ft (630 Nm)</td><td>470 lb-ft (637 Nm)</td></tr>
+                      <tr><th scope="row">Peak torque at</th><td>5,150 rpm</td><td>5,150 rpm</td></tr>
+                      <tr><th scope="row">0–60 mph</th><td>Not quoted here</td><td>2.9 s (Z51 coupe)</td></tr>
+                      <tr><th scope="row">Gearbox</th><td>8-speed dual-clutch</td><td>8-speed dual-clutch</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <figcaption>Chevrolet’s published 2020 model year figures, SAE-certified, rounded, as reproduced by GM Authority and the Corvette Action Center from the maker’s material. The performance exhaust was a stand-alone option and is part of the Z51 Performance Package. Check them against Chevrolet’s current documentation before relying on them. <span class="flag">Varies</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · Technical specifications -->
+      <section class="bx bx-spec" id="specifications" aria-labelledby="spec-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-spec__head">
+              <p class="bx-chapter reveal"><b>03</b><span>Technical specification</span></p>
+              <h2 class="bx-title reveal" id="spec-title" style="--d:1">Corvette Stingray, <em>2020, 8-speed DCT</em></h2>
+            </header>
+
+            <div class="bx-spec__sheet">
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>A</b>Powertrain</h3>
+                <dl class="ledger">
+                  <div><dt>Engine</dt><dd>6.2 L naturally aspirated V8 (LT2), 90°, pushrod OHV, two valves per cylinder, mid-mounted, dry-sump oiling</dd></div>
+                  <div><dt>Displacement</dt><dd>6.2 L (376 cu in)</dd></div>
+                  <div><dt>Bore × stroke</dt><dd>103.25 × 92 mm</dd></div>
+                  <div><dt>Compression</dt><dd>11.5 : 1</dd></div>
+                  <div><dt>Fuel system</dt><dd>Direct injection, with Active Fuel Management (cylinder deactivation)</dd></div>
+                  <div><dt>Power</dt><dd>495 hp (369 kW) at 6,450 rpm with performance exhaust; 490 hp (365 kW) without <span class="flag">Varies</span></dd></div>
+                  <div><dt>Torque</dt><dd>470 lb-ft (637 Nm) at 5,150 rpm with performance exhaust; 465 lb-ft (630 Nm) without <span class="flag">Varies</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>B</b>Drivetrain and performance</h3>
+                <dl class="ledger">
+                  <div><dt>Transmission</dt><dd>Tremec 8-speed dual-clutch automatic (GM code M1L), paddle shifters; the only gearbox offered</dd></div>
+                  <div><dt>Drive</dt><dd>Rear-wheel drive</dd></div>
+                  <div><dt>0–60 mph</dt><dd>2.9 s, Z51 coupe, as quoted <span class="flag">Varies</span></dd></div>
+                  <div><dt>Quarter-mile</dt><dd>11.2 s at 121 mph, Z51 coupe, as quoted <span class="flag">Varies</span></dd></div>
+                  <div><dt>Top speed</dt><dd>312 km/h (194 mph), as quoted</dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal">
+                <h3 class="ledger__group"><b>C</b>Chassis, wheels and brakes</h3>
+                <dl class="ledger">
+                  <div><dt>Structure</dt><dd>Welded aluminium spaceframe</dd></div>
+                  <div><dt>Brakes</dt><dd>Brembo four-piston fixed callipers with vented rotors, electrically powered brake booster <span class="flag">Varies</span></dd></div>
+                  <div><dt>Wheels</dt><dd>19-inch front, 20-inch rear <span class="flag">Varies</span></dd></div>
+                  <div><dt>Tyres</dt><dd>245/35 ZR19 front, 305/30 ZR20 rear <span class="flag">Varies</span></dd></div>
+                  <div><dt>Options noted</dt><dd>Magnetic Ride Control and a front-axle lift system were optional <span class="flag flag--confirm">To confirm</span></dd></div>
+                </dl>
+              </div>
+
+              <div class="ledger-group bx-group reveal" style="--d:1">
+                <h3 class="ledger__group"><b>D</b>Body and dimensions</h3>
+                <dl class="ledger">
+                  <div><dt>Body</dt><dd>Two-door coupe with removable roof panel</dd></div>
+                  <div><dt>Length</dt><dd>4,630 mm (182.3 in)</dd></div>
+                  <div><dt>Wheelbase</dt><dd>2,722 mm (107.2 in)</dd></div>
+                  <div><dt>Width</dt><dd>1,934 mm (76.1 in)</dd></div>
+                  <div><dt>Height</dt><dd>1,234 mm (48.6 in)</dd></div>
+                  <div><dt>Track</dt><dd>1,648 mm front, 1,586 mm rear</dd></div>
+                  <div><dt>Kerb weight</dt><dd>About 1,530 kg (about 3,370 lb); published sources differ slightly <span class="flag">Varies</span></dd></div>
+                  <div><dt>Weight distribution</dt><dd>40 : 60 front to rear, as stated for the layout <span class="flag">Varies</span></dd></div>
+                  <div><dt>Seats and luggage</dt><dd>Two seats; 357 L (12.6 cu ft) across the front and rear luggage spaces</dd></div>
+                  <div><dt>Fuel tank</dt><dd>18.5 US gal (70 L)</dd></div>
+                  <div><dt>Built</dt><dd>Bowling Green Assembly, Kentucky</dd></div>
+                </dl>
+              </div>
+
+              <p class="spec-note">Figures are Chevrolet’s published values for the 2020 Corvette Stingray coupe (US market), as reproduced by GM Authority, the Corvette Action Center and other secondary sources, rounded and not checked against a current Chevrolet sheet. <span class="flag">Varies</span> marks a figure that changes with model year, market, package or options; <span class="flag flag--confirm">To confirm</span> marks one that depends on the option list and should be checked against Chevrolet’s documentation. Not listed here: figures this page could not confirm, such as the drag coefficient, brake rotor sizes and steering ratio.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · Exterior design and mid-engine engineering -->
+      <section class="bx bx-design" id="highlights" aria-labelledby="highlights-title">
+        <div class="container">
+          <div class="bx-grid">
+            <div class="bx-design__side">
+              <p class="bx-chapter reveal"><b>04</b><span>Exterior and mid-engine engineering</span></p>
+              <h2 class="bx-title reveal" id="highlights-title" style="--d:1">The cabin moved forward, <em>the shape followed.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">Putting the V8 behind the seats rewrote the Corvette’s proportions. Five details, each tied to a number or a job.</p>
+              <nav class="bx-index reveal" aria-label="Design details" style="--d:3">
+                <ol>
+                  <li><a href="#hl-1" data-index="hl-1"><b>01</b>Proportions</a></li>
+                  <li><a href="#hl-2" data-index="hl-2"><b>02</b>Rear weight bias</a></li>
+                  <li><a href="#hl-3" data-index="hl-3"><b>03</b>The aluminium spaceframe</a></li>
+                  <li><a href="#hl-4" data-index="hl-4"><b>04</b>Two luggage spaces</a></li>
+                  <li><a href="#hl-5" data-index="hl-5"><b>05</b>Brakes and tyres</a></li>
+                </ol>
+              </nav>
+            </div>
+
+            <ol class="bx-items">
+              <li class="bx-item" id="hl-1" data-bx>
+                <span class="bx-item__no">01</span>
+                <h3>Proportions first</h3>
+                <p>The Stingray is 4,630 mm long on a 2,722 mm wheelbase, 1,934 mm wide and 1,234 mm tall. With the engine behind the cabin, the driver sits closer to the front axle, which Chevrolet described as almost on top of the front wheels, and the long bonnet of earlier Corvettes gives way to a short nose and a cabin set well forward.</p>
+                <p class="bx-item__spec"><span>Stance</span> 2,722 mm wheelbase; 1,648 / 1,586 mm track front and rear</p>
+              </li>
+              <li class="bx-item" id="hl-2" data-bx>
+                <span class="bx-item__no">02</span>
+                <h3>Rear weight bias</h3>
+                <p>Chevrolet says the layout moves the weight distribution to 40 percent on the front axle and 60 percent on the rear, and that the rear bias helps both in a straight line and on the track. Treat 40:60 as the stated design figure; actual distribution changes with the car as specified and loaded.</p>
+                <p class="bx-item__spec"><span>Balance</span> 40 : 60 front to rear (Chevrolet’s stated figure)</p>
+              </li>
+              <li class="bx-item" id="hl-3" data-bx>
+                <span class="bx-item__no">03</span>
+                <h3>The aluminium spaceframe</h3>
+                <p>As with the C7 before it, the C8’s structure is a welded aluminium spaceframe, built at the Bowling Green plant. The roof is a removable panel on the coupe, which keeps the open-air Corvette idea within a fixed body.</p>
+                <p class="bx-item__spec"><span>Structure</span> Welded aluminium spaceframe; removable roof panel</p>
+              </li>
+              <li class="bx-item" id="hl-4" data-bx>
+                <span class="bx-item__no">04</span>
+                <h3>Two luggage spaces</h3>
+                <p>Moving the engine back freed the nose, so the car has a front luggage space as well as one behind the engine. Chevrolet quotes a combined 12.6 cubic feet, or 357 litres, which is the total for both and is limited by load and weight distribution.</p>
+                <p class="bx-item__spec"><span>Luggage</span> 357 L (12.6 cu ft), front and rear together</p>
+              </li>
+              <li class="bx-item" id="hl-5" data-bx>
+                <span class="bx-item__no">05</span>
+                <h3>Brakes and tyres</h3>
+                <p>Brembo supplies four-piston fixed callipers on vented rotors. The wheels are staggered: 19-inch at the front with 245/35 tyres, 20-inch at the rear with much wider 305/30 tyres, so the driven axle carries the bigger contact patch and most of the car’s weight.</p>
+                <p class="bx-item__spec"><span>Tyres</span> 245/35 ZR19 front, 305/30 ZR20 rear</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · Driving character -->
+      <section class="bx bx-drive" id="story" aria-labelledby="story-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>05</b><span>Driving character</span></p>
+          <blockquote class="bx-quote" id="story-title" data-bx>
+            <span class="bx-line"><span>The driver forward, the engine behind.</span></span>
+            <span class="bx-line" style="--i:1"><span><em>Sixty percent of the weight on the rear axle.</em></span></span>
+          </blockquote>
+
+          <div class="bx-grid bx-drive__grid">
+            <div class="bx-drive__prose prose">
+              <p class="reveal">The C8 is a two-seat, mid-engine, rear-drive coupe, and its character comes from where things sit. The cabin is far forward, the V8 is just behind the seats, and the drive goes only to the rear wheels. Chevrolet’s stated aims were better weight distribution and a better sense of control, with the driver positioned nearer the front axle. How that feels from the seat is a matter for the driver’s own judgement; the figures on this page cannot show it.</p>
+              <p class="reveal">The engine is the part that is deliberately familiar. A naturally aspirated V8 with pushrods has no turbocharger to wait for, and its quoted peaks, 470 lb-ft at 5,150 rpm and 495 hp at 6,450 rpm, sit high in the rev range. Cylinder deactivation lets it run on fewer cylinders at light load, and the dry-sump oil system is there for sustained cornering.</p>
+              <p class="reveal">The gearbox is the part that is new. The dual-clutch automatic has no clutch pedal and no lever, only paddles on the wheel, and it is the only transmission offered. Chevrolet quotes 2.9 seconds from 0 to 60 mph for the Z51 car, with the performance exhaust and the dual-clutch gearbox.</p>
+              <p class="reveal bx-credit">The 3D scene above uses a third-party model, credited in the page footer. It is a stand-in rather than a scan: it is about 13 percent longer and about 9 percent taller than the published dimensions, and its wheels, trim and details are not matched to a specific package.</p>
+            </div>
+
+            <div class="bx-drive__aside">
+              <figure class="bx-ladder reveal" aria-label="Driver-selectable settings">
+                <div class="bx-fig__head"><span>Fig. 4</span><span>What the driver can choose</span></div>
+                <div class="bx-rung"><p class="bx-rung__name">Drive mode</p><ol class="bx-rung__opts"><li>Weather</li><li>Tour</li><li>Sport</li><li>Track</li><li>My Mode</li></ol></div>
+              </figure>
+              <dl class="bx-modes reveal">
+                <div><dt>Weather, Tour</dt><dd>Named for low-grip conditions and everyday driving.</dd></div>
+                <div><dt>Sport, Track</dt><dd>Named for faster road driving and for the circuit.</dd></div>
+                <div><dt>My Mode</dt><dd>A setting the driver configures. What each mode changes depends on the options fitted, and this page does not describe the individual calibrations.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 · Technical specification layout -->
+      <section class="bx bx-sheet" id="sheet" aria-labelledby="sheet-title">
+        <div class="container">
+          <div class="bx-grid">
+            <header class="bx-sheet__head">
+              <p class="bx-chapter reveal"><b>06</b><span>The specification sheet</span></p>
+              <h2 class="bx-title reveal" id="sheet-title" style="--d:1">The whole car, <em>on one sheet.</em></h2>
+              <p class="bx-lede reveal" style="--d:2">The same figures as the ledger above, set out to be read at a glance, with the car’s proportions drawn on a shared scale.</p>
+            </header>
+
+            <dl class="nx-sheet reveal" style="--d:2" aria-label="Corvette Stingray 2020 at a glance">
+              <div><dt>Model year</dt><dd>2020 Stingray coupe</dd></div>
+              <div><dt>Engine</dt><dd>6.2 L V8 (LT2), mid</dd></div>
+              <div><dt>Power</dt><dd>495 hp (369 kW)</dd></div>
+              <div><dt>Torque</dt><dd>470 lb-ft (637 Nm)</dd></div>
+              <div><dt>Gearbox</dt><dd>8-speed dual-clutch</dd></div>
+              <div><dt>Drive</dt><dd>Rear-wheel</dd></div>
+              <div><dt>0–60 mph</dt><dd>2.9 s, Z51</dd></div>
+              <div><dt>Top speed</dt><dd>312 km/h (194 mph)</dd></div>
+              <div><dt>Kerb weight</dt><dd>About 1,530 kg</dd></div>
+              <div><dt>Balance</dt><dd>40 : 60 front to rear</dd></div>
+              <div><dt>Luggage</dt><dd>357 L</dd></div>
+              <div><dt>Fuel tank</dt><dd>70 L</dd></div>
+            </dl>
+
+            <div class="bx-sheet__side">
+              <figure class="bx-fig nx-plan" data-bx>
+                <div class="bx-fig__head"><span>Fig. 5</span><span>Dimensions, from above</span></div>
+                <svg class="nx-plan__svg" viewBox="0 0 400 232" role="img" aria-labelledby="plan-t plan-d">
+                  <title id="plan-t">Plan of the Corvette’s length, width and wheelbase</title>
+                  <desc id="plan-d">A rectangle drawn to the car’s length and width, 4,630 millimetres by 1,934 millimetres, with a separate bar beneath it for the 2,722 millimetre wheelbase. It is a dimension diagram, not a drawing of the car, and the bar does not mark where the axles are.</desc>
+                  <rect class="nx-plan__body" x="20" y="34" width="360" height="150.4" rx="14"/>
+                  <path class="nx-plan__dim" d="M20 18H380M20 12V24M380 12V24M94.2 206H305.8M94.2 201V211M305.8 201V211"/>
+                  <text class="nx-plan__text" x="200" y="10" text-anchor="middle">Length 4,630 mm</text>
+                  <text class="nx-plan__text" x="200" y="226" text-anchor="middle">Wheelbase 2,722 mm</text>
+                  <text class="nx-plan__text nx-plan__text--in" x="200" y="114" text-anchor="middle">Width 1,934 mm</text>
+                </svg>
+                <figcaption>Drawn to scale from the published length, width and wheelbase. The rectangle is the car’s footprint, not its outline. The wheelbase bar is centred for legibility: Chevrolet’s overhang figures were not confirmed, so the axle positions are not marked.</figcaption>
+              </figure>
+
+              <aside class="bx-spec__scale scale-block reveal" aria-label="Proportions">
+                <p class="eyebrow">Proportions</p>
+                <div class="scale" role="group" aria-label="Dimensions on a shared scale">
+                  <div class="scale__row"><span>Length</span><span class="scale__bar" style="--mm:4630"></span><output>4,630 mm</output></div>
+                  <div class="scale__row"><span>Wheelbase</span><span class="scale__bar" style="--mm:2722"></span><output>2,722 mm</output></div>
+                  <div class="scale__row"><span>Width</span><span class="scale__bar" style="--mm:1934"></span><output>1,934 mm</output></div>
+                  <div class="scale__row"><span>Height</span><span class="scale__bar" style="--mm:1234"></span><output>1,234 mm</output></div>
+                </div>
+                <p class="scale__caption">Approximate manufacturer dimensions. All five cars share one scale (5,000 mm is the full bar), so the pages compare directly. A dimension chart, not a drawing of the car.</p>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 · Closing -->
+      <section class="bx bx-close" id="close" aria-labelledby="close-title">
+        <div class="container">
+          <p class="bx-chapter reveal"><b>07</b><span>Closing</span></p>
+          <h2 class="bx-close__title" id="close-title">
+            <span class="bx-line" data-bx><span>Sixty-six years from the first car.</span></span>
+            <span class="bx-line" data-bx style="--i:1"><span><em>One V8, behind the seats.</em></span></span>
+          </h2>
+          <div class="bx-grid bx-close__grid">
+            <p class="bx-close__text reveal">The Corvette began in 1953 with its engine in front, and it stayed there through seven generations. The C8 Stingray, unveiled in 2019, kept the V8 and the rear drive and changed everything around them: the cabin, the proportions, the gearbox and the balance. The car that carries the name now is the one on this site with its engine behind the driver.</p>
+            <ul class="bx-close__facts reveal" style="--d:1" aria-label="The car in four lines">
+              <li><span>Engine</span>6.2 L V8 (LT2), mid-mounted</li>
+              <li><span>Output</span>495 hp (369 kW)</li>
+              <li><span>Drive</span>Rear-wheel, 8-speed dual-clutch</li>
+              <li><span>0–60 mph</span>2.9 s, Z51 coupe, as quoted</li>
+            </ul>
+            <p class="bx-close__links reveal" style="--d:2">
+              <a class="explore" href="#main">Return to the orbit<i aria-hidden="true"></i></a>
+              <a class="explore" href="/collection.html">The whole collection<i aria-hidden="true"></i></a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <div class="container">
+    <nav class="journey" aria-label="Explore the collection">
+      <p class="journey__label eyebrow">Continue the collection</p>
+      <a class="journey__link journey__link--prev reveal" href="/cars/toyota-supra" rel="prev">
+        <span class="journey__dir">Previous</span>
+        <span class="journey__make">Toyota</span>
+        <span class="journey__name">GR Supra MK5</span>
+        <span class="journey__tag">Rear-drive precision, reborn.</span>
+      </a>
+      <a class="journey__link journey__link--next reveal" href="/cars/bmw-m5" rel="next">
+        <span class="journey__dir">Next</span>
+        <span class="journey__make">BMW</span>
+        <span class="journey__name">M5 F90 Competition</span>
+        <span class="journey__tag">Four doors. Twin-turbo V8. Uncompromising.</span>
+      </a>
+      <a class="journey__all explore" href="/collection.html">Back to the collection<i aria-hidden="true"></i></a>
+    </nav>
+    </div>
+
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <div class="model-error" data-model-error role="alert" hidden>
+    <p data-model-error-message>The 3D model could not be loaded.</p>
+    <button type="button" data-model-error-retry>Try again</button>
+  </div>
+
+  <p class="webgl-note" data-webgl-fallback hidden>
+    WebGL is unavailable in this browser, so the 3D experience cannot run. Try a current version of Chrome, Edge, Firefox or Safari.
+  </p>
+
+  <noscript>
+    <p class="webgl-note">AETHER GT requires JavaScript to run.</p>
+  </noscript>
+</body>
+</html>
