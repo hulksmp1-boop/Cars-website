@@ -65,7 +65,10 @@ js/
     loader.js         Loading screen controller (weighted real progress)
     asset-queue.js    Idle-gated background downloads (progressive loading)
   scene/
-    studio.js         Lights, reflection room, floor, backdrop
+    studio.js         Photo-studio lights, reflection room (softboxes), floor, backdrop, tone mapping
+    look.js           Every lighting / environment / material number (pure data): tune here
+    materials.js      Runtime material finish (paint clearcoat, glass, tyres, chrome, lamps)
+    material-rules.js Material classifier (pure, tested against the real GLB files)
     contact-shadow.js Baked contact shadow
     vehicle.js        GLB download/decode, normalisation, GPU warm-up, dispose
     camera-rig.js     Camera path maths (pure, no Three.js)
@@ -113,7 +116,7 @@ Rendering is on demand: `stage.invalidate()` marks the scene dirty, the single G
 
 - Camera moves: edit keyframes in `js/scene/shots/bmw-m5-f90.js`, then run `node tests/run-all.mjs`.
 - Scroll length / inertia: `--showcase-length` in `css/car.css`, `SHOWCASE.scrubSmoothing` in `js/config.js`.
-- Studio lights and reflections: `js/scene/studio.js` (`DEFAULT_LIGHTING`, the `panel(...)` calls build the reflection room).
+- Studio lights, reflections and material finish: `js/scene/look.js` (see "Premium look" below). `studio.js` builds the scene from it.
 - Quality: tiers in `js/core/quality.js`. Force one with `?quality=low|medium|high`. The renderer also lowers its resolution automatically if frames stay slow.
 
 ## Preparing for the next vehicles (not implemented yet)
@@ -316,25 +319,21 @@ The five collection photographs live in `assets/images/` (`bmw-m5.jpg`, `porsche
 
 ## Editorial homepage
 
-`index.html` is a long automotive editorial page (deep black, graphite, warm ivory; Lora + Inter; restrained reveals). It loads no Three.js, GSAP, canvas, model or background download. Everything is static HTML and CSS; `js/pages/home.js` only mounts the shared header and footer, page transitions and scroll reveal (skipped for `prefers-reduced-motion`; nothing is hidden without JS).
+`index.html` is a long automotive editorial page (British Racing Green, warm ivory, champagne; Lora + Inter; restrained reveals). It loads no Three.js, GSAP, canvas, model or background download. Everything is static HTML and CSS; `js/pages/home.js` only mounts the shared header and footer, page transitions and scroll reveal (skipped for `prefers-reduced-motion`; nothing is hidden without JS).
 
-Sections: Masthead, Manifesto, In this issue (the five), Lead story (BMW M5), Three principles, Side by side (engine and length table, one scale), Portfolio (gallery), Journal (three teasers that link to the existing `#story` sections of car pages; there is no separate journal page), Closing. Figures are repeated from the car pages; the tests check the lengths agree.
+Sections: Masthead (BMW M5), Manifesto, In this issue (the five, as an overlapping mosaic), "Five cars, one standard" (a five-slat transition band that replaced the old cartoon road), Lead story (BMW M5), Three principles, Side by side (engine and length table, one scale), Portfolio (gallery), Journal (three teasers that link to the existing `#story` sections of car pages; there is no separate journal page), Closing (a strip of five headlamp close-ups), Image credits. Figures are repeated from the car pages; the tests check the lengths agree.
 
-### Homepage image slots
+### Homepage images and credits
 
-Every picture is a `.slot` (see the top of `css/home.css`): a frame with a fixed aspect ratio, so a real photograph or a rendered GLB still can replace the placeholder without changing the layout. To fill one: add `has-image` to the `.slot` and put `<img src alt width height loading="lazy" decoding="async">` as its first child. The placeholder surface, marks and label hide automatically. Each slot has `--ratio` (tablet and desktop), `--ratio-sm` (under 48rem) and `--focus` (crop focal point, e.g. `70% 55%`). Then relax the "no `<img>` shipped yet" check in `tests/home.test.mjs`.
+All homepage pictures are derived from the five photographs in `assets/images/` (originals are never modified; the tests pin their hashes). Derived files live in `assets/images/home/`: `*-cut.webp` (car on a transparent background), `*-lamp.webp` and `*-wheel.webp` (native-resolution close-ups), `corvette-c8-scene.webp` (dark studio graded to deep green), `bmw-m5-photo.webp` (the natural BMW photograph) and `grain.png` (112 px texture tile). The cut-outs were made automatically (GrabCut) from the original photographs; edges are imperfect and the original floor shadows are faded out. No image is larger than its native width on screen (`.pane__car` uses `min(var(--cw), var(--nat))`).
 
-| Slot | Where | Ratio (small screens) | Recommended size |
-|---|---|---|---|
-| H1 | Masthead, full-bleed cover crop (keep the subject in the right half; the lower third sits under a dark scrim) | cover (3:4) | 2400 x 1350 or larger |
-| C1-C5 | "In this issue" cards, BMW, Porsche, Nissan, Toyota, Corvette | 3:4 (4:3) | 1200 x 1600 |
-| F1 | Lead story, main image | 3:2 (4:3) | 2400 x 1600 |
-| F2 | Lead story, detail | 4:5 | 1200 x 1500 |
-| G1, G4 | Gallery, wide and landscape | 3:2 (4:3), 16:9 (4:3) | 2400 x 1600, 2400 x 1350 |
-| G2, G3 | Gallery, portrait | 4:5 | 1200 x 1500 |
-| J1-J3 | Journal teasers | 3:2 (4:3) | 1600 x 1067 |
+**The five photographs are licence-unverified.** Their photographers, sources and licences are not recorded anywhere in the project, and the page says so in its "Image credits" list. Do not publish them as licensed or cleared.
 
-Keep each file around 150 to 300 KB (WebP or AVIF). Rendered stills from the GLBs are fine; they are static images, not 3D on the page. Credit any model used (see Credits).
+Credit system: every `<img>` has `data-credit="<id>"`. The ids (`bmw-m5`, `porsche-911`, `nissan-gtr`, `toyota-supra`, `corvette-c8`) must exist in `tools/home-image-credits.json` and in the `<li data-credit>` list at the foot of `index.html`; `tests/home.test.mjs` checks both and refuses a `verified` entry that lacks author, source, licence or attribution.
+
+To replace a photograph with a properly licensed one (for example a 2400 px+ BMW M5 for the hero): record author, source URL, licence and the exact attribution text in `tools/home-image-credits.json`, set `status` to `verified`, update the matching `<li data-credit>` line in `index.html` with the credit, then swap the derived images (a clean studio background cuts out best). Rebuild with `tools/build_home_images.py` if you keep that workflow, or export your own cut-out WebP at the same file name.
+
+Layout notes: a `.pane` is a lit panel a cut-out car stands on (the car may rise above the panel); `.head__ghost` and `.seam` are large faded cars behind headings and across section boundaries. The class is named `.pane` because `.stage` belongs to the 3D scene in `layout.css`.
 
 ## Credits
 
@@ -350,11 +349,9 @@ The Porsche 911 Carrera 4S model ("(FREE) Porsche 911 Carrera 4S" by Karol Mikla
 - Anything the loading screen should wait for is passed to `loader.run([...])` in `core/bootstrap.js`: a Promise, or `{ weight, start(report) }` for real progress (the model download uses this).
 
 
-## Road journey (homepage)
+## Road journey (retired from the homepage)
 
-A countryside lane between "In this issue" and "Lead story" on `index.html`. `css/road.css` styles it; `js/ui/road-journey.js` (started from `js/pages/home.js`) draws the lane as inline SVG, sizes the stage by width (desktop / tablet / mobile / compact presets), places the five captions clear of the lane, and slides each car along the lane as the page scrolls (pure function of scrollY, transform only, native scrolling). Cars are transparent WebPs in `assets/road/`, cut from the approved top-down sprite sheets (nose down, soft ambient shadow baked in). `prefers-reduced-motion`: cars stay at their stations, no scroll work. Without JavaScript the section is a stacked car + caption list. While the section is under the fixed header the script sets `html.is-over-road` and the header scrim firms up.
-
-This section was rebuilt from screenshots and sprite sheets; it is a reconstruction of the earlier Phase 2 version, not the same code.
+The cartoon road section was replaced on the homepage by the "Five cars, one standard" band. `css/road.css`, `js/ui/road-journey.js` and `assets/road/*.webp` are kept on disk, unmodified, in case it is ever wanted again; nothing loads them.
 
 ## BMW editorial dossier
 
@@ -386,6 +383,40 @@ This section was rebuilt from screenshots and sprite sheets; it is a reconstruct
 - Header on all seven pages: wordmark (home), Home, Collection and a native `<details>` "Cars" menu listing the five cars in order (Home is hidden under 30rem, where the wordmark serves). Built in `js/ui/site-chrome.js`, styled in `css/chrome.css`.
 - Car pages skip the 3D download on Data Saver, 2G or 1 GB-class memory, showing the dossier with a "Load the 3D view anyway" link. `?3d=on` forces 3D, `?3d=off` skips it (`js/pages/car.js`).
 - Pinned-hash tests updated for the changed `chrome.css`, `site-chrome.js` and `car.js`.
+
+## Premium look (lighting, reflections, materials)
+
+Applies to all five cars. The GLB files are untouched (their SHA-256 sums are pinned in `tests/look.test.mjs`); everything happens at runtime.
+
+**What changed**
+
+| Area | Before | Now |
+|---|---|---|
+| Reflection environment | near-black walls (~1% grey), a few white strips, one blue strip | mid-tone green-grey studio, bright ivory ceiling, gradient softboxes (overhead, two flank strips, front fill), two champagne rim strips, green floor bounce; PMREM size by quality tier (512 / 256 / 128) |
+| Lights | white key, **blue** rim, near-black fill | warm key, champagne rim, ivory rim, ivory/green hemisphere fill (3 lights on the low tier) |
+| Tone mapping | ACES (shifts reds toward orange) | Khronos PBR Neutral, so the paint keeps its colour (`LOOK.toneMapping = 'aces'` reverts) |
+| Backdrop, floor, vignette | near-black dome and floor, black vignette | deep British Racing Green dome whose horizon equals `--color-bg`, polished green floor, warm ivory light pool, green vignette (`css/car.css`) |
+| Paint (v2 metallic) | as authored (several have roughness 0 or metalness 1) | clearcoat layer, metallic finish: metalness 0.6 to 0.88 (lifted when the file has no metalness map), roughness 0.12 to 0.24, clearcoat roughness 0.02. Colour and texture untouched |
+| Glass | as authored | smooth (roughness 0.04), metalness capped at 0.12, opacity capped at 0.9 |
+| Tyres | metalness up to 0.58 on the BMW and Porsche | rubber: metalness 0, roughness 0.82 |
+| Chrome / metal | e.g. Supra chrome black, discs dull | bright untextured chrome becomes mirror chrome; bright untextured metal gets a clean sheen. Dark "chrome" is left alone |
+| Black trim | roughness ~1 (a flat black hole) | satin roughness 0.46 (gloss 0.12 for names with shiny / gloss / piano) |
+| Lamps | some at emissive strength 10, others dull | tail and head lamps get a modest glow through their own texture; authored glow is capped |
+| Texture filtering | anisotropy 8 / 4 / 2 | 16 / 8 / 4 (capped by the GPU), trilinear mipmaps |
+
+**Quality tiers** (`js/core/quality.js`): `clearcoat` is on for high and medium and off on low (low uses a glossier base coat instead of a second shading layer). `envSize` is 512 / 256 / 128. The environment is rendered once per page load; there is no per-frame cost added, no real-time shadows, no post-processing.
+
+**Tuning:** edit `js/scene/look.js`. Quick checks without editing code: `?exposure=1.2` (0.4 to 2.5), `?metal=0.9` (paint metalness ceiling, 0.3 to 1), `?materials=original` (skip the material pass), `?quality=low|medium|high`.
+
+**Not done, on purpose**
+- Bloom: the site has no post-processing chain. Adding one (an extra full-screen pass and a render target) is the single most expensive item on the wish list and could not be tested here. Lamp glow is emissive only.
+- Real-time shadows and floor reflections: the baked contact shadow is kept. Each would cost a second scene render.
+- Camera path, scroll smoothing and composition: unchanged.
+- `side: DoubleSide` on opaque panels (every model ships double-sided): not changed, it is not safe to guess which meshes are closed.
+
+**Verification status: NOT visually verified.** The build environment could not reach the Three.js CDN (jsDelivr is blocked), so no WebGL frame was rendered and no before/after screenshots exist. What was verified: all tests pass (`node tests/run-all.mjs`, including `tests/look.test.mjs`); the classifier recognises paint, glass, tyres and lamps by name in all five real GLB files; the material pass never writes a colour or base-colour texture (run against a Three.js stand-in, so control flow only). The numbers in `look.js` are informed starting values, not tuned against a render. Load each car page, check the paint colour against the original, and adjust `look.js` (or `?exposure=`) if it looks too bright or too flat.
+
+The pins in `tests/vehicle-pages.test.mjs` and `tests/home.test.mjs` for `js/scene/studio.js`, `js/scene/vehicle.js`, `js/core/quality.js` and `css/car.css` were updated on purpose for this change.
 
 ## Phase 7: cinematic assembly intro
 
