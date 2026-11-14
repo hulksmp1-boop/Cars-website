@@ -1,13 +1,16 @@
 /**
- * AETHER GT — Dark automotive studio.
+ * AETHER GT — Automotive photo studio.
  *
- *  - Environment: a procedural PMREM "light room" (near-black walls, a few
- *    emissive strip/softboxes). This is what the paint reflects, so the body
- *    lines read as long controlled highlights rather than random glare.
- *  - Lights: key + two rims + a faint hemisphere fill. No real-time shadows.
- *  - Floor: dark, faintly glossy, radial fade into the backdrop, plus a soft
- *    pool of light under the car.
- *  - Backdrop: a huge inside-out dome with a barely-there horizon haze.
+ *  - Environment: a procedural PMREM "studio" (mid-tone green-grey walls, a bright
+ *    ceiling, and a handful of gradient softboxes: overhead, two flank strips, a
+ *    front fill and two champagne rim strips). This is what the paint reflects, so
+ *    body lines read as long, soft, controlled highlights. Every value lives in look.js.
+ *  - Lights: warm key, champagne rim, ivory rim, and a green/ivory hemisphere fill.
+ *    No real-time shadows.
+ *  - Tone mapping: Khronos PBR Neutral, so the paint keeps its true colour.
+ *  - Floor: polished British Racing Green, radial fade into the backdrop, plus a
+ *    soft warm pool of light under the car.
+ *  - Backdrop: a huge inside-out dome in deep greens, horizon matched to --color-bg.
  *  - Contact shadow: baked once per vehicle (see contact-shadow.js).
  *
  * Everything is created once. `dispose()` releases every GPU resource.
@@ -15,14 +18,23 @@
 
 import * as THREE from 'three';
 import { createContactShadow } from './contact-shadow.js';
+import { LOOK } from './look.js';
 
-/** Lighting values a future vehicle preset can override and blend. */
+function queryNumber(name, min, max) {
+  try {
+    const raw = new URLSearchParams(location.search).get(name);
+    const value = raw === null ? NaN : parseFloat(raw);
+    return Number.isFinite(value) ? Math.min(max, Math.max(min, value)) : null;
+  } catch { return null; }
+}
+
+/** Lighting values a future vehicle preset can override and blend. Keys are used by assembly-intro.js. */
 export const DEFAULT_LIGHTING = {
-  exposure: 1.0,
-  envIntensity: 1.0,
-  keyIntensity: 1.5,
-  rimIntensity: 1.8,
-  rimColor: '#4f8bff',
+  exposure: LOOK.lighting.exposure,
+  envIntensity: LOOK.lighting.envIntensity,
+  keyIntensity: LOOK.lighting.keyIntensity,
+  rimIntensity: LOOK.lighting.rimIntensity,
+  rimColor: LOOK.lighting.rimColor,
 };
 
 function radialTexture(stops, size = 256) {
@@ -53,6 +65,35 @@ function verticalTexture(stops, h = 256) {
 }
 
 /**
+ * Softbox falloff: 1 across the middle, easing to ~0.25 at the edges, so a panel
+ * reflects as a soft-edged gradient instead of a hard white rectangle.
+ * Linear data (no colour-space conversion): it only scales the panel's colour.
+ */
+function softboxTexture(size = 64) {
+  const data = new Uint8Array(size * size * 4);
+  const ease = (t) => { const x = Math.min(Math.max(t, 0), 1); return x * x * (3 - 2 * x); };
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const dx = Math.abs((x + 0.5) / size - 0.5) * 2;   // 0 centre, 1 edge
+      const dy = Math.abs((y + 0.5) / size - 0.5) * 2;
+      const fx = 1 - 0.75 * ease((dx - 0.45) / 0.55);
+      const fy = 1 - 0.75 * ease((dy - 0.45) / 0.55);
+      const v = Math.round(255 * fx * fy);
+      const i = (y * size + x) * 4;
+      data[i] = data[i + 1] = data[i + 2] = v;
+      data[i + 3] = 255;
+    }
+  }
+  const tex = new THREE.DataTexture(data, size, size, THREE.RGBAFormat);
+  tex.colorSpace = THREE.NoColorSpace;
+  tex.magFilter = THREE.LinearFilter;
+  tex.minFilter = THREE.LinearFilter;
+  tex.generateMipmaps = false;
+  tex.needsUpdate = true;
+  return tex;
+}
+
+/**
  * @param {{ renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.Camera, quality: object, invalidate: () => void, onRestore: Function }} stage
  */
 export function createStudio(stage) {
@@ -65,6 +106,13 @@ export function createStudio(stage) {
   const track = (o) => { disposables.push(o); return o; };
 
   const lighting = { ...DEFAULT_LIGHTING };
+  const exposureOverride = queryNumber('exposure', 0.4, 2.5);
+  if (exposureOverride !== null) lighting.exposure = exposureOverride;
+
+  // Neutral tone mapping keeps paint colours true; fall back to ACES on a Three.js build without it.
+  renderer.toneMapping = (LOOK.toneMapping === 'neutral' && THREE.NeutralToneMapping !== undefined)
+    ? THREE.NeutralToneMapping
+    : THREE.ACESFilmicToneMapping;
 
   // --- Environment ----------------------------------------------------------
   let envTarget = null;
@@ -73,45 +121,38 @@ export function createStudio(stage) {
     const env = new THREE.Scene();
     const mats = [];
     const geos = [];
+    const texs = [];
 
-    const box = new THREE.BoxGeometry(40, 18, 40);
-    const wallMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(0.012, 0.013, 0.016), side: THREE.BackSide });
-    env.add(new THREE.Mesh(box, wallMat));
-    geos.push(box); mats.push(wallMat);
+    // Room: a sphere with a vertical gradient (ceiling → horizon → floor).
+    const roomTex = verticalTexture(LOOK.env.room);
+    const roomGeo = new THREE.SphereGeometry(40, 32, 16);
+    const roomMat = new THREE.MeshBasicMaterial({ map: roomTex, side: THREE.BackSide });
+    env.add(new THREE.Mesh(roomGeo, roomMat));
+    texs.push(roomTex); geos.push(roomGeo); mats.push(roomMat);
 
-    const panel = (w, h, pos, intensity, tint = [1, 1, 1], flat = false) => {
-      const geo = new THREE.PlaneGeometry(w, h);
-      const mat = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
-      mat.color.setRGB(tint[0] * intensity, tint[1] * intensity, tint[2] * intensity);
+    // Softboxes.
+    const softTex = softboxTexture();
+    texs.push(softTex);
+    for (const p of LOOK.env.panels) {
+      const tint = LOOK.env.tints[p.tint] || [1, 1, 1];
+      const geo = new THREE.PlaneGeometry(p.size[0], p.size[1]);
+      const mat = new THREE.MeshBasicMaterial({ map: softTex, side: THREE.DoubleSide });
+      mat.color.setRGB(tint[0] * p.intensity, tint[1] * p.intensity, tint[2] * p.intensity);
       const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(...pos);
-      if (flat) mesh.rotation.x = Math.PI / 2;
-      else mesh.lookAt(0, pos[1], 0);
+      mesh.position.set(...p.pos);
+      if (p.flat) mesh.rotation.x = Math.PI / 2;
+      else mesh.lookAt(0, p.pos[1], 0);
       env.add(mesh);
       geos.push(geo); mats.push(mat);
-    };
-
-    // Overhead softbox: broad highlight across hood, roof and boot.
-    panel(11, 5, [0, 8.5, 0], 4.5, [1, 1, 1], true);
-    // Long vertical strips either side: the crisp lines that run down the flanks.
-    panel(1.1, 7, [10, 3.2, 1.5], 10);
-    panel(1.1, 7, [-10, 3.2, -1.5], 10);
-    // Rear strips for the shoulder / tail highlights.
-    panel(0.9, 6, [-3, 3, -11], 7);
-    panel(0.9, 6, [3.5, 3, 11], 6);
-    // Cool accent strip, matches the site's blue.
-    panel(0.8, 6, [-9, 2.6, 7], 8, [0.28, 0.5, 1.0]);
-    // Faint low front fill so the lower body is never pure black.
-    panel(10, 0.9, [0, 0.6, 12], 1.2);
-    // Dim floor bounce.
-    panel(24, 24, [0, -1.5, 0], 0.10, [1, 1, 1], true);
+    }
 
     const pmrem = new THREE.PMREMGenerator(renderer);
-    const target = pmrem.fromScene(env, 0.035, 0.1, 100);
+    const target = pmrem.fromScene(env, LOOK.env.blur, 0.1, 100, { size: quality.envSize || 256 });
     pmrem.dispose();
 
     geos.forEach((g) => g.dispose());
     mats.forEach((m) => m.dispose());
+    texs.forEach((t) => t.dispose());
 
     if (envTarget) envTarget.dispose();
     envTarget = target;
@@ -121,12 +162,12 @@ export function createStudio(stage) {
   }
 
   // --- Floor, pool of light, backdrop --------------------------------------
-  const floorAlpha = track(radialTexture([[0, '#fff'], [0.32, '#fff'], [0.7, '#444'], [1, '#000']]));
+  const floorAlpha = track(radialTexture(LOOK.floor.fade));
   const floorMat = track(new THREE.MeshStandardMaterial({
-    color: 0x0b0c0f,
-    roughness: 0.58,
+    color: new THREE.Color(LOOK.floor.color),
+    roughness: LOOK.floor.roughness,
     metalness: 0,
-    envMapIntensity: 0.22,
+    envMapIntensity: LOOK.floor.envMapIntensity,
     alphaMap: floorAlpha,
     transparent: true,
     depthWrite: false,
@@ -142,24 +183,22 @@ export function createStudio(stage) {
   const poolTex = track(radialTexture([[0, 'rgba(255,255,255,1)'], [0.35, 'rgba(255,255,255,0.45)'], [1, 'rgba(255,255,255,0)']]));
   const poolMat = track(new THREE.MeshBasicMaterial({
     map: poolTex,
-    color: 0x8f9bb5,
+    color: new THREE.Color(LOOK.pool.color),
     transparent: true,
-    opacity: 0.1,
+    opacity: LOOK.pool.opacity,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
     toneMapped: false,
     fog: false,
   }));
-  const pool = new THREE.Mesh(track(new THREE.CircleGeometry(7.5, 64)), poolMat);
+  const pool = new THREE.Mesh(track(new THREE.CircleGeometry(LOOK.pool.radius, 64)), poolMat);
   pool.rotation.x = -Math.PI / 2;
   pool.position.y = 0.001;
   pool.renderOrder = -2.5;
   pool.name = 'light-pool';
   root.add(pool);
 
-  const domeTex = track(verticalTexture([
-    [0.0, '#050506'], [0.38, '#060608'], [0.5, '#0d0f14'], [0.56, '#07080b'], [1.0, '#050506'],
-  ]));
+  const domeTex = track(verticalTexture(LOOK.dome));
   const dome = new THREE.Mesh(
     track(new THREE.SphereGeometry(120, 32, 16)),
     track(new THREE.MeshBasicMaterial({ map: domeTex, side: THREE.BackSide, fog: false, depthWrite: false, toneMapped: false }))
@@ -169,15 +208,18 @@ export function createStudio(stage) {
   dome.name = 'backdrop';
   root.add(dome);
 
-  // --- Lights (4 in total, none cast shadows) -------------------------------
-  const key = new THREE.DirectionalLight(0xffffff, lighting.keyIntensity);
+  // --- Lights (4 in total, 3 on the low tier; none cast shadows) --------------
+  const L = LOOK.lighting;
+  const key = new THREE.DirectionalLight(new THREE.Color(L.keyColor), lighting.keyIntensity);
   key.position.set(3.5, 6.5, 4.5);
   const rimA = new THREE.DirectionalLight(new THREE.Color(lighting.rimColor), lighting.rimIntensity);
   rimA.position.set(-5, 2.6, -4.5);
-  const rimB = new THREE.DirectionalLight(0xffffff, lighting.rimIntensity * 0.5);
+  const rimB = new THREE.DirectionalLight(new THREE.Color(L.rimBColor), lighting.rimIntensity * 0.5);
   rimB.position.set(5.5, 2.2, -5);
-  const fill = new THREE.HemisphereLight(0x1a1e2a, 0x050506, 0.25);
-  root.add(key, rimA, rimB, fill);
+  const fill = new THREE.HemisphereLight(new THREE.Color(L.hemiSky), new THREE.Color(L.hemiGround), L.hemiIntensity);
+  root.add(key, rimA, fill);
+  const useRimB = quality.name !== 'low';
+  if (useRimB) root.add(rimB);
 
   /** Apply (a partial set of) lighting values. Future vehicle presets use this. */
   function setLighting(values = {}) {

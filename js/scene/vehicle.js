@@ -17,6 +17,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { DRACO_DECODER_PATH, STAGE } from '../config.js';
+import { enhanceVehicleMaterials, materialsEnabled } from './materials.js';
 
 const TEXTURE_SLOTS = [
   'map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap', 'emissiveMap', 'alphaMap',
@@ -188,7 +189,16 @@ export async function loadVehicle(stage, spec, report = () => {}) {
 
   const dimensions = { length: size.x * scale, width: size.z * scale, height: size.y * scale };
 
-  // 4. Texture settings (anisotropy) + collect for GPU upload ------------------
+  // 4. Premium finish (runtime only, the GLB is untouched), texture filtering, collect for GPU upload ---
+  if (materialsEnabled()) {
+    try {
+      const finished = enhanceVehicleMaterials(model, { quality });
+      console.info('[AETHER GT] material finish:', finished.counts);
+    } catch (error) {
+      console.warn('[AETHER GT] material finish skipped:', error);   // never fails the page
+    }
+  }
+
   const textures = new Set();
   const materials = new Set();
   model.traverse((o) => {
@@ -199,7 +209,12 @@ export async function loadVehicle(stage, spec, report = () => {}) {
   materials.forEach((m) => {
     TEXTURE_SLOTS.forEach((slot) => {
       const t = m[slot];
-      if (t && t.isTexture) { t.anisotropy = maxAniso; textures.add(t); }
+      if (t && t.isTexture) {
+        t.anisotropy = maxAniso;
+        // Trilinear mipmapping: sharp at a distance, no shimmer on the paint and tyre textures.
+        if (t.minFilter === THREE.LinearFilter || t.minFilter === THREE.NearestFilter) { t.minFilter = THREE.LinearMipmapLinearFilter; t.generateMipmaps = true; }
+        textures.add(t);
+      }
     });
   });
 
