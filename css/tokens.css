@@ -1,10 +1,15 @@
 /* ==========================================================================
-   AETHER GT — Design tokens (Luxury Automotive Editorial x Minimalist Performance Luxury)
-   Single source of truth. JS reads --color-bg for the Three.js background, so it stays
-   the same deep black as the BMW studio backdrop.
+   AETHER GT — Design tokens (British Racing Green Luxury Editorial)
+   Single source of truth. JS reads --color-bg for the Three.js background (keep it a literal hex).
 
-   Palette   ink / graphite / ivory, one metallic accent (champagne steel). No blues, no glows.
-   Type      Lora (editorial serif) for names and statements; Inter for labels and body.
+   Palette   British Racing Green #123C32 (primary), deep green #0D2924 (darker sections),
+             warm ivory #F3EBDD (light sections), soft stone #D5D0C5 (secondary surfaces),
+             muted champagne #C39A65 (the one accent). No black, no blues, no glows.
+   Tones     Sections choose a tone with .section--green / .section--deep / .section--ivory
+             (css/layout.css). A tone only re-maps the --color-* tokens below, so components
+             never need a light/dark variant of their own.
+   Type      Lora (editorial serif) for names and statements; Inter for labels and body
+             (unchanged in Batch 1A; the serif/sans swap is Batch 1B).
    Rhythm    8 px base. Sections breathe in 96 / 144 / 208 px steps.
    ========================================================================== */
 
@@ -50,26 +55,33 @@
 }
 
 :root {
-  /* Colour: surfaces ------------------------------------------------------ */
-  --color-bg: #050506;              /* ink: page and WebGL backdrop */
-  --color-surface: #101112;         /* graphite 900 */
-  --color-surface-raised: #17181a;  /* graphite 800 */
-  --color-graphite: #222426;        /* graphite 700: frames, plates */
-  --color-graphite-soft: #2c2e31;   /* graphite 600: hairline fills */
+  /* Colour: brand palette (reference values; components use the semantic tokens below) */
+  --green: #123c32;                 /* British Racing Green */
+  --green-deep: #0d2924;            /* darker sections */
+  --ivory: #f3ebdd;                 /* warm ivory */
+  --stone: #d5d0c5;                 /* soft stone */
+  --champagne: #c39a65;             /* muted champagne gold */
 
-  /* Colour: ivory ramp (text) --------------------------------------------- */
-  --color-text: #ece6d9;            /* warm ivory */
-  --color-text-muted: #b2ac9f;      /* 9.4:1 on ink */
-  --color-text-dim: #8d887d;        /* 5.6:1 on ink: smallest labels only */
+  /* Colour: semantic tokens, default tone = green. Contrast on #123c32: text 10.3:1,
+     muted 7.2:1, dim 5.5:1, accent 4.7:1 (labels and large type only). */
+  --color-bg: #123c32;              /* page and WebGL backdrop (literal hex: read by JS) */
+  --color-bg-deep: #0d2924;         /* header bar, footer, deep sections */
+  --color-surface: #0d2924;         /* panels, menus */
+  --color-surface-raised: #174a3e;
+  --color-graphite: #1d5545;        /* legacy name: frames, plates */
+  --color-graphite-soft: #266352;   /* legacy name: hairline fills */
 
-  /* Colour: metal ---------------------------------------------------------- */
-  --color-accent: #c9bc9a;          /* champagne steel */
-  --color-accent-soft: rgb(201 188 154 / 0.12);
-  --color-line: rgb(236 230 217 / 0.1);
-  --color-line-strong: rgb(236 230 217 / 0.2);
-  /* The one decorative effect: a brushed-metal hairline (use on 1px rules only). */
-  --metal-hairline: linear-gradient(90deg, transparent, rgb(201 188 154 / 0.15) 8%, #c9bc9a 50%, rgb(201 188 154 / 0.15) 92%, transparent);
-  --metal-rule: linear-gradient(90deg, #8f8467, #e4d9ba 45%, #8f8467);
+  --color-text: #f3ebdd;            /* warm ivory */
+  --color-text-muted: #c6c8bb;      /* 7.2:1 on green */
+  --color-text-dim: #a6b0a3;        /* 5.5:1 on green, 6.9:1 on deep: smallest labels only */
+
+  --color-accent: #c39a65;          /* champagne: text, links, italics on green */
+  --color-accent-soft: rgb(195 154 101 / 0.14);
+  --color-line: rgb(243 235 221 / 0.12);
+  --color-line-strong: rgb(243 235 221 / 0.24);
+  /* The one decorative effect: a champagne hairline (use on 1px rules only). */
+  --metal-hairline: linear-gradient(90deg, transparent, rgb(195 154 101 / 0.18) 8%, #c39a65 50%, rgb(195 154 101 / 0.18) 92%, transparent);
+  --metal-rule: linear-gradient(90deg, #9c7647, #c39a65 50%, #9c7647);
 
   /* Typography ------------------------------------------------------------- */
   --font-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;

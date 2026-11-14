@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AETHER GT — Layout: stage, header, hero, lineup
+   AETHER GT — Layout: stage, header, section tones, hero, lineup
    Mobile-first.
    ========================================================================== */
 
@@ -52,7 +52,26 @@ main {
   inset: 0 0 auto 0;
   z-index: var(--z-header);
   height: var(--header-h);
-  background: linear-gradient(to bottom, rgb(5 5 6 / 0.8), rgb(5 5 6 / 0));
+  background: linear-gradient(to bottom, rgb(13 41 36 / 0.82), rgb(13 41 36 / 0));
+}
+
+/* Once the page has scrolled (js/ui/site-chrome.js sets .is-scrolled) the header becomes a solid
+   deep-green bar with a hairline, so text never reads through the wordmark or the links. The
+   solid layer is a pseudo-element faded in with opacity (cheap on low-end GPUs, no backdrop blur). */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-bg-deep);
+  box-shadow: 0 1px 0 var(--color-line);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.site-header.is-scrolled::before {
+  opacity: 1;
 }
 
 .site-header__inner {
@@ -102,6 +121,73 @@ main {
   transform: scaleX(0);
   transform-origin: left center;
   will-change: transform;
+}
+
+/* Section tones -----------------------------------------------------------
+   Put one of these on a section (or any block). It paints the background, sets the text colour and
+   re-maps the colour tokens, so every component inside follows without changes.
+     .section--green   primary British Racing Green (the default page tone)
+     .section--deep    darker green, for contrast and for closing sections
+     .section--ivory   warm ivory with deep-green text. Champagne gold is too pale for text on
+                       ivory (2.2:1), so --color-accent becomes a deeper champagne (4.9:1) here;
+                       the gold itself is kept for 1px rules only (--metal-*). Avoid small
+                       --color-text-dim text on stone surfaces (3.7:1). */
+.section--green,
+.section--deep,
+.section--ivory {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.section--green {
+  --color-bg: #123c32;
+  --color-surface: #0d2924;
+  --color-surface-raised: #174a3e;
+  --color-graphite: #1d5545;
+  --color-graphite-soft: #266352;
+  --color-text: #f3ebdd;
+  --color-text-muted: #c6c8bb;
+  --color-text-dim: #a6b0a3;
+  --color-accent: #c39a65;
+  --color-accent-soft: rgb(195 154 101 / 0.14);
+  --color-line: rgb(243 235 221 / 0.12);
+  --color-line-strong: rgb(243 235 221 / 0.24);
+  --metal-hairline: linear-gradient(90deg, transparent, rgb(195 154 101 / 0.18) 8%, #c39a65 50%, rgb(195 154 101 / 0.18) 92%, transparent);
+  --metal-rule: linear-gradient(90deg, #9c7647, #c39a65 50%, #9c7647);
+}
+
+.section--deep {
+  --color-bg: #0d2924;
+  --color-surface: #123c32;
+  --color-surface-raised: #174a3e;
+  --color-graphite: #1d5545;
+  --color-graphite-soft: #266352;
+  --color-text: #f3ebdd;
+  --color-text-muted: #c6c8bb;
+  --color-text-dim: #a6b0a3;
+  --color-accent: #c39a65;
+  --color-accent-soft: rgb(195 154 101 / 0.14);
+  --color-line: rgb(243 235 221 / 0.12);
+  --color-line-strong: rgb(243 235 221 / 0.24);
+  --metal-hairline: linear-gradient(90deg, transparent, rgb(195 154 101 / 0.18) 8%, #c39a65 50%, rgb(195 154 101 / 0.18) 92%, transparent);
+  --metal-rule: linear-gradient(90deg, #9c7647, #c39a65 50%, #9c7647);
+}
+
+.section--ivory {
+  --color-bg: #f3ebdd;
+  --color-surface: #d5d0c5;         /* soft stone */
+  --color-surface-raised: #e6dfd0;
+  --color-graphite: #d5d0c5;
+  --color-graphite-soft: #c9c4b8;
+  --color-text: #123c32;            /* 10.3:1 on ivory */
+  --color-text-muted: #3f5f54;      /* 6.0:1 on ivory, 4.6:1 on stone */
+  --color-text-dim: #516d62;        /* 4.8:1 on ivory: smallest labels, never on stone */
+  --color-accent: #80602f;          /* deep champagne: 4.9:1 on ivory */
+  --color-accent-soft: rgb(128 96 47 / 0.12);
+  --color-line: rgb(18 60 50 / 0.14);
+  --color-line-strong: rgb(18 60 50 / 0.28);
+  --metal-hairline: linear-gradient(90deg, transparent, rgb(160 122 69 / 0.2) 8%, #a07a45 50%, rgb(160 122 69 / 0.2) 92%, transparent);
+  --metal-rule: linear-gradient(90deg, #8c6a3b, #a07a45 50%, #8c6a3b);
 }
 
 /* Hero ------------------------------------------------------------------- */
