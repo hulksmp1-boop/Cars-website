@@ -11,9 +11,7 @@
 import { mountChrome } from '../ui/site-chrome.js';
 import { initPageTransitions } from '../ui/transitions.js';
 import { initReveal } from '../ui/reveal.js';
-import { initRoadJourney } from '../ui/road-journey.js';
 
 mountChrome({ current: 'intro' });
 initPageTransitions();
 initReveal();
-initRoadJourney();
